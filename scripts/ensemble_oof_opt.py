@@ -2,13 +2,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 import pandas as pd
-import sacrebleu
+
+from metrics_utils import build_metric_signatures, compute_translation_metrics
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -109,20 +109,7 @@ def _load_test_dataframe(path_spec: str) -> pd.DataFrame:
 
 
 def _compute_metrics(predictions: list[str], references: list[str]) -> dict[str, float]:
-    bleu = float(sacrebleu.corpus_bleu(predictions, [references]).score)
-    chrfpp = float(sacrebleu.corpus_chrf(predictions, [references], word_order=2).score)
-    bleu_01 = bleu / 100.0
-    chrfpp_01 = chrfpp / 100.0
-    geom = math.sqrt(max(bleu, 0.0) * max(chrfpp, 0.0))
-    geom_01 = math.sqrt(max(bleu_01, 0.0) * max(chrfpp_01, 0.0))
-    return {
-        "bleu": bleu,
-        "chrfpp": chrfpp,
-        "geom": geom,
-        "bleu_01": bleu_01,
-        "chrfpp_01": chrfpp_01,
-        "geom_01": geom_01,
-    }
+    return compute_translation_metrics(predictions=predictions, references=references)
 
 
 def _weighted_vote(values: list[str], weights: list[float]) -> str:
@@ -280,6 +267,7 @@ def main() -> None:
     summary = {
         "num_rows_oof": int(len(merged)),
         "models": model_names,
+        "metric_signatures": build_metric_signatures(),
         "model_metrics": model_metrics,
         "best": {
             "label": str(best["label"]),

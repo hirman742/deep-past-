@@ -60,14 +60,14 @@ if ($ComputeTarget -eq "gpu") {
     }
 } else {
     Write-Host "Aligning PyTorch to conda CPU build..."
-    & $condaBat install -n $EnvName -c conda-forge -y pytorch-cpu
+    & $condaBat install -n $EnvName -c conda-forge -y "pytorch=2.10.0" "pytorch-cpu=2.10.0"
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to install pytorch-cpu."
     }
 
     & $condaBat run -n $EnvName python -c "import importlib.util, sys; sys.exit(0 if importlib.util.find_spec('torch') else 1)"
     if ($LASTEXITCODE -ne 0) {
-        & $condaBat install -n $EnvName -c conda-forge -y --force-reinstall pytorch pytorch-cpu libtorch
+        & $condaBat install -n $EnvName -c conda-forge -y --force-reinstall "pytorch=2.10.0" "pytorch-cpu=2.10.0" libtorch
         if ($LASTEXITCODE -ne 0) {
             throw "Failed to repair PyTorch installation."
         }

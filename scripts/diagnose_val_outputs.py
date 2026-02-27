@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
 import random
 import re
 from collections import Counter
@@ -10,13 +9,13 @@ from pathlib import Path
 from typing import Any
 
 import pandas as pd
-import sacrebleu
 import torch
 import yaml
 from peft import PeftModel
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 from generation_utils import build_bad_words_ids, build_generate_kwargs, resolve_generation_settings
+from metrics_utils import build_metric_signatures, compute_translation_metrics
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -162,12 +161,7 @@ def main() -> None:
     pred_tok_lens = [len(tokenizer.encode(x, add_special_tokens=True)) for x in predictions]
     ref_tok_lens = [len(tokenizer.encode(x, add_special_tokens=True)) for x in references]
 
-    bleu = sacrebleu.corpus_bleu(predictions, [references]).score
-    chrfpp = sacrebleu.corpus_chrf(predictions, [references], word_order=2).score
-    bleu_01 = float(bleu) / 100.0
-    chrfpp_01 = float(chrfpp) / 100.0
-    geom = math.sqrt(max(bleu, 0.0) * max(chrfpp, 0.0))
-    geom_01 = math.sqrt(max(bleu_01, 0.0) * max(chrfpp_01, 0.0))
+    metrics = compute_translation_metrics(predictions=predictions, references=references)
 
     empty_pred = [idx for idx, text in enumerate(predictions) if not text.strip()]
     copy_source = [idx for idx, (src, pred) in enumerate(zip(sources, predictions)) if src.strip() == pred.strip()]
@@ -223,17 +217,18 @@ def main() -> None:
             "suppressed_bad_word_ids_count": int(len(bad_words_ids or [])),
         },
         "metrics": {
-            "bleu": float(bleu),
-            "chrfpp": float(chrfpp),
-            "geom": float(geom),
-            "bleu_01": float(bleu_01),
-            "chrfpp_01": float(chrfpp_01),
-            "geom_01": float(geom_01),
+            "bleu": float(metrics["bleu"]),
+            "chrfpp": float(metrics["chrfpp"]),
+            "geom": float(metrics["geom"]),
+            "bleu_01": float(metrics["bleu_01"]),
+            "chrfpp_01": float(metrics["chrfpp_01"]),
+            "geom_01": float(metrics["geom_01"]),
             "scales": {
                 "bleu": "0-100",
                 "chrfpp": "0-100",
                 "geom": "sqrt(bleu * chrfpp)",
             },
+            "signatures": build_metric_signatures(),
         },
         "output_health": {
             "num_rows": int(len(predictions)),

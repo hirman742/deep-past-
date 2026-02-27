@@ -1,4 +1,22 @@
 # Deep Past MT (Akkadian → English)
+[![Kaggle Competition](https://img.shields.io/badge/Kaggle-Deep%20Past%20MT-20BEFF?logo=kaggle)](https://www.kaggle.com/competitions/deep-past-initiative-machine-translation)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](env.yml)
+[![Conda Env](https://img.shields.io/badge/Conda-deeppast--cleaning-44A833?logo=anaconda&logoColor=white)](env.yml)
+[![Last Commit](https://img.shields.io/github/last-commit/hirman742/deep-past-)](https://github.com/hirman742/deep-past-)
+
+Reproducible Kaggle pipeline for the Deep Past Initiative machine translation task, focused on Akkadian to English sequence-to-sequence modeling with mT5/ByT5, LoRA, ORACC mix training, TAPT, and OOF-weighted ensemble.
+
+## Project Overview
+- Objective: improve translation quality under low-resource constraints with robust preprocessing and controlled experiments.
+- Main stack: `transformers`, `peft` (LoRA), `sacrebleu` metrics, Conda-managed training environment.
+- Current workflow: preprocessing -> fold training -> validation diagnostics -> decode grid -> inference -> ensemble.
+
+## Repository Layout
+- `configs/`: baseline and aggressive experiment YAML configs.
+- `scripts/`: preprocess/train/infer/diagnose plus ORACC mix, chunking, TAPT, and ensemble scripts.
+- `data/`: raw/interim/processed datasets (large generated artifacts are ignored by Git).
+- `runs/`: experiment outputs, diagnostics, CV summaries, and submission artifacts.
+- `references/` and `docs/`: background materials and cleaning/normalization specs.
 
 ## Environment
 Windows (GPU by default):
@@ -35,7 +53,7 @@ conda run -n deeppast-cleaning python scripts/diagnose_val_outputs.py --config c
 
 Decode grid (no retrain):
 ```bash
-conda run -n deeppast-cleaning python scripts/eval_decode_grid.py --config configs/mt5_small_lora_8gb_e0_chainfix.yaml --fold 0 --beams 4,6,8 --length-penalties 0.8,1.0,1.2,1.4 --no-repeat-ngram-sizes 0,2,3
+conda run -n deeppast-cleaning python scripts/eval_decode_grid.py --config configs/mt5_small_lora_8gb_e0_chainfix.yaml --fold 0 --beams 4,6,8 --length-penalties 0.8,1.0,1.2,1.4 --no-repeat-ngram-sizes 0,2,3 --min-new-tokens-list 0,8,16
 ```
 
 ### Day2: length expansion

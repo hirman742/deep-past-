@@ -2,19 +2,19 @@ from __future__ import annotations
 
 import argparse
 import json
-import math
+import time
 from itertools import product
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
-import sacrebleu
 import torch
 import yaml
 from peft import PeftModel
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 from generation_utils import build_bad_words_ids, build_generate_kwargs, resolve_generation_settings
+from metrics_utils import build_metric_signatures, compute_translation_metrics
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -45,6 +45,33 @@ def _parse_floats(value: str) -> list[float]:
 
 def _chunk(items: list[str], size: int) -> list[list[str]]:
     return [items[i : i + size] for i in range(0, len(items), size)]
+
+
+def _norm_lp(value: float) -> float:
+    return round(float(value), 6)
+
+
+def _combo_key(
+    *,
+    num_beams: int,
+    length_penalty: float,
+    no_repeat_ngram_size: int,
+    min_new_tokens: int,
+) -> tuple[int, float, int, int]:
+    return (
+        int(num_beams),
+        _norm_lp(length_penalty),
+        int(no_repeat_ngram_size),
+        int(min_new_tokens),
+    )
+
+
+def _score_key(row: dict[str, Any]) -> tuple[float, float, float]:
+    return (
+        float(row.get("eval_geom", 0.0)),
+        float(row.get("eval_bleu", 0.0)),
+        float(row.get("eval_chrfpp", 0.0)),
+    )
 
 
 def _generate_texts(
@@ -96,6 +123,7 @@ def main() -> None:
     ap.add_argument("--beams", default="4,5,8")
     ap.add_argument("--length-penalties", default="0.8,1.0,1.2,1.4")
     ap.add_argument("--no-repeat-ngram-sizes", default="0")
+    ap.add_argument("--min-new-tokens-list", default="")
     ap.add_argument("--predict-batch-size", type=int, default=32)
     ap.add_argument("--max-val-samples", type=int, default=0)
     args = ap.parse_args()
@@ -130,10 +158,14 @@ def main() -> None:
     max_source_length = int(model_cfg.get("max_source_length", 256))
     default_max_new_tokens = int(generation_settings["max_new_tokens"])
     default_min_new_tokens = int(generation_settings["min_new_tokens"])
+    if args.min_new_tokens_list.strip():
+        min_new_tokens_values = _parse_ints(args.min_new_tokens_list)
+    else:
+        min_new_tokens_values = [default_min_new_tokens]
     beams = _parse_ints(args.beams)
     length_penalties = _parse_floats(args.length_penalties)
     ngram_sizes = _parse_ints(args.no_repeat_ngram_sizes)
-    if not beams or not length_penalties or not ngram_sizes:
+    if not beams or not length_penalties or not ngram_sizes or not min_new_tokens_values:
         raise ValueError("decode grid lists cannot be empty")
 
     tokenizer = AutoTokenizer.from_pretrained(checkpoint_dir)
@@ -152,13 +184,55 @@ def main() -> None:
     sources = val_df["source"].fillna("").astype(str).tolist()
     references = val_df["target"].fillna("").astype(str).tolist()
     rows: list[dict[str, Any]] = []
+    csv_path = run_dir / "decode_grid_metrics.csv"
+    json_path = run_dir / "decode_grid_best.json"
+    if csv_path.exists():
+        existing_df = pd.read_csv(csv_path)
+        if not existing_df.empty:
+            rows = existing_df.to_dict(orient="records")
 
-    for num_beams, length_penalty, no_repeat_ngram_size in product(beams, length_penalties, ngram_sizes):
+    done_keys = {
+        _combo_key(
+            num_beams=int(row["num_beams"]),
+            length_penalty=float(row["length_penalty"]),
+            no_repeat_ngram_size=int(row["no_repeat_ngram_size"]),
+            min_new_tokens=int(row.get("min_new_tokens", default_min_new_tokens)),
+        )
+        for row in rows
+    }
+
+    combos = list(product(beams, length_penalties, ngram_sizes, min_new_tokens_values))
+    total_runs = len(combos)
+    start_time = time.time()
+    completed_runs = len(done_keys)
+
+    metric_signatures = build_metric_signatures()
+
+    for run_idx, (num_beams, length_penalty, no_repeat_ngram_size, min_new_tokens) in enumerate(combos, start=1):
+        key = _combo_key(
+            num_beams=num_beams,
+            length_penalty=length_penalty,
+            no_repeat_ngram_size=no_repeat_ngram_size,
+            min_new_tokens=min_new_tokens,
+        )
+        if key in done_keys:
+            print(
+                "SKIP:",
+                f"[{run_idx}/{total_runs}]",
+                f"beams={num_beams}",
+                f"lp={length_penalty}",
+                f"no_repeat_ngram_size={no_repeat_ngram_size}",
+                f"min_new_tokens={min_new_tokens}",
+            )
+            continue
+
         print(
             "RUN:",
+            f"[{run_idx}/{total_runs}]",
             f"beams={num_beams}",
             f"lp={length_penalty}",
             f"no_repeat_ngram_size={no_repeat_ngram_size}",
+            f"min_new_tokens={min_new_tokens}",
         )
         predictions = _generate_texts(
             model=model,
@@ -166,7 +240,7 @@ def main() -> None:
             sources=sources,
             max_source_length=max_source_length,
             max_new_tokens=default_max_new_tokens,
-            min_new_tokens=default_min_new_tokens,
+            min_new_tokens=min_new_tokens,
             num_beams=num_beams,
             length_penalty=length_penalty,
             no_repeat_ngram_size=no_repeat_ngram_size,
@@ -174,33 +248,65 @@ def main() -> None:
             batch_size=args.predict_batch_size,
             device=device,
         )
-        bleu = sacrebleu.corpus_bleu(predictions, [references]).score
-        chrfpp = sacrebleu.corpus_chrf(predictions, [references], word_order=2).score
-        bleu_01 = float(bleu) / 100.0
-        chrfpp_01 = float(chrfpp) / 100.0
-        geom = math.sqrt(max(bleu, 0.0) * max(chrfpp, 0.0))
-        geom_01 = math.sqrt(max(bleu_01, 0.0) * max(chrfpp_01, 0.0))
+        metrics = compute_translation_metrics(predictions=predictions, references=references)
         rows.append(
             {
                 "fold": int(args.fold),
                 "num_beams": int(num_beams),
                 "length_penalty": float(length_penalty),
                 "no_repeat_ngram_size": int(no_repeat_ngram_size),
-                "eval_bleu": float(bleu),
-                "eval_chrfpp": float(chrfpp),
-                "eval_geom": float(geom),
-                "eval_bleu_01": float(bleu_01),
-                "eval_chrfpp_01": float(chrfpp_01),
-                "eval_geom_01": float(geom_01),
+                "min_new_tokens": int(min_new_tokens),
+                "eval_bleu": float(metrics["bleu"]),
+                "eval_chrfpp": float(metrics["chrfpp"]),
+                "eval_geom": float(metrics["geom"]),
+                "eval_bleu_01": float(metrics["bleu_01"]),
+                "eval_chrfpp_01": float(metrics["chrfpp_01"]),
+                "eval_geom_01": float(metrics["geom_01"]),
             }
         )
+        current_row = rows[-1]
+        done_keys.add(key)
+        completed_runs += 1
+        best_so_far = max(rows, key=_score_key)
+        best_payload = dict(best_so_far)
+        best_payload["metric_signatures"] = metric_signatures
+        best_payload["completed_runs"] = int(completed_runs)
+        best_payload["total_planned_runs"] = int(total_runs)
+        best_payload["progress_pct"] = 100.0 * float(completed_runs) / float(max(1, total_runs))
+        elapsed = time.time() - start_time
+        best_payload["elapsed_seconds"] = float(elapsed)
+        json_path.write_text(json.dumps(best_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    result_df = pd.DataFrame(rows).sort_values(["eval_geom", "eval_bleu"], ascending=False).reset_index(drop=True)
-    csv_path = run_dir / "decode_grid_metrics.csv"
-    json_path = run_dir / "decode_grid_best.json"
+        pd.DataFrame([current_row]).to_csv(
+            csv_path,
+            mode="a",
+            header=not csv_path.exists(),
+            index=False,
+        )
+        print(
+            "OK:",
+            f"completed={completed_runs}/{total_runs}",
+            f"geom={current_row['eval_geom']:.4f}",
+            f"best_geom={best_so_far['eval_geom']:.4f}",
+        )
+
+    result_df = (
+        pd.DataFrame(rows)
+        .drop_duplicates(
+            subset=["num_beams", "length_penalty", "no_repeat_ngram_size", "min_new_tokens"],
+            keep="last",
+        )
+        .sort_values(["eval_geom", "eval_bleu"], ascending=False)
+        .reset_index(drop=True)
+    )
     result_df.to_csv(csv_path, index=False)
 
     best = result_df.iloc[0].to_dict()
+    best["metric_signatures"] = metric_signatures
+    best["completed_runs"] = int(len(result_df))
+    best["total_planned_runs"] = int(total_runs)
+    best["progress_pct"] = 100.0 * float(len(result_df)) / float(max(1, total_runs))
+    best["elapsed_seconds"] = float(time.time() - start_time)
     json_path.write_text(json.dumps(best, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"OK: wrote {csv_path}")
     print(f"OK: wrote {json_path}")

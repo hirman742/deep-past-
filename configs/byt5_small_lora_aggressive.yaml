@@ -60,7 +60,7 @@ generation:
   num_beams: 4
   length_penalty: 1.0
   max_new_tokens: 256
-  min_new_tokens: 16
-  no_repeat_ngram_size: 2
+  min_new_tokens: 0
+  no_repeat_ngram_size: 0
   suppress_extra_ids: true
   bad_tokens_regex: "<extra_id_\\d+>"

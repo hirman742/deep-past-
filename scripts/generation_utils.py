@@ -6,6 +6,7 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_BAD_TOKENS_REGEX = r"<extra_id_\d+>"
 
 
 def resolve_generation_settings(
@@ -13,6 +14,11 @@ def resolve_generation_settings(
     model_cfg: dict[str, Any],
     gen_cfg: dict[str, Any],
 ) -> dict[str, Any]:
+    raw_bad_tokens_regex = gen_cfg.get("bad_tokens_regex", DEFAULT_BAD_TOKENS_REGEX)
+    if raw_bad_tokens_regex is None:
+        bad_tokens_regex = DEFAULT_BAD_TOKENS_REGEX
+    else:
+        bad_tokens_regex = str(raw_bad_tokens_regex)
     max_target_length = int(model_cfg.get("max_target_length", 192))
     settings = {
         "num_beams": int(gen_cfg.get("num_beams", 4)),
@@ -21,7 +27,7 @@ def resolve_generation_settings(
         "min_new_tokens": int(gen_cfg.get("min_new_tokens", 0)),
         "no_repeat_ngram_size": int(gen_cfg.get("no_repeat_ngram_size", 0)),
         "suppress_extra_ids": bool(gen_cfg.get("suppress_extra_ids", False)),
-        "bad_tokens_regex": str(gen_cfg.get("bad_tokens_regex", r"<extra_id_\d+>")),
+        "bad_tokens_regex": bad_tokens_regex,
     }
     return settings
 
@@ -34,7 +40,10 @@ def build_bad_words_ids(
 ) -> list[list[int]] | None:
     if not suppress_extra_ids:
         return None
-    pattern = re.compile(bad_tokens_regex)
+    normalized_regex = str(bad_tokens_regex or "").strip()
+    if not normalized_regex:
+        normalized_regex = DEFAULT_BAD_TOKENS_REGEX
+    pattern = re.compile(normalized_regex)
     blocked_ids: set[int] = set()
     vocab = tokenizer.get_vocab()
     for token, token_id in vocab.items():
@@ -53,6 +62,12 @@ def build_bad_words_ids(
         tokenizer.unk_token_id,
     }
     filtered = sorted(x for x in blocked_ids if x is not None and x >= 0 and x not in protected)
+    vocab_size = max(1, len(vocab))
+    if len(filtered) >= int(vocab_size * 0.8):
+        raise ValueError(
+            f"bad_tokens_regex='{normalized_regex}' suppresses {len(filtered)}/{vocab_size} tokens; "
+            "please narrow the pattern."
+        )
     if not filtered:
         return None
     return [[x] for x in filtered]

@@ -9,7 +9,6 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
-import sacrebleu
 import torch
 import yaml
 from peft import LoraConfig, PeftModel, TaskType, get_peft_model
@@ -24,6 +23,7 @@ from transformers import (
 )
 
 from generation_utils import build_bad_words_ids, build_generate_kwargs, resolve_generation_settings
+from metrics_utils import build_metric_signatures, compute_translation_metrics
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -297,20 +297,7 @@ def main() -> None:
         labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
         pred_texts = [x.strip() for x in tokenizer.batch_decode(predictions, skip_special_tokens=True)]
         ref_texts = [x.strip() for x in tokenizer.batch_decode(labels, skip_special_tokens=True)]
-        bleu_raw = sacrebleu.corpus_bleu(pred_texts, [ref_texts]).score
-        chrfpp_raw = sacrebleu.corpus_chrf(pred_texts, [ref_texts], word_order=2).score
-        bleu_01 = float(bleu_raw) / 100.0
-        chrfpp_01 = float(chrfpp_raw) / 100.0
-        geom = math.sqrt(max(bleu_raw, 0.0) * max(chrfpp_raw, 0.0))
-        geom_01 = math.sqrt(max(bleu_01, 0.0) * max(chrfpp_01, 0.0))
-        return {
-            "bleu": float(bleu_raw),
-            "chrfpp": float(chrfpp_raw),
-            "geom": float(geom),
-            "bleu_01": float(bleu_01),
-            "chrfpp_01": float(chrfpp_01),
-            "geom_01": float(geom_01),
-        }
+        return compute_translation_metrics(predictions=pred_texts, references=ref_texts)
 
     if torch.cuda.is_available():
         torch.cuda.reset_peak_memory_stats()
@@ -427,6 +414,7 @@ def main() -> None:
             "chrfpp_01": "chrfpp/100",
             "geom_01": "sqrt(bleu_01 * chrfpp_01)",
         },
+        "metric_signatures": build_metric_signatures(),
         "train_metrics": train_result.metrics,
         "eval_metrics": eval_result,
         "peak_gpu_memory_mb": float(torch.cuda.max_memory_allocated() / (1024**2)) if torch.cuda.is_available() else 0.0,

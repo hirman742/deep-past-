@@ -55,8 +55,8 @@ generation:
   num_beams: 8
   length_penalty: 1.2
   max_new_tokens: 320
-  min_new_tokens: 16
-  no_repeat_ngram_size: 2
+  min_new_tokens: 0
+  no_repeat_ngram_size: 0
   suppress_extra_ids: true
   bad_tokens_regex: "<extra_id_\\d+>"
 
