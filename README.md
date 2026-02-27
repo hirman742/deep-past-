@@ -128,4 +128,7 @@ conda run -n deeppast-cleaning python scripts/diagnose_val_outputs.py --config c
 Acceptance threshold check:
 ```bash
 conda run -n deeppast-cleaning python scripts/check_plan_acceptance.py --diagnose-summary runs/E0_MT5_CHAINFIX_fold0/diagnostics/val_diagnostic_summary.json --length-stats data/processed_e0/length_stats.json --oracc-audit runs/oracc_mix_audit_r10.json
+
+# stricter gate for baseline-quality runs
+conda run -n deeppast-cleaning python scripts/check_plan_acceptance.py --profile baseline --diagnose-summary runs/E0_MT5_CHAINFIX_fold0/diagnostics/val_diagnostic_summary.json --length-stats data/processed_e0/length_stats.json --oracc-audit runs/oracc_mix_audit_r10.json
 ```

@@ -42,7 +42,7 @@ def build_bad_words_ids(
         return None
     normalized_regex = str(bad_tokens_regex or "").strip()
     if not normalized_regex:
-        normalized_regex = DEFAULT_BAD_TOKENS_REGEX
+        return None
     pattern = re.compile(normalized_regex)
     blocked_ids: set[int] = set()
     vocab = tokenizer.get_vocab()
