@@ -1,0 +1,768 @@
+{
+  " ": {
+    "count": 81,
+    "codepoint": "U+0020",
+    "name": "SPACE",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "(": {
+    "count": 2,
+    "codepoint": "U+0028",
+    "name": "LEFT PARENTHESIS",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      }
+    ]
+  },
+  ")": {
+    "count": 2,
+    "codepoint": "U+0029",
+    "name": "RIGHT PARENTHESIS",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      }
+    ]
+  },
+  "+": {
+    "count": 1,
+    "codepoint": "U+002B",
+    "name": "PLUS SIGN",
+    "examples": [
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "-": {
+    "count": 132,
+    "codepoint": "U+002D",
+    "name": "HYPHEN-MINUS",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  ".": {
+    "count": 6,
+    "codepoint": "U+002E",
+    "name": "FULL STOP",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "A": {
+    "count": 7,
+    "codepoint": "U+0041",
+    "name": "LATIN CAPITAL LETTER A",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "D": {
+    "count": 1,
+    "codepoint": "U+0044",
+    "name": "LATIN CAPITAL LETTER D",
+    "examples": [
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "G": {
+    "count": 3,
+    "codepoint": "U+0047",
+    "name": "LATIN CAPITAL LETTER G",
+    "examples": [
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "K": {
+    "count": 3,
+    "codepoint": "U+004B",
+    "name": "LATIN CAPITAL LETTER K",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "…lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-ú ni-bi„-it a-aí-im au-um-au ú au-mì a-bi„-au i-na mup-pì-im lu-up…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "L": {
+    "count": 2,
+    "codepoint": "U+004C",
+    "name": "LATIN CAPITAL LETTER L",
+    "examples": [
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      }
+    ]
+  },
+  "M": {
+    "count": 1,
+    "codepoint": "U+004D",
+    "name": "LATIN CAPITAL LETTER M",
+    "examples": [
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "N": {
+    "count": 3,
+    "codepoint": "U+004E",
+    "name": "LATIN CAPITAL LETTER N",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "…i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-ú ni-bi„-it a-aí-im au-um-au ú au-mì a-bi„-au i-na mup-pì-im lu-up-ta-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "R": {
+    "count": 1,
+    "codepoint": "U+0052",
+    "name": "LATIN CAPITAL LETTER R",
+    "examples": [
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "W": {
+    "count": 1,
+    "codepoint": "U+0057",
+    "name": "LATIN CAPITAL LETTER W",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      }
+    ]
+  },
+  "a": {
+    "count": 86,
+    "codepoint": "U+0061",
+    "name": "LATIN SMALL LETTER A",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "b": {
+    "count": 7,
+    "codepoint": "U+0062",
+    "name": "LATIN SMALL LETTER B",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "2",
+        "fragment": "…-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-ú ni-bi„-it a-aí-im au-um-au ú au-mì a-bi„-au i-na mup-pì-im lu-up-ta-nim-ma ia-tí …"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "d": {
+    "count": 6,
+    "codepoint": "U+0064",
+    "name": "LATIN SMALL LETTER D",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "e": {
+    "count": 5,
+    "codepoint": "U+0065",
+    "name": "LATIN SMALL LETTER E",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "i": {
+    "count": 63,
+    "codepoint": "U+0069",
+    "name": "LATIN SMALL LETTER I",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "k": {
+    "count": 14,
+    "codepoint": "U+006B",
+    "name": "LATIN SMALL LETTER K",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "l": {
+    "count": 21,
+    "codepoint": "U+006C",
+    "name": "LATIN SMALL LETTER L",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "m": {
+    "count": 52,
+    "codepoint": "U+006D",
+    "name": "LATIN SMALL LETTER M",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "n": {
+    "count": 29,
+    "codepoint": "U+006E",
+    "name": "LATIN SMALL LETTER N",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "p": {
+    "count": 14,
+    "codepoint": "U+0070",
+    "name": "LATIN SMALL LETTER P",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "q": {
+    "count": 3,
+    "codepoint": "U+0071",
+    "name": "LATIN SMALL LETTER Q",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      }
+    ]
+  },
+  "r": {
+    "count": 17,
+    "codepoint": "U+0072",
+    "name": "LATIN SMALL LETTER R",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "… mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-ú ni…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "t": {
+    "count": 13,
+    "codepoint": "U+0074",
+    "name": "LATIN SMALL LETTER T",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "u": {
+    "count": 30,
+    "codepoint": "U+0075",
+    "name": "LATIN SMALL LETTER U",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "w": {
+    "count": 3,
+    "codepoint": "U+0077",
+    "name": "LATIN SMALL LETTER W",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "À": {
+    "count": 1,
+    "codepoint": "U+00C0",
+    "name": "LATIN CAPITAL LETTER A WITH GRAVE",
+    "examples": [
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "É": {
+    "count": 2,
+    "codepoint": "U+00C9",
+    "name": "LATIN CAPITAL LETTER E WITH ACUTE",
+    "examples": [
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      }
+    ]
+  },
+  "Ù": {
+    "count": 3,
+    "codepoint": "U+00D9",
+    "name": "LATIN CAPITAL LETTER U WITH GRAVE",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "…im i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-ú ni-bi„-it a-aí-im au-um-au ú au-mì a-bi„-au i-na mup-pì-im lu-up-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "à": {
+    "count": 9,
+    "codepoint": "U+00E0",
+    "name": "LATIN SMALL LETTER A WITH GRAVE",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "…-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-ú ni-bi„-it a-aí-im au-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "á": {
+    "count": 8,
+    "codepoint": "U+00E1",
+    "name": "LATIN SMALL LETTER A WITH ACUTE",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "é": {
+    "count": 5,
+    "codepoint": "U+00E9",
+    "name": "LATIN SMALL LETTER E WITH ACUTE",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "…ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-ú …"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "ì": {
+    "count": 9,
+    "codepoint": "U+00EC",
+    "name": "LATIN SMALL LETTER I WITH GRAVE",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "í": {
+    "count": 13,
+    "codepoint": "U+00ED",
+    "name": "LATIN SMALL LETTER I WITH ACUTE",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "ki-ma mup-pì-ni ta-áa-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "ù": {
+    "count": 2,
+    "codepoint": "U+00F9",
+    "name": "LATIN SMALL LETTER U WITH GRAVE",
+    "examples": [
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      }
+    ]
+  },
+  "ú": {
+    "count": 7,
+    "codepoint": "U+00FA",
+    "name": "LATIN SMALL LETTER U WITH ACUTE",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "…-me-a-ni a-ma-kam lu a-na aí-mì-im a-na É.GAL-lim i-dí-in lu té-ra-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-ú ni-bi„-it a-aí-im …"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "„": {
+    "count": 6,
+    "codepoint": "U+201E",
+    "name": "DOUBLE LOW-9 QUOTATION MARK",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      },
+      {
+        "row_id": "1",
+        "fragment": "i-na mup-pì-im aa a-lim(ki) ia-tù u„-mì-im a-nim ma-ma-an KÙ.AN i-aa-ú-mu-ni i-na né-mì-lim da-aùr ú-lá e-WA ia-ra-tí-au kà-ru-um kà-ni-ia i-lá-qé"
+      },
+      {
+        "row_id": "2",
+        "fragment": "…a-at É.GAL-lim ú-kà-lim lu na-aí-ma a-dí-ni lá i-dí-in ma-lá KÙ.AN na-áa-ú ni-bi„-it a-aí-im au-um-au ú au-mì a-bi„-au i-na mup-pì-im lu-up-ta-nim-ma ia-tí aí…"
+      },
+      {
+        "row_id": "3",
+        "fragment": "me-+e-er mup-pì-ni a-na kà-ar kà-ar-ma ú wa-bar-ra-tim aé-bi„-lá KÙ.AN lu a-na DAM.GÀR-ru-tim i-dí-in au-mì a-wi-lim lu-up-ta-nim"
+      }
+    ]
+  },
+  "…": {
+    "count": 1,
+    "codepoint": "U+2026",
+    "name": "HORIZONTAL ELLIPSIS",
+    "examples": [
+      {
+        "row_id": "0",
+        "fragment": "um-ma kà-ru-um kà-ni-ia-ma a-na aa-qí-il… da-tim aí-ip-ri-ni kà-ar kà-ar-ma ú wa-bar-ra-tim qí-bi„-ma mup-pu-um aa a-lim(ki) i-li-kam"
+      }
+    ]
+  }
+}

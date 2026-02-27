@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+.env
+.ipynb_checkpoints/
+
+# Data: keep raw & external by default, ignore interim/processed
+data/interim/
+data/processed/
+data/processed*/
+
+# Ignore known huge external file
+data/external/publications.csv
+deep-past-initiative-machine-translation/publications.csv
+
+# Runs: ignore everything, but keep 3 small report files
+runs/*
+!runs/.gitkeep
+!runs/*/
+runs/*/*
+!runs/*/metrics.json
+!runs/*/hit_stats.json
+!runs/*/worst_examples.md

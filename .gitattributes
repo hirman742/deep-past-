@@ -1,0 +1,4 @@
+# Keep Kaggle CSVs byte-identical (avoid EOL normalization on Windows)
+data/raw/*.csv -text
+data/external/*.csv -text
+

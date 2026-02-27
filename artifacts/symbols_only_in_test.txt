@@ -1,0 +1,3 @@
+codepoint	char	name	test_count
+U+201E	„	DOUBLE LOW-9 QUOTATION MARK	6
+U+2026	…	HORIZONTAL ELLIPSIS	1

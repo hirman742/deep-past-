@@ -1,0 +1,61 @@
+name: e3_mt5_oracc10
+seed: 42
+
+paths:
+  train_csv: data/interim/oracc_mix_train_r10.csv
+  test_csv: data/interim/t0_test.csv
+  sample_submission_csv: data/raw/sample_submission.csv
+  processed_dir: data/processed_e3_oracc10
+  run_dir: runs/E3_MT5_ORACC10
+  metadata_csv: deep-past-initiative-machine-translation/published_texts.csv
+
+preprocess:
+  apply_t0_normalize: false
+  strip_text: true
+  fold_inline_whitespace: true
+  lowercase_source: false
+  lowercase_target: false
+  task_prefix: "translate Akkadian to English:"
+  folds: 5
+  group_strategy: auto
+
+model:
+  name: google/mt5-small
+  max_source_length: 512
+  max_target_length: 320
+
+lora:
+  target_modules: [q_proj, v_proj]
+  r: 8
+  alpha: 8
+  dropout: 0.0
+  bias: none
+
+training:
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 8
+  gradient_accumulation_steps: 16
+  learning_rate: 0.0002
+  warmup_ratio: 0.05
+  weight_decay: 0.0
+  num_train_epochs: 4
+  lr_scheduler_type: cosine
+  fp16: false
+  bf16: true
+  gradient_checkpointing: true
+  eval_fraction_of_epoch: 0.25
+  logging_steps: 20
+  save_total_limit: 2
+  dataloader_num_workers: 0
+  early_stopping_patience: 3
+  metric_for_best_model: geom
+  greater_is_better: true
+
+generation:
+  num_beams: 8
+  length_penalty: 1.2
+  max_new_tokens: 320
+  min_new_tokens: 16
+  no_repeat_ngram_size: 2
+  suppress_extra_ids: true
+  bad_tokens_regex: "<extra_id_\\d+>"

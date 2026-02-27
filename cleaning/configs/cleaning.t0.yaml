@@ -1,0 +1,8 @@
+tier: t0
+rules:
+  t0_unicode_nfc: true
+  t0_remove_invisible: true
+  t0_whitespace_normalize: true
+logging:
+  keep_examples_per_rule: 3
+
