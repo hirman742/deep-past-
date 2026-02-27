@@ -14,3 +14,8 @@
 - Diagnostic summary: `geom=0.2939`, `bleu=0.0548`, `chrfpp=1.5759`.
 - Output health: `empty_prediction_ratio=0%`, `exact_extra_id_0_ratio=0%`, `has_bad_token_regex_ratio=0%`.
 - Remaining gap: `pred_shorter_than_half_ref_ratio=67.73%` (length adequacy remains the main bottleneck).
+
+### Acceptance check status
+- `smoke` profile: **failed** on `pred_shorter_than_half_ref_ratio_pct=67.73%` (threshold `<=55%`).
+- `baseline` profile: **failed** on `pred_shorter_than_half_ref_ratio_pct=67.73%` (threshold `<=45%`).
+- Other guarded health checks are currently healthy: `empty_prediction_ratio_pct=0%`, `copy_source_ratio_pct=0%`, `exact_extra_id_0_ratio_pct=0%`.
