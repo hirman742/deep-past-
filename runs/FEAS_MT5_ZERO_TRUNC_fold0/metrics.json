@@ -1,0 +1,26 @@
+{
+  "run_id": "FEAS_MT5_ZERO_TRUNC_fold0",
+  "date": "2026-02-27",
+  "train_eval": {
+    "eval_bleu": 0.052239511328849166,
+    "eval_chrfpp": 1.6874348716866925,
+    "eval_geom": 0.29690195872740904,
+    "eval_geom_01": 0.0029690195872740907
+  },
+  "diagnostic_eval": {
+    "bleu": 0.0521901216082897,
+    "chrfpp": 1.68719035667764,
+    "geom": 0.29674007125991547,
+    "geom_01": 0.0029674007125991544
+  },
+  "output_health": {
+    "empty_prediction_ratio_pct": 0.0,
+    "copy_source_ratio_pct": 0.0,
+    "pred_shorter_than_half_ref_ratio_pct": 80.36529680365297,
+    "exact_extra_id_0_ratio_pct": 0.0
+  },
+  "length_truncation_pct": {
+    "source": 0.0,
+    "target": 0.0
+  }
+}

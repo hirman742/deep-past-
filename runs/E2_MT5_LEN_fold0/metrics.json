@@ -1,0 +1,26 @@
+{
+  "run_id": "E2_MT5_LEN_fold0",
+  "date": "2026-02-27",
+  "train_eval": {
+    "eval_bleu": 0.08422231355507011,
+    "eval_chrfpp": 1.829006605749692,
+    "eval_geom": 0.39248333447898787,
+    "eval_geom_01": 0.003924833344789879
+  },
+  "diagnostic_eval": {
+    "bleu": 0.05480322417538288,
+    "chrfpp": 1.575928986764985,
+    "geom": 0.2938809104827421,
+    "geom_01": 0.002938809104827421
+  },
+  "output_health": {
+    "empty_prediction_ratio_pct": 0.0,
+    "copy_source_ratio_pct": 0.0,
+    "pred_shorter_than_half_ref_ratio_pct": 67.73162939297124,
+    "exact_extra_id_0_ratio_pct": 0.0
+  },
+  "length_truncation_pct": {
+    "source": 29.46828955797566,
+    "target": 18.385650224215247
+  }
+}
