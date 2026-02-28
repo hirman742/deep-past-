@@ -1,6 +1,6 @@
 {
   "run_id": "E2_MT5_LEN_fold0",
-  "date": "2026-02-27",
+  "date": "2026-02-28",
   "train_eval": {
     "eval_bleu": 0.08422231355507011,
     "eval_chrfpp": 1.829006605749692,
@@ -22,5 +22,27 @@
   "length_truncation_pct": {
     "source": 29.46828955797566,
     "target": 18.385650224215247
+  },
+  "source_shuffle_sanity": {
+    "full_val": {
+      "geom": 0.15551982429136949,
+      "bleu": 0.016309709555238194,
+      "chrfpp": 1.4829458284160846,
+      "pred_shorter_than_half_ref_ratio_pct": 68.370607028754
+    },
+    "subset_128": {
+      "baseline": {
+        "geom": 0.4462058645589318,
+        "bleu": 0.11907685423678929,
+        "chrfpp": 1.672026649031774,
+        "pred_shorter_than_half_ref_ratio_pct": 65.625
+      },
+      "source_shuffle": {
+        "geom": 0.1383943674752712,
+        "bleu": 0.011760821659874113,
+        "chrfpp": 1.628542758558029,
+        "pred_shorter_than_half_ref_ratio_pct": 62.5
+      }
+    }
   }
 }

@@ -55,7 +55,10 @@ def main() -> None:
     ap.add_argument("--config", default="configs/mt5_small_lora_8gb.yaml")
     ap.add_argument("--fold", type=int, default=0)
     ap.add_argument("--checkpoint-dir", default="")
+    ap.add_argument("--tag", default="")
     ap.add_argument("--predict-batch-size", type=int, default=32)
+    ap.add_argument("--max-rows", type=int, default=-1)
+    ap.add_argument("--shuffle-source", action="store_true")
     ap.add_argument("--num-beams", type=int, default=-1)
     ap.add_argument("--length-penalty", type=float, default=-1.0)
     ap.add_argument("--no-repeat-ngram-size", type=int, default=-1)
@@ -85,9 +88,16 @@ def main() -> None:
     diag_dir = run_dir / "diagnostics"
     diag_dir.mkdir(parents=True, exist_ok=True)
 
-    predictions_out = diag_dir / "val_predictions_diagnostic.csv"
-    samples_out = diag_dir / "val_samples_50.csv"
-    summary_out = diag_dir / "val_diagnostic_summary.json"
+    suffix_parts: list[str] = []
+    if args.tag:
+        suffix_parts.append(str(args.tag).strip().replace(" ", "_"))
+    if args.shuffle_source:
+        suffix_parts.append("srcshuffle")
+    suffix = f"_{'_'.join(x for x in suffix_parts if x)}" if suffix_parts else ""
+
+    predictions_out = diag_dir / f"val_predictions_diagnostic{suffix}.csv"
+    samples_out = diag_dir / f"val_samples_50{suffix}.csv"
+    summary_out = diag_dir / f"val_diagnostic_summary{suffix}.json"
 
     train_df = pd.read_csv(train_path)
     folds_df = pd.read_csv(folds_path)
@@ -95,6 +105,10 @@ def main() -> None:
     val_df = merged[merged["fold"] == args.fold].reset_index(drop=True)
     if val_df.empty:
         raise ValueError(f"Fold {args.fold} has empty validation split")
+    if args.max_rows > 0:
+        val_df = val_df.head(int(args.max_rows)).reset_index(drop=True)
+    if val_df.empty:
+        raise ValueError("Validation subset is empty after --max-rows filtering")
 
     model_name = str(model_cfg.get("name", "google/mt5-small"))
     max_source_length = int(model_cfg.get("max_source_length", 256))
@@ -133,6 +147,10 @@ def main() -> None:
 
     sources = val_df["source"].fillna("").astype(str).tolist()
     references = val_df["target"].fillna("").astype(str).tolist()
+    if args.shuffle_source:
+        shuffled_sources = sources.copy()
+        random.Random(args.seed).shuffle(shuffled_sources)
+        sources = shuffled_sources
     predictions: list[str] = []
 
     with torch.no_grad():
@@ -215,6 +233,11 @@ def main() -> None:
             "suppress_extra_ids": bool(generation_settings["suppress_extra_ids"]),
             "bad_tokens_regex": str(generation_settings["bad_tokens_regex"]),
             "suppressed_bad_word_ids_count": int(len(bad_words_ids or [])),
+        },
+        "diagnostic_mode": {
+            "shuffle_source": bool(args.shuffle_source),
+            "max_rows": int(args.max_rows),
+            "tag": str(args.tag),
         },
         "metrics": {
             "bleu": float(metrics["bleu"]),
