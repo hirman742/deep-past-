@@ -1,0 +1,35 @@
+{
+  "run_id": "OVERFIT512_MT5_fold0",
+  "date": "2026-02-28",
+  "purpose": "Experiment A: 512 zero-truncation overfit feasibility",
+  "train_setup": {
+    "max_steps": 240,
+    "train_rows": 409,
+    "val_rows": 103,
+    "epochs_reached": 18.46829268292683,
+    "decode": {
+      "num_beams": 1,
+      "max_new_tokens": 256,
+      "suppress_extra_ids": true
+    }
+  },
+  "train_eval": {
+    "eval_bleu": 0.02781159975199637,
+    "eval_chrfpp": 1.7141847036676778,
+    "eval_geom": 0.21834426688008082,
+    "eval_geom_01": 0.0021834426688008084
+  },
+  "diagnostic_eval": {
+    "bleu": 0.02781159975199637,
+    "chrfpp": 1.7141847036676778,
+    "geom": 0.21834426688008082,
+    "geom_01": 0.0021834426688008084
+  },
+  "output_health": {
+    "empty_prediction_ratio_pct": 0.0,
+    "copy_source_ratio_pct": 0.0,
+    "pred_shorter_than_half_ref_ratio_pct": 69.90291262135922,
+    "exact_extra_id_0_ratio_pct": 0.0
+  },
+  "conclusion": "Negative overfit signal: short-output ratio remains high and adequacy remains weak."
+}

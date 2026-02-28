@@ -1,0 +1,29 @@
+{
+  "run_id": "E5_BYT5_fold0",
+  "date": "2026-02-28",
+  "purpose": "Experiment B: ByT5 same-budget quick verdict",
+  "training_progress": {
+    "checkpoint_used": "checkpoint-30",
+    "global_step": 30,
+    "max_steps_planned": 50,
+    "best_checkpoint_so_far": "checkpoint-20"
+  },
+  "trainer_eval_at_step30": {
+    "eval_bleu": 0.6123776008181618,
+    "eval_chrfpp": 6.148662152027175,
+    "eval_geom": 1.9404388619330002,
+    "eval_geom_01": 0.019404388619330002
+  },
+  "quick_diagnostic_128": {
+    "bleu": 0.07087111666647404,
+    "chrfpp": 3.6984755819627706,
+    "geom": 0.5119717711528528,
+    "geom_01": 0.005119717711528527,
+    "pred_shorter_than_half_ref_ratio_pct": 62.5
+  },
+  "comparison_note": {
+    "mt5_quick128_geom": 0.4462058645589318,
+    "mt5_quick128_shorter_half_pct": 65.625
+  },
+  "conclusion": "ByT5 is stronger than current mT5 baseline under quick-check budget."
+}
