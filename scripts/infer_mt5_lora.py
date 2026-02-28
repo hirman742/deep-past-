@@ -35,6 +35,29 @@ def _chunk(items: list[str], size: int) -> list[list[str]]:
     return [items[i : i + size] for i in range(0, len(items), size)]
 
 
+def _concat_chunks(values: list[str]) -> str:
+    cleaned = [str(x).strip() for x in values if str(x).strip()]
+    return "\n".join(cleaned).strip()
+
+
+def _aggregate_chunk_predictions(test_df: pd.DataFrame, predictions: list[str]) -> pd.DataFrame:
+    if "parent_id" not in test_df.columns:
+        return pd.DataFrame({"id": test_df["id"].astype(str).tolist(), "prediction": predictions})
+    work = test_df.copy()
+    work["prediction"] = predictions
+    sort_cols = ["parent_id"]
+    if "chunk_index" in work.columns:
+        sort_cols.append("chunk_index")
+    work = work.sort_values(sort_cols).reset_index(drop=True)
+    grouped = (
+        work.groupby("parent_id", as_index=False)
+        .agg(prediction=("prediction", lambda s: _concat_chunks(s.tolist())))
+        .rename(columns={"parent_id": "id"})
+    )
+    grouped["id"] = grouped["id"].astype(str)
+    return grouped
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/mt5_small_lora_8gb.yaml")
@@ -131,12 +154,7 @@ def main() -> None:
             decoded = tokenizer.batch_decode(generated, skip_special_tokens=True)
             predictions.extend([x.strip() for x in decoded])
 
-    pred_df = pd.DataFrame(
-        {
-            "id": test_df["id"].astype(str).tolist(),
-            "prediction": predictions,
-        }
-    )
+    pred_df = _aggregate_chunk_predictions(test_df, predictions)
     pred_df.to_csv(prediction_path, index=False)
 
     id_to_pred = {str(k): v for k, v in zip(pred_df["id"].tolist(), pred_df["prediction"].tolist())}

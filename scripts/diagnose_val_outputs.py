@@ -50,6 +50,34 @@ def _safe_div(a: float, b: float) -> float:
     return a / b
 
 
+def _concat_chunks(values: list[str]) -> str:
+    cleaned = [str(x).strip() for x in values if str(x).strip()]
+    return "\n".join(cleaned).strip()
+
+
+def _aggregate_parent_df(pred_df: pd.DataFrame) -> tuple[pd.DataFrame, str | None]:
+    if "parent_oare_id" in pred_df.columns:
+        parent_col = "parent_oare_id"
+    elif "parent_id" in pred_df.columns:
+        parent_col = "parent_id"
+    else:
+        return pred_df.copy(), None
+    sort_cols = [parent_col]
+    if "chunk_index" in pred_df.columns:
+        sort_cols.append("chunk_index")
+    ordered = pred_df.sort_values(sort_cols).reset_index(drop=True)
+    grouped = (
+        ordered.groupby(parent_col, as_index=False)
+        .agg(
+            source=("source", lambda s: _concat_chunks(s.tolist())),
+            reference=("reference", lambda s: _concat_chunks(s.tolist())),
+            prediction=("prediction", lambda s: _concat_chunks(s.tolist())),
+        )
+        .rename(columns={parent_col: "id"})
+    )
+    return grouped, parent_col
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/mt5_small_lora_8gb.yaml")
@@ -66,6 +94,7 @@ def main() -> None:
     ap.add_argument("--max-new-tokens", type=int, default=-1)
     ap.add_argument("--sample-size", type=int, default=50)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--aggregate-by-parent", default="auto", choices=["auto", "on", "off"])
     args = ap.parse_args()
 
     random.seed(args.seed)
@@ -98,6 +127,7 @@ def main() -> None:
     predictions_out = diag_dir / f"val_predictions_diagnostic{suffix}.csv"
     samples_out = diag_dir / f"val_samples_50{suffix}.csv"
     summary_out = diag_dir / f"val_diagnostic_summary{suffix}.json"
+    reconstructed_out = diag_dir / f"val_predictions_reconstructed{suffix}.csv"
 
     train_df = pd.read_csv(train_path)
     folds_df = pd.read_csv(folds_path)
@@ -200,6 +230,12 @@ def main() -> None:
     pred_df = pd.DataFrame(
         {
             "oare_id": val_df["oare_id"].astype(str).tolist(),
+            "parent_oare_id": val_df["parent_oare_id"].astype(str).tolist()
+            if "parent_oare_id" in val_df.columns
+            else [""] * len(val_df),
+            "chunk_index": val_df["chunk_index"].astype(int).tolist()
+            if "chunk_index" in val_df.columns
+            else [0] * len(val_df),
             "source": sources,
             "reference": references,
             "prediction": predictions,
@@ -223,6 +259,46 @@ def main() -> None:
     sample_n = min(max(1, args.sample_size), len(pred_df))
     sample_df = pred_df.sample(n=sample_n, random_state=args.seed).reset_index(drop=True)
     sample_df.to_csv(samples_out, index=False)
+
+    aggregate_mode = str(args.aggregate_by_parent).strip().lower()
+    reconstructed_summary: dict[str, Any] | None = None
+    do_aggregate = aggregate_mode == "on" or (aggregate_mode == "auto" and "parent_oare_id" in val_df.columns)
+    if do_aggregate:
+        reconstructed_df, parent_col = _aggregate_parent_df(pred_df)
+        if parent_col is not None and not reconstructed_df.empty:
+            reconstructed_df.to_csv(reconstructed_out, index=False)
+            rec_predictions = reconstructed_df["prediction"].fillna("").astype(str).tolist()
+            rec_references = reconstructed_df["reference"].fillna("").astype(str).tolist()
+            rec_sources = reconstructed_df["source"].fillna("").astype(str).tolist()
+            rec_metrics = compute_translation_metrics(predictions=rec_predictions, references=rec_references)
+            rec_pred_char = [_char_len(x) for x in rec_predictions]
+            rec_ref_char = [_char_len(x) for x in rec_references]
+            rec_empty = [idx for idx, text in enumerate(rec_predictions) if not text.strip()]
+            rec_copy = [idx for idx, (src, pred) in enumerate(zip(rec_sources, rec_predictions)) if src.strip() == pred.strip()]
+            rec_shorter_half = [
+                idx
+                for idx, (p, r) in enumerate(zip(rec_pred_char, rec_ref_char))
+                if r > 0 and _safe_div(float(p), float(r)) < 0.5
+            ]
+            reconstructed_summary = {
+                "parent_key": parent_col,
+                "num_rows": int(len(reconstructed_df)),
+                "metrics": {
+                    "bleu": float(rec_metrics["bleu"]),
+                    "chrfpp": float(rec_metrics["chrfpp"]),
+                    "geom": float(rec_metrics["geom"]),
+                    "bleu_01": float(rec_metrics["bleu_01"]),
+                    "chrfpp_01": float(rec_metrics["chrfpp_01"]),
+                    "geom_01": float(rec_metrics["geom_01"]),
+                },
+                "output_health": {
+                    "empty_prediction_ratio_pct": 100.0 * _safe_div(float(len(rec_empty)), float(len(rec_predictions))),
+                    "copy_source_ratio_pct": 100.0 * _safe_div(float(len(rec_copy)), float(len(rec_predictions))),
+                    "pred_shorter_than_half_ref_ratio_pct": 100.0
+                    * _safe_div(float(len(rec_shorter_half)), float(len(rec_predictions))),
+                },
+                "artifacts": {"reconstructed_csv": str(reconstructed_out)},
+            }
 
     summary = {
         "config_path": str(cfg_path),
@@ -288,10 +364,14 @@ def main() -> None:
             "samples_csv": str(samples_out),
         },
     }
+    if reconstructed_summary is not None:
+        summary["reconstructed"] = reconstructed_summary
     summary_out.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(f"OK: wrote {predictions_out}")
     print(f"OK: wrote {samples_out}")
+    if reconstructed_summary is not None:
+        print(f"OK: wrote {reconstructed_out}")
     print(f"OK: wrote {summary_out}")
     print(
         "INFO: geom/bleu/chrfpp="
@@ -300,6 +380,13 @@ def main() -> None:
         f"{summary['metrics']['chrfpp']:.4f}, "
         f"empty={summary['output_health']['empty_prediction_ratio_pct']:.2f}%"
     )
+    if reconstructed_summary is not None:
+        print(
+            "INFO: reconstructed geom/bleu/chrfpp="
+            f"{reconstructed_summary['metrics']['geom']:.4f}/"
+            f"{reconstructed_summary['metrics']['bleu']:.4f}/"
+            f"{reconstructed_summary['metrics']['chrfpp']:.4f}"
+        )
 
 
 if __name__ == "__main__":

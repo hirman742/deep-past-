@@ -76,6 +76,40 @@ def _score_key(row: dict[str, Any]) -> tuple[float, float, float]:
     )
 
 
+def _concat_chunks(values: list[str]) -> str:
+    cleaned = [str(x).strip() for x in values if str(x).strip()]
+    return "\n".join(cleaned).strip()
+
+
+def _aggregate_parent_texts(
+    *,
+    val_df: pd.DataFrame,
+    predictions: list[str],
+    references: list[str],
+) -> tuple[list[str], list[str]] | None:
+    if "parent_oare_id" in val_df.columns:
+        parent_col = "parent_oare_id"
+    elif "parent_id" in val_df.columns:
+        parent_col = "parent_id"
+    else:
+        return None
+    work = val_df.copy()
+    work["prediction"] = predictions
+    work["reference"] = references
+    sort_cols = [parent_col]
+    if "chunk_index" in work.columns:
+        sort_cols.append("chunk_index")
+    work = work.sort_values(sort_cols).reset_index(drop=True)
+    grouped = work.groupby(parent_col, as_index=False).agg(
+        prediction=("prediction", lambda s: _concat_chunks(s.tolist())),
+        reference=("reference", lambda s: _concat_chunks(s.tolist())),
+    )
+    return (
+        grouped["prediction"].fillna("").astype(str).tolist(),
+        grouped["reference"].fillna("").astype(str).tolist(),
+    )
+
+
 def _generate_texts(
     *,
     model,
@@ -129,6 +163,7 @@ def main() -> None:
     ap.add_argument("--max-new-tokens-list", default="")
     ap.add_argument("--predict-batch-size", type=int, default=32)
     ap.add_argument("--max-val-samples", type=int, default=0)
+    ap.add_argument("--aggregate-by-parent", default="auto", choices=["auto", "on", "off"])
     args = ap.parse_args()
 
     cfg_path = _resolve_path(args.config, REPO_ROOT / "configs" / "mt5_small_lora_8gb.yaml")
@@ -259,7 +294,21 @@ def main() -> None:
             batch_size=args.predict_batch_size,
             device=device,
         )
-        metrics = compute_translation_metrics(predictions=predictions, references=references)
+        metric_predictions = predictions
+        metric_references = references
+        aggregate_mode = str(args.aggregate_by_parent).strip().lower()
+        do_aggregate = aggregate_mode == "on" or (
+            aggregate_mode == "auto" and ("parent_oare_id" in val_df.columns or "parent_id" in val_df.columns)
+        )
+        if do_aggregate:
+            aggregated = _aggregate_parent_texts(
+                val_df=val_df,
+                predictions=predictions,
+                references=references,
+            )
+            if aggregated is not None:
+                metric_predictions, metric_references = aggregated
+        metrics = compute_translation_metrics(predictions=metric_predictions, references=metric_references)
         rows.append(
             {
                 "fold": int(args.fold),
@@ -274,6 +323,8 @@ def main() -> None:
                 "eval_bleu_01": float(metrics["bleu_01"]),
                 "eval_chrfpp_01": float(metrics["chrfpp_01"]),
                 "eval_geom_01": float(metrics["geom_01"]),
+                "eval_rows": int(len(metric_predictions)),
+                "metric_level": "parent_reconstructed" if (do_aggregate and metric_predictions is not predictions) else "chunk_or_sample",
             }
         )
         current_row = rows[-1]

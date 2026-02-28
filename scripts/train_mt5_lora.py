@@ -72,22 +72,25 @@ def _build_dataset_rows(
     max_source_length: int,
     max_target_length: int,
 ) -> list[dict[str, Any]]:
+    sources = frame[source_col].fillna("").astype(str).tolist()
+    targets = frame[target_col].fillna("").astype(str).tolist()
+    model_inputs = tokenizer(
+        sources,
+        truncation=True,
+        max_length=max_source_length,
+        add_special_tokens=True,
+    )
+    labels = tokenizer(
+        text_target=targets,
+        truncation=True,
+        max_length=max_target_length,
+        add_special_tokens=True,
+    )
     rows: list[dict[str, Any]] = []
-    for source, target in zip(frame[source_col].tolist(), frame[target_col].tolist()):
-        model_inputs = tokenizer(
-            str(source),
-            truncation=True,
-            max_length=max_source_length,
-            add_special_tokens=True,
-        )
-        labels = tokenizer(
-            text_target=str(target),
-            truncation=True,
-            max_length=max_target_length,
-            add_special_tokens=True,
-        )
-        model_inputs["labels"] = labels["input_ids"]
-        rows.append(model_inputs)
+    for idx in range(len(sources)):
+        item = {key: value[idx] for key, value in model_inputs.items()}
+        item["labels"] = labels["input_ids"][idx]
+        rows.append(item)
     return rows
 
 
@@ -133,6 +136,11 @@ def _trainable_params(model: torch.nn.Module) -> tuple[int, int]:
         if param.requires_grad:
             trainable += count
     return trainable, total
+
+
+def _concat_chunks(values: list[str]) -> str:
+    cleaned = [str(x).strip() for x in values if str(x).strip()]
+    return "\n".join(cleaned).strip()
 
 
 def main() -> None:
@@ -384,8 +392,42 @@ def main() -> None:
             "prediction": [x.strip() for x in decoded_predictions],
         }
     )
+    if "parent_oare_id" in val_split.columns:
+        val_pred_df["parent_oare_id"] = val_split["parent_oare_id"].astype(str).tolist()
+    if "chunk_index" in val_split.columns:
+        val_pred_df["chunk_index"] = val_split["chunk_index"].astype(int).tolist()
     val_pred_path = run_dir / "val_predictions.csv"
     val_pred_df.to_csv(val_pred_path, index=False)
+
+    reconstructed_metrics: dict[str, Any] = {}
+    reconstructed_path = run_dir / "val_predictions_reconstructed.csv"
+    if "parent_oare_id" in val_pred_df.columns:
+        recon_df = (
+            val_pred_df.sort_values(["parent_oare_id", "chunk_index"] if "chunk_index" in val_pred_df.columns else ["parent_oare_id"])
+            .groupby("parent_oare_id", as_index=False)
+            .agg(
+                reference=("reference", lambda s: _concat_chunks(s.tolist())),
+                prediction=("prediction", lambda s: _concat_chunks(s.tolist())),
+            )
+            .rename(columns={"parent_oare_id": "oare_id"})
+        )
+        recon_df.to_csv(reconstructed_path, index=False)
+        metrics = compute_translation_metrics(
+            predictions=recon_df["prediction"].fillna("").astype(str).tolist(),
+            references=recon_df["reference"].fillna("").astype(str).tolist(),
+        )
+        reconstructed_metrics = {
+            "num_rows": int(len(recon_df)),
+            "metrics": {
+                "bleu": float(metrics["bleu"]),
+                "chrfpp": float(metrics["chrfpp"]),
+                "geom": float(metrics["geom"]),
+                "bleu_01": float(metrics["bleu_01"]),
+                "chrfpp_01": float(metrics["chrfpp_01"]),
+                "geom_01": float(metrics["geom_01"]),
+            },
+            "artifact": str(reconstructed_path),
+        }
 
     trainable, total = _trainable_params(model)
     summary = {
@@ -417,6 +459,7 @@ def main() -> None:
         "metric_signatures": build_metric_signatures(),
         "train_metrics": train_result.metrics,
         "eval_metrics": eval_result,
+        "reconstructed_eval": reconstructed_metrics,
         "peak_gpu_memory_mb": float(torch.cuda.max_memory_allocated() / (1024**2)) if torch.cuda.is_available() else 0.0,
     }
     summary_path = run_dir / "run_summary.json"
@@ -434,6 +477,13 @@ def main() -> None:
         f"{eval_result.get('eval_bleu', 0.0):.4f}/"
         f"{eval_result.get('eval_chrfpp', 0.0):.4f}"
     )
+    if reconstructed_metrics:
+        print(
+            "INFO: reconstructed geom/bleu/chrfpp="
+            f"{reconstructed_metrics['metrics']['geom']:.4f}/"
+            f"{reconstructed_metrics['metrics']['bleu']:.4f}/"
+            f"{reconstructed_metrics['metrics']['chrfpp']:.4f}"
+        )
 
 
 if __name__ == "__main__":
