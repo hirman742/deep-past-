@@ -184,8 +184,12 @@ def main() -> None:
     empty_pred = [idx for idx, text in enumerate(predictions) if not text.strip()]
     copy_source = [idx for idx, (src, pred) in enumerate(zip(sources, predictions)) if src.strip() == pred.strip()]
     top_preds = Counter(predictions).most_common(10)
-    bad_token_pattern = re.compile(str(generation_settings["bad_tokens_regex"]))
-    bad_token_mask = [bool(bad_token_pattern.search(x)) for x in predictions]
+    normalized_bad_regex = str(generation_settings["bad_tokens_regex"] or "").strip()
+    if normalized_bad_regex:
+        bad_token_pattern = re.compile(normalized_bad_regex)
+        bad_token_mask = [bool(bad_token_pattern.search(x)) for x in predictions]
+    else:
+        bad_token_mask = [False for _ in predictions]
     exact_extra_id0 = [idx for idx, text in enumerate(predictions) if text.strip() == "<extra_id_0>"]
     shorter_half = [
         idx
@@ -269,11 +273,15 @@ def main() -> None:
             "pred_char_mean": float(pd.Series(pred_char_lens).mean()),
             "ref_char_mean": float(pd.Series(ref_char_lens).mean()),
             "pred_char_p95": float(pd.Series(pred_char_lens).quantile(0.95)),
+            "pred_char_p99": float(pd.Series(pred_char_lens).quantile(0.99)),
             "ref_char_p95": float(pd.Series(ref_char_lens).quantile(0.95)),
+            "ref_char_p99": float(pd.Series(ref_char_lens).quantile(0.99)),
             "pred_tok_mean": float(pd.Series(pred_tok_lens).mean()),
             "ref_tok_mean": float(pd.Series(ref_tok_lens).mean()),
             "pred_tok_p95": float(pd.Series(pred_tok_lens).quantile(0.95)),
+            "pred_tok_p99": float(pd.Series(pred_tok_lens).quantile(0.99)),
             "ref_tok_p95": float(pd.Series(ref_tok_lens).quantile(0.95)),
+            "ref_tok_p99": float(pd.Series(ref_tok_lens).quantile(0.99)),
         },
         "artifacts": {
             "predictions_csv": str(predictions_out),

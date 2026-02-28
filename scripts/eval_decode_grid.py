@@ -57,12 +57,14 @@ def _combo_key(
     length_penalty: float,
     no_repeat_ngram_size: int,
     min_new_tokens: int,
-) -> tuple[int, float, int, int]:
+    max_new_tokens: int,
+) -> tuple[int, float, int, int, int]:
     return (
         int(num_beams),
         _norm_lp(length_penalty),
         int(no_repeat_ngram_size),
         int(min_new_tokens),
+        int(max_new_tokens),
     )
 
 
@@ -124,6 +126,7 @@ def main() -> None:
     ap.add_argument("--length-penalties", default="0.8,1.0,1.2,1.4")
     ap.add_argument("--no-repeat-ngram-sizes", default="0")
     ap.add_argument("--min-new-tokens-list", default="")
+    ap.add_argument("--max-new-tokens-list", default="")
     ap.add_argument("--predict-batch-size", type=int, default=32)
     ap.add_argument("--max-val-samples", type=int, default=0)
     args = ap.parse_args()
@@ -162,10 +165,14 @@ def main() -> None:
         min_new_tokens_values = _parse_ints(args.min_new_tokens_list)
     else:
         min_new_tokens_values = [default_min_new_tokens]
+    if args.max_new_tokens_list.strip():
+        max_new_tokens_values = _parse_ints(args.max_new_tokens_list)
+    else:
+        max_new_tokens_values = [default_max_new_tokens]
     beams = _parse_ints(args.beams)
     length_penalties = _parse_floats(args.length_penalties)
     ngram_sizes = _parse_ints(args.no_repeat_ngram_sizes)
-    if not beams or not length_penalties or not ngram_sizes or not min_new_tokens_values:
+    if not beams or not length_penalties or not ngram_sizes or not min_new_tokens_values or not max_new_tokens_values:
         raise ValueError("decode grid lists cannot be empty")
 
     tokenizer = AutoTokenizer.from_pretrained(checkpoint_dir)
@@ -197,23 +204,25 @@ def main() -> None:
             length_penalty=float(row["length_penalty"]),
             no_repeat_ngram_size=int(row["no_repeat_ngram_size"]),
             min_new_tokens=int(row.get("min_new_tokens", default_min_new_tokens)),
+            max_new_tokens=int(row.get("max_new_tokens", default_max_new_tokens)),
         )
         for row in rows
     }
 
-    combos = list(product(beams, length_penalties, ngram_sizes, min_new_tokens_values))
+    combos = list(product(beams, length_penalties, ngram_sizes, min_new_tokens_values, max_new_tokens_values))
     total_runs = len(combos)
     start_time = time.time()
     completed_runs = len(done_keys)
 
     metric_signatures = build_metric_signatures()
 
-    for run_idx, (num_beams, length_penalty, no_repeat_ngram_size, min_new_tokens) in enumerate(combos, start=1):
+    for run_idx, (num_beams, length_penalty, no_repeat_ngram_size, min_new_tokens, max_new_tokens) in enumerate(combos, start=1):
         key = _combo_key(
             num_beams=num_beams,
             length_penalty=length_penalty,
             no_repeat_ngram_size=no_repeat_ngram_size,
             min_new_tokens=min_new_tokens,
+            max_new_tokens=max_new_tokens,
         )
         if key in done_keys:
             print(
@@ -223,6 +232,7 @@ def main() -> None:
                 f"lp={length_penalty}",
                 f"no_repeat_ngram_size={no_repeat_ngram_size}",
                 f"min_new_tokens={min_new_tokens}",
+                f"max_new_tokens={max_new_tokens}",
             )
             continue
 
@@ -233,13 +243,14 @@ def main() -> None:
             f"lp={length_penalty}",
             f"no_repeat_ngram_size={no_repeat_ngram_size}",
             f"min_new_tokens={min_new_tokens}",
+            f"max_new_tokens={max_new_tokens}",
         )
         predictions = _generate_texts(
             model=model,
             tokenizer=tokenizer,
             sources=sources,
             max_source_length=max_source_length,
-            max_new_tokens=default_max_new_tokens,
+            max_new_tokens=max_new_tokens,
             min_new_tokens=min_new_tokens,
             num_beams=num_beams,
             length_penalty=length_penalty,
@@ -256,6 +267,7 @@ def main() -> None:
                 "length_penalty": float(length_penalty),
                 "no_repeat_ngram_size": int(no_repeat_ngram_size),
                 "min_new_tokens": int(min_new_tokens),
+                "max_new_tokens": int(max_new_tokens),
                 "eval_bleu": float(metrics["bleu"]),
                 "eval_chrfpp": float(metrics["chrfpp"]),
                 "eval_geom": float(metrics["geom"]),
@@ -293,7 +305,7 @@ def main() -> None:
     result_df = (
         pd.DataFrame(rows)
         .drop_duplicates(
-            subset=["num_beams", "length_penalty", "no_repeat_ngram_size", "min_new_tokens"],
+            subset=["num_beams", "length_penalty", "no_repeat_ngram_size", "min_new_tokens", "max_new_tokens"],
             keep="last",
         )
         .sort_values(["eval_geom", "eval_bleu"], ascending=False)
