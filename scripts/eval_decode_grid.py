@@ -81,6 +81,58 @@ def _concat_chunks(values: list[str]) -> str:
     return "\n".join(cleaned).strip()
 
 
+def _as_bool_series(series: pd.Series) -> pd.Series:
+    if series.dtype == bool:
+        return series.fillna(False).astype(bool)
+    normalized = series.fillna("").astype(str).str.strip().str.lower()
+    return normalized.isin({"1", "true", "t", "yes", "y"})
+
+
+def _filter_original_rows(frame: pd.DataFrame, *, enabled: bool) -> tuple[pd.DataFrame, dict[str, Any]]:
+    if frame.empty:
+        return frame, {
+            "aggregate_original_only": bool(enabled),
+            "rows_before": 0,
+            "rows_after": 0,
+            "filtered_rows": 0,
+            "applied": False,
+            "reason": "empty_frame",
+        }
+    if not bool(enabled):
+        return frame, {
+            "aggregate_original_only": False,
+            "rows_before": int(len(frame)),
+            "rows_after": int(len(frame)),
+            "filtered_rows": 0,
+            "applied": False,
+            "reason": "disabled",
+        }
+    markers_present = "is_short_aligned" in frame.columns or "chunk_mode" in frame.columns
+    if not markers_present:
+        return frame, {
+            "aggregate_original_only": True,
+            "rows_before": int(len(frame)),
+            "rows_after": int(len(frame)),
+            "filtered_rows": 0,
+            "applied": False,
+            "reason": "no_short_alignment_markers",
+        }
+    short_mask = pd.Series(False, index=frame.index)
+    if "is_short_aligned" in frame.columns:
+        short_mask = short_mask | _as_bool_series(frame["is_short_aligned"])
+    if "chunk_mode" in frame.columns:
+        chunk_mode = frame["chunk_mode"].fillna("").astype(str).str.strip().str.lower()
+        short_mask = short_mask | chunk_mode.str.startswith("short_aligned")
+    filtered = frame.loc[~short_mask].copy()
+    return filtered, {
+        "aggregate_original_only": True,
+        "rows_before": int(len(frame)),
+        "rows_after": int(len(filtered)),
+        "filtered_rows": int(short_mask.sum()),
+        "applied": True,
+    }
+
+
 def _aggregate_parent_texts(
     *,
     val_df: pd.DataFrame,
@@ -164,6 +216,9 @@ def main() -> None:
     ap.add_argument("--predict-batch-size", type=int, default=32)
     ap.add_argument("--max-val-samples", type=int, default=0)
     ap.add_argument("--aggregate-by-parent", default="auto", choices=["auto", "on", "off"])
+    ap.add_argument("--aggregate-original-only", dest="aggregate_original_only", action="store_true")
+    ap.add_argument("--no-aggregate-original-only", dest="aggregate_original_only", action="store_false")
+    ap.set_defaults(aggregate_original_only=True)
     args = ap.parse_args()
 
     cfg_path = _resolve_path(args.config, REPO_ROOT / "configs" / "mt5_small_lora_8gb.yaml")
@@ -191,6 +246,10 @@ def main() -> None:
         val_df = val_df.iloc[: args.max_val_samples].copy()
     if val_df.empty:
         raise ValueError(f"Fold {args.fold} has no validation rows")
+    val_df_for_agg, agg_filter_stats = _filter_original_rows(
+        val_df,
+        enabled=bool(args.aggregate_original_only),
+    )
 
     model_name = str(model_cfg.get("name", "google/mt5-small"))
     max_source_length = int(model_cfg.get("max_source_length", 256))
@@ -300,11 +359,11 @@ def main() -> None:
         do_aggregate = aggregate_mode == "on" or (
             aggregate_mode == "auto" and ("parent_oare_id" in val_df.columns or "parent_id" in val_df.columns)
         )
-        if do_aggregate:
+        if do_aggregate and not val_df_for_agg.empty:
             aggregated = _aggregate_parent_texts(
-                val_df=val_df,
-                predictions=predictions,
-                references=references,
+                val_df=val_df_for_agg,
+                predictions=predictions if val_df_for_agg is val_df else [predictions[i] for i in val_df_for_agg.index.tolist()],
+                references=references if val_df_for_agg is val_df else [references[i] for i in val_df_for_agg.index.tolist()],
             )
             if aggregated is not None:
                 metric_predictions, metric_references = aggregated
@@ -325,6 +384,8 @@ def main() -> None:
                 "eval_geom_01": float(metrics["geom_01"]),
                 "eval_rows": int(len(metric_predictions)),
                 "metric_level": "parent_reconstructed" if (do_aggregate and metric_predictions is not predictions) else "chunk_or_sample",
+                "aggregate_original_only": bool(args.aggregate_original_only),
+                "aggregate_filtered_rows": int(agg_filter_stats.get("filtered_rows", 0)),
             }
         )
         current_row = rows[-1]

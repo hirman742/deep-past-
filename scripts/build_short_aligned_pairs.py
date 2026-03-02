@@ -76,12 +76,20 @@ def _split_by_word_count(text: str, n_chunks: int) -> list[str]:
     return out
 
 
-def _sample_indices(rng: np.random.Generator, *, total: int, take: int) -> np.ndarray:
+def _sample_indices(
+    rng: np.random.Generator,
+    *,
+    total: int,
+    take: int,
+    allow_replacement: bool,
+) -> tuple[np.ndarray, bool]:
     if take <= 0 or total <= 0:
-        return np.asarray([], dtype=np.int64)
+        return np.asarray([], dtype=np.int64), False
     if take <= total:
-        return rng.choice(total, size=take, replace=False)
-    return rng.choice(total, size=take, replace=True)
+        return rng.choice(total, size=take, replace=False), False
+    if bool(allow_replacement):
+        return rng.choice(total, size=take, replace=True), True
+    return rng.choice(total, size=total, replace=False), False
 
 
 def main() -> None:
@@ -105,11 +113,14 @@ def main() -> None:
     ap.add_argument("--fallback-parts", type=int, default=2)
     ap.add_argument("--fallback-equal-split", dest="fallback_equal_split", action="store_true")
     ap.add_argument("--no-fallback-equal-split", dest="fallback_equal_split", action="store_false")
+    ap.add_argument("--allow-replacement", dest="allow_replacement", action="store_true")
+    ap.add_argument("--no-allow-replacement", dest="allow_replacement", action="store_false")
     ap.add_argument("--mix-ratio", type=float, default=3.0)
     ap.add_argument("--max-extra-rows", type=int, default=0)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--model-name", default="")
     ap.set_defaults(fallback_equal_split=True)
+    ap.set_defaults(allow_replacement=False)
     args = ap.parse_args()
 
     cfg_path = _resolve_path(args.config, REPO_ROOT / "configs" / "byt5_small_lora_chunked.yaml")
@@ -224,8 +235,15 @@ def main() -> None:
             "candidates_before_token_filter": 0,
             "rows_extra_pool": 0,
             "rows_extra_selected": 0,
+            "rows_extra_selected_unique_oare_id": 0,
             "rows_output_train": int(len(train_df)),
             "rows_output_folds": int(len(folds_df)),
+            "mix_ratio": float(args.mix_ratio),
+            "max_extra_rows": int(args.max_extra_rows),
+            "requested_extra_rows": 0,
+            "effective_extra_rows": 0,
+            "allow_replacement": bool(args.allow_replacement),
+            "used_replacement": False,
         }
         report_json.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print("WARN: no aligned candidates found; wrote passthrough outputs.")
@@ -294,13 +312,15 @@ def main() -> None:
     target_extra_rows = int(round(float(args.mix_ratio) * float(len(train_df))))
     if int(args.max_extra_rows) > 0:
         target_extra_rows = min(target_extra_rows, int(args.max_extra_rows))
-    target_extra_rows = max(0, target_extra_rows)
+    requested_extra_rows = max(0, target_extra_rows)
+    target_extra_rows = requested_extra_rows
 
     rng = np.random.default_rng(seed)
-    selected_indices = _sample_indices(
+    selected_indices, used_replacement = _sample_indices(
         rng,
         total=int(len(aligned_extra_df)),
         take=target_extra_rows,
+        allow_replacement=bool(args.allow_replacement),
     )
     selected_extra_df = aligned_extra_df.iloc[selected_indices].reset_index(drop=True) if target_extra_rows > 0 else aligned_extra_df.iloc[0:0].copy()
     selected_folds_df = (
@@ -327,10 +347,15 @@ def main() -> None:
         "candidates_before_token_filter": int(len(candidates)),
         "rows_extra_pool": int(len(aligned_extra_df)),
         "rows_extra_selected": int(len(selected_extra_df)),
+        "rows_extra_selected_unique_oare_id": int(selected_extra_df["oare_id"].astype(str).nunique()),
         "rows_output_train": int(len(output_train_df)),
         "rows_output_folds": int(len(output_folds_df)),
         "mix_ratio": float(args.mix_ratio),
         "max_extra_rows": int(args.max_extra_rows),
+        "requested_extra_rows": int(requested_extra_rows),
+        "effective_extra_rows": int(len(selected_extra_df)),
+        "allow_replacement": bool(args.allow_replacement),
+        "used_replacement": bool(used_replacement),
         "min_segments": int(min_segments),
         "max_segments": int(max_segments),
         "max_source_tokens": int(max_source_tokens),
@@ -351,6 +376,7 @@ def main() -> None:
     print(
         "INFO: extra_pool/selected="
         f"{len(aligned_extra_df)}/{len(selected_extra_df)}, "
+        f"used_replacement={used_replacement}, "
         f"rows_out={len(output_train_df)}"
     )
 

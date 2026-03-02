@@ -143,6 +143,48 @@ def _concat_chunks(values: list[str]) -> str:
     return "\n".join(cleaned).strip()
 
 
+def _as_bool_series(series: pd.Series) -> pd.Series:
+    if series.dtype == bool:
+        return series.fillna(False).astype(bool)
+    normalized = series.fillna("").astype(str).str.strip().str.lower()
+    return normalized.isin({"1", "true", "t", "yes", "y"})
+
+
+def _filter_for_parent_reconstruction(frame: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, Any]]:
+    if frame.empty:
+        return frame, {
+            "aggregate_original_only": False,
+            "rows_before": 0,
+            "rows_after": 0,
+            "filtered_rows": 0,
+            "reason": "empty_frame",
+        }
+    markers_present = "is_short_aligned" in frame.columns or "chunk_mode" in frame.columns
+    if not markers_present:
+        return frame, {
+            "aggregate_original_only": False,
+            "rows_before": int(len(frame)),
+            "rows_after": int(len(frame)),
+            "filtered_rows": 0,
+            "reason": "no_short_alignment_markers",
+        }
+
+    short_mask = pd.Series(False, index=frame.index)
+    if "is_short_aligned" in frame.columns:
+        short_mask = short_mask | _as_bool_series(frame["is_short_aligned"])
+    if "chunk_mode" in frame.columns:
+        chunk_mode = frame["chunk_mode"].fillna("").astype(str).str.strip().str.lower()
+        short_mask = short_mask | chunk_mode.str.startswith("short_aligned")
+
+    filtered = frame.loc[~short_mask].copy().reset_index(drop=True)
+    return filtered, {
+        "aggregate_original_only": True,
+        "rows_before": int(len(frame)),
+        "rows_after": int(len(filtered)),
+        "filtered_rows": int(short_mask.sum()),
+    }
+
+
 def _apply_parent_sampling(
     frame: pd.DataFrame,
     *,
@@ -498,11 +540,18 @@ def main() -> None:
             val_pred_df["parent_oare_id"] = val_split["parent_oare_id"].astype(str).tolist()
         if "chunk_index" in val_split.columns:
             val_pred_df["chunk_index"] = val_split["chunk_index"].astype(int).tolist()
+        if "chunk_mode" in val_split.columns:
+            val_pred_df["chunk_mode"] = val_split["chunk_mode"].fillna("").astype(str).tolist()
+        if "is_short_aligned" in val_split.columns:
+            val_pred_df["is_short_aligned"] = val_split["is_short_aligned"].tolist()
         val_pred_df.to_csv(val_pred_path, index=False)
 
-        if "parent_oare_id" in val_pred_df.columns:
+        recon_input_df, recon_filter_stats = _filter_for_parent_reconstruction(val_pred_df)
+        if "parent_oare_id" in recon_input_df.columns and not recon_input_df.empty:
             recon_df = (
-                val_pred_df.sort_values(["parent_oare_id", "chunk_index"] if "chunk_index" in val_pred_df.columns else ["parent_oare_id"])
+                recon_input_df.sort_values(
+                    ["parent_oare_id", "chunk_index"] if "chunk_index" in recon_input_df.columns else ["parent_oare_id"]
+                )
                 .groupby("parent_oare_id", as_index=False)
                 .agg(
                     reference=("reference", lambda s: _concat_chunks(s.tolist())),
@@ -526,6 +575,14 @@ def main() -> None:
                     "geom_01": float(metrics["geom_01"]),
                 },
                 "artifact": str(reconstructed_path),
+                "filter": recon_filter_stats,
+            }
+        elif "parent_oare_id" in val_pred_df.columns:
+            reconstructed_metrics = {
+                "num_rows": 0,
+                "artifact": str(reconstructed_path),
+                "filter": recon_filter_stats,
+                "reason": "empty_after_original_chunk_filter",
             }
 
     trainable, total = _trainable_params(model)

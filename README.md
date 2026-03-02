@@ -140,3 +140,4 @@ conda run -n deeppast-cleaning python scripts/check_plan_acceptance.py --profile
 
 ## Latest Execution Report
 - `docs/byt5_chunk_round2_execution_report_2026-03-01.md`
+- `docs/e8_diagnostic_round3_2026-03-02.md`

@@ -55,6 +55,61 @@ def _concat_chunks(values: list[str]) -> str:
     return "\n".join(cleaned).strip()
 
 
+def _as_bool_series(series: pd.Series) -> pd.Series:
+    if series.dtype == bool:
+        return series.fillna(False).astype(bool)
+    normalized = series.fillna("").astype(str).str.strip().str.lower()
+    return normalized.isin({"1", "true", "t", "yes", "y"})
+
+
+def _filter_original_chunks(frame: pd.DataFrame, *, enabled: bool) -> tuple[pd.DataFrame, dict[str, Any]]:
+    if frame.empty:
+        return frame, {
+            "aggregate_original_only": bool(enabled),
+            "rows_before": 0,
+            "rows_after": 0,
+            "filtered_rows": 0,
+            "applied": False,
+            "reason": "empty_frame",
+        }
+    if not bool(enabled):
+        return frame, {
+            "aggregate_original_only": False,
+            "rows_before": int(len(frame)),
+            "rows_after": int(len(frame)),
+            "filtered_rows": 0,
+            "applied": False,
+            "reason": "disabled",
+        }
+
+    markers_present = "is_short_aligned" in frame.columns or "chunk_mode" in frame.columns
+    if not markers_present:
+        return frame, {
+            "aggregate_original_only": True,
+            "rows_before": int(len(frame)),
+            "rows_after": int(len(frame)),
+            "filtered_rows": 0,
+            "applied": False,
+            "reason": "no_short_alignment_markers",
+        }
+
+    short_mask = pd.Series(False, index=frame.index)
+    if "is_short_aligned" in frame.columns:
+        short_mask = short_mask | _as_bool_series(frame["is_short_aligned"])
+    if "chunk_mode" in frame.columns:
+        chunk_mode = frame["chunk_mode"].fillna("").astype(str).str.strip().str.lower()
+        short_mask = short_mask | chunk_mode.str.startswith("short_aligned")
+
+    filtered = frame.loc[~short_mask].copy().reset_index(drop=True)
+    return filtered, {
+        "aggregate_original_only": True,
+        "rows_before": int(len(frame)),
+        "rows_after": int(len(filtered)),
+        "filtered_rows": int(short_mask.sum()),
+        "applied": True,
+    }
+
+
 def _aggregate_parent_df(pred_df: pd.DataFrame) -> tuple[pd.DataFrame, str | None]:
     if "parent_oare_id" in pred_df.columns:
         parent_col = "parent_oare_id"
@@ -95,6 +150,9 @@ def main() -> None:
     ap.add_argument("--sample-size", type=int, default=50)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--aggregate-by-parent", default="auto", choices=["auto", "on", "off"])
+    ap.add_argument("--aggregate-original-only", dest="aggregate_original_only", action="store_true")
+    ap.add_argument("--no-aggregate-original-only", dest="aggregate_original_only", action="store_false")
+    ap.set_defaults(aggregate_original_only=True)
     args = ap.parse_args()
 
     random.seed(args.seed)
@@ -236,6 +294,12 @@ def main() -> None:
             "chunk_index": val_df["chunk_index"].astype(int).tolist()
             if "chunk_index" in val_df.columns
             else [0] * len(val_df),
+            "chunk_mode": val_df["chunk_mode"].fillna("").astype(str).tolist()
+            if "chunk_mode" in val_df.columns
+            else [""] * len(val_df),
+            "is_short_aligned": val_df["is_short_aligned"].tolist()
+            if "is_short_aligned" in val_df.columns
+            else [False] * len(val_df),
             "source": sources,
             "reference": references,
             "prediction": predictions,
@@ -264,7 +328,11 @@ def main() -> None:
     reconstructed_summary: dict[str, Any] | None = None
     do_aggregate = aggregate_mode == "on" or (aggregate_mode == "auto" and "parent_oare_id" in val_df.columns)
     if do_aggregate:
-        reconstructed_df, parent_col = _aggregate_parent_df(pred_df)
+        pred_for_agg, agg_filter_stats = _filter_original_chunks(
+            pred_df,
+            enabled=bool(args.aggregate_original_only),
+        )
+        reconstructed_df, parent_col = _aggregate_parent_df(pred_for_agg)
         if parent_col is not None and not reconstructed_df.empty:
             reconstructed_df.to_csv(reconstructed_out, index=False)
             rec_predictions = reconstructed_df["prediction"].fillna("").astype(str).tolist()
@@ -297,6 +365,15 @@ def main() -> None:
                     "pred_shorter_than_half_ref_ratio_pct": 100.0
                     * _safe_div(float(len(rec_shorter_half)), float(len(rec_predictions))),
                 },
+                "filter": agg_filter_stats,
+                "artifacts": {"reconstructed_csv": str(reconstructed_out)},
+            }
+        elif parent_col is not None:
+            reconstructed_summary = {
+                "parent_key": parent_col,
+                "num_rows": 0,
+                "filter": agg_filter_stats,
+                "reason": "empty_after_original_chunk_filter",
                 "artifacts": {"reconstructed_csv": str(reconstructed_out)},
             }
 
@@ -318,6 +395,7 @@ def main() -> None:
             "shuffle_source": bool(args.shuffle_source),
             "max_rows": int(args.max_rows),
             "tag": str(args.tag),
+            "aggregate_original_only": bool(args.aggregate_original_only),
         },
         "metrics": {
             "bleu": float(metrics["bleu"]),
@@ -380,7 +458,7 @@ def main() -> None:
         f"{summary['metrics']['chrfpp']:.4f}, "
         f"empty={summary['output_health']['empty_prediction_ratio_pct']:.2f}%"
     )
-    if reconstructed_summary is not None:
+    if reconstructed_summary is not None and "metrics" in reconstructed_summary:
         print(
             "INFO: reconstructed geom/bleu/chrfpp="
             f"{reconstructed_summary['metrics']['geom']:.4f}/"
