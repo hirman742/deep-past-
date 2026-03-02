@@ -77,6 +77,11 @@ Short aligned pair expansion (ByT5 chunk stage2):
 conda run -n deeppast-cleaning python scripts/build_short_aligned_pairs.py --config configs/byt5_small_lora_chunked_stage1_r8_qv.yaml --input-train data/processed_byt5_chunks/train_proc.csv --input-folds data/processed_byt5_chunks/folds.csv --output-train data/processed_byt5_chunks_align/train_proc.csv --output-folds data/processed_byt5_chunks_align/folds.csv --mix-ratio 3.0 --report-json runs/E8_short_align_report.json
 ```
 
+Gale-Church short aligned expansion (no replacement):
+```bash
+conda run -n deeppast-cleaning python scripts/build_short_aligned_pairs_galechurch.py --config configs/byt5_small_lora_chunked_stage1_r8_qv.yaml --input-train data/processed_byt5_chunks/train_proc.csv --input-folds data/processed_byt5_chunks/folds.csv --output-train data/processed_byt5_chunks_align_gc_relaxed/train_proc.csv --output-folds data/processed_byt5_chunks_align_gc_relaxed/folds.csv --mix-ratio 0.5 --max-align-cost 1.8 --min-source-tokens 2 --min-target-tokens 2 --max-source-tokens 384 --max-target-tokens 384 --min-length-ratio 0.3 --max-length-ratio 3.0 --no-allow-replacement --report-json runs/E10_short_align_gc_report_relaxed.json
+```
+
 ### Day4: ORACC mix + dedupe
 ```bash
 conda run -n deeppast-cleaning python scripts/prepare_oracc_mix.py --config configs/mt5_small_lora_8gb_e3_oracc10.yaml --ratio 0.10 --oracc-csv data/external/oracc_parallel.csv --output-train data/interim/oracc_mix_train_r10.csv --audit-json runs/oracc_mix_audit_r10.json
@@ -138,6 +143,12 @@ conda run -n deeppast-cleaning python scripts/check_plan_acceptance.py --diagnos
 conda run -n deeppast-cleaning python scripts/check_plan_acceptance.py --profile baseline --diagnose-summary runs/E0_MT5_CHAINFIX_fold0/diagnostics/val_diagnostic_summary.json --length-stats data/processed_e0/length_stats.json --oracc-audit runs/oracc_mix_audit_r10.json
 ```
 
+N-best rerank diagnostic:
+```bash
+conda run -n deeppast-cleaning python scripts/eval_nbest_rerank.py --config configs/byt5_small_lora_chunked_stage2_gc_curriculum.yaml --fold 0 --checkpoint-dir runs/E10_BYT5_STAGE2_GC_RELAXED_fold0/best_model --tag step1000_beam4_n4_lp1p2_m384 --max-rows 256 --num-beams 4 --num-return-sequences 4 --length-penalty 1.2 --no-repeat-ngram-size 3 --max-new-tokens 384
+```
+
 ## Latest Execution Report
 - `docs/byt5_chunk_round2_execution_report_2026-03-01.md`
 - `docs/e8_diagnostic_round3_2026-03-02.md`
+- `docs/byt5_gc_round4_execution_report_2026-03-02.md`
