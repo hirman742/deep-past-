@@ -143,12 +143,94 @@ def _concat_chunks(values: list[str]) -> str:
     return "\n".join(cleaned).strip()
 
 
+def _apply_parent_sampling(
+    frame: pd.DataFrame,
+    *,
+    seed: int,
+    max_chunks_per_parent: int,
+    parent_inverse_sample: bool,
+) -> tuple[pd.DataFrame, dict[str, Any]]:
+    if frame.empty:
+        return frame, {
+            "enabled": False,
+            "rows_before": 0,
+            "rows_after_cap": 0,
+            "rows_after_inverse": 0,
+        }
+    parent_col = "parent_oare_id" if "parent_oare_id" in frame.columns else None
+    if not parent_col:
+        return frame, {
+            "enabled": False,
+            "rows_before": int(len(frame)),
+            "rows_after_cap": int(len(frame)),
+            "rows_after_inverse": int(len(frame)),
+            "reason": "missing_parent_column",
+        }
+
+    rows_before = int(len(frame))
+    parent_counts_before = frame[parent_col].astype(str).value_counts()
+    avg_before = float(parent_counts_before.mean()) if not parent_counts_before.empty else 0.0
+    max_before = int(parent_counts_before.max()) if not parent_counts_before.empty else 0
+
+    capped = frame
+    if int(max_chunks_per_parent) > 0:
+        parts: list[pd.DataFrame] = []
+        for _, group in frame.groupby(parent_col, sort=False):
+            n_keep = min(int(max_chunks_per_parent), int(len(group)))
+            if n_keep == int(len(group)):
+                parts.append(group)
+            else:
+                parts.append(group.sample(n=n_keep, random_state=seed))
+        capped = pd.concat(parts, ignore_index=True).sample(frac=1.0, random_state=seed).reset_index(drop=True)
+
+    rows_after_cap = int(len(capped))
+    sampled = capped
+    if bool(parent_inverse_sample):
+        parent_counts = capped[parent_col].astype(str).value_counts()
+        inv_weights = capped[parent_col].astype(str).map(lambda x: 1.0 / float(parent_counts.get(x, 1)))
+        sampled = (
+            capped.sample(
+                n=int(len(capped)),
+                replace=True,
+                random_state=seed,
+                weights=inv_weights,
+            )
+            .reset_index(drop=True)
+        )
+
+    rows_after_inverse = int(len(sampled))
+    parent_counts_after = sampled[parent_col].astype(str).value_counts()
+    avg_after = float(parent_counts_after.mean()) if not parent_counts_after.empty else 0.0
+    max_after = int(parent_counts_after.max()) if not parent_counts_after.empty else 0
+
+    stats = {
+        "enabled": bool(int(max_chunks_per_parent) > 0 or bool(parent_inverse_sample)),
+        "parent_column": parent_col,
+        "max_chunks_per_parent": int(max_chunks_per_parent),
+        "parent_inverse_sample": bool(parent_inverse_sample),
+        "rows_before": rows_before,
+        "rows_after_cap": rows_after_cap,
+        "rows_after_inverse": rows_after_inverse,
+        "unique_parents_before": int(parent_counts_before.shape[0]),
+        "unique_parents_after": int(parent_counts_after.shape[0]),
+        "avg_chunks_per_parent_before": avg_before,
+        "avg_chunks_per_parent_after": avg_after,
+        "max_chunks_per_parent_before": max_before,
+        "max_chunks_per_parent_after": max_after,
+    }
+    return sampled, stats
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/mt5_small_lora_8gb.yaml")
     ap.add_argument("--fold", type=int, default=0)
     ap.add_argument("--max-steps", type=int, default=-1)
     ap.add_argument("--init-adapter-dir", default="")
+    ap.add_argument("--max-train-rows", type=int, default=-1)
+    ap.add_argument("--max-val-rows", type=int, default=-1)
+    ap.add_argument("--eval-steps", type=int, default=-1)
+    ap.add_argument("--skip-final-predict", action="store_true")
     args = ap.parse_args()
 
     cfg_path = _resolve_path(args.config, REPO_ROOT / "configs" / "mt5_small_lora_8gb.yaml")
@@ -178,6 +260,20 @@ def main() -> None:
 
     train_split = merged[merged["fold"] != args.fold].reset_index(drop=True)
     val_split = merged[merged["fold"] == args.fold].reset_index(drop=True)
+    if args.max_train_rows > 0:
+        train_split = train_split.head(int(args.max_train_rows)).reset_index(drop=True)
+    if args.max_val_rows > 0:
+        val_split = val_split.head(int(args.max_val_rows)).reset_index(drop=True)
+
+    max_chunks_per_parent = int(train_cfg.get("max_chunks_per_parent", 0))
+    parent_inverse_sample = bool(train_cfg.get("parent_inverse_sample", False))
+    train_split, parent_sampling_stats = _apply_parent_sampling(
+        train_split,
+        seed=seed,
+        max_chunks_per_parent=max_chunks_per_parent,
+        parent_inverse_sample=parent_inverse_sample,
+    )
+
     if train_split.empty or val_split.empty:
         raise ValueError(f"Fold {args.fold} produced empty train/val split")
 
@@ -245,6 +341,8 @@ def main() -> None:
         grad_accum=grad_accum,
         eval_fraction=eval_fraction,
     )
+    if int(args.eval_steps) > 0:
+        eval_steps = int(args.eval_steps)
 
     requested_fp16 = bool(train_cfg.get("fp16", True))
     requested_bf16 = bool(train_cfg.get("bf16", False))
@@ -375,59 +473,60 @@ def main() -> None:
     trainer.save_model(str(best_dir))
     tokenizer.save_pretrained(best_dir)
 
-    prediction_output = trainer.predict(val_dataset)
-    val_predictions = prediction_output.predictions
-    if isinstance(val_predictions, tuple):
-        val_predictions = val_predictions[0]
-    val_predictions = np.asarray(val_predictions)
-    if val_predictions.ndim == 3:
-        val_predictions = np.argmax(val_predictions, axis=-1)
-    val_predictions = np.where(val_predictions < 0, tokenizer.pad_token_id, val_predictions).astype(np.int64)
-    decoded_predictions = tokenizer.batch_decode(val_predictions, skip_special_tokens=True)
-
-    val_pred_df = pd.DataFrame(
-        {
-            "oare_id": val_split["oare_id"].astype(str).tolist(),
-            "reference": val_split["target"].astype(str).tolist(),
-            "prediction": [x.strip() for x in decoded_predictions],
-        }
-    )
-    if "parent_oare_id" in val_split.columns:
-        val_pred_df["parent_oare_id"] = val_split["parent_oare_id"].astype(str).tolist()
-    if "chunk_index" in val_split.columns:
-        val_pred_df["chunk_index"] = val_split["chunk_index"].astype(int).tolist()
     val_pred_path = run_dir / "val_predictions.csv"
-    val_pred_df.to_csv(val_pred_path, index=False)
-
     reconstructed_metrics: dict[str, Any] = {}
     reconstructed_path = run_dir / "val_predictions_reconstructed.csv"
-    if "parent_oare_id" in val_pred_df.columns:
-        recon_df = (
-            val_pred_df.sort_values(["parent_oare_id", "chunk_index"] if "chunk_index" in val_pred_df.columns else ["parent_oare_id"])
-            .groupby("parent_oare_id", as_index=False)
-            .agg(
-                reference=("reference", lambda s: _concat_chunks(s.tolist())),
-                prediction=("prediction", lambda s: _concat_chunks(s.tolist())),
+    if not bool(args.skip_final_predict):
+        prediction_output = trainer.predict(val_dataset)
+        val_predictions = prediction_output.predictions
+        if isinstance(val_predictions, tuple):
+            val_predictions = val_predictions[0]
+        val_predictions = np.asarray(val_predictions)
+        if val_predictions.ndim == 3:
+            val_predictions = np.argmax(val_predictions, axis=-1)
+        val_predictions = np.where(val_predictions < 0, tokenizer.pad_token_id, val_predictions).astype(np.int64)
+        decoded_predictions = tokenizer.batch_decode(val_predictions, skip_special_tokens=True)
+
+        val_pred_df = pd.DataFrame(
+            {
+                "oare_id": val_split["oare_id"].astype(str).tolist(),
+                "reference": val_split["target"].astype(str).tolist(),
+                "prediction": [x.strip() for x in decoded_predictions],
+            }
+        )
+        if "parent_oare_id" in val_split.columns:
+            val_pred_df["parent_oare_id"] = val_split["parent_oare_id"].astype(str).tolist()
+        if "chunk_index" in val_split.columns:
+            val_pred_df["chunk_index"] = val_split["chunk_index"].astype(int).tolist()
+        val_pred_df.to_csv(val_pred_path, index=False)
+
+        if "parent_oare_id" in val_pred_df.columns:
+            recon_df = (
+                val_pred_df.sort_values(["parent_oare_id", "chunk_index"] if "chunk_index" in val_pred_df.columns else ["parent_oare_id"])
+                .groupby("parent_oare_id", as_index=False)
+                .agg(
+                    reference=("reference", lambda s: _concat_chunks(s.tolist())),
+                    prediction=("prediction", lambda s: _concat_chunks(s.tolist())),
+                )
+                .rename(columns={"parent_oare_id": "oare_id"})
             )
-            .rename(columns={"parent_oare_id": "oare_id"})
-        )
-        recon_df.to_csv(reconstructed_path, index=False)
-        metrics = compute_translation_metrics(
-            predictions=recon_df["prediction"].fillna("").astype(str).tolist(),
-            references=recon_df["reference"].fillna("").astype(str).tolist(),
-        )
-        reconstructed_metrics = {
-            "num_rows": int(len(recon_df)),
-            "metrics": {
-                "bleu": float(metrics["bleu"]),
-                "chrfpp": float(metrics["chrfpp"]),
-                "geom": float(metrics["geom"]),
-                "bleu_01": float(metrics["bleu_01"]),
-                "chrfpp_01": float(metrics["chrfpp_01"]),
-                "geom_01": float(metrics["geom_01"]),
-            },
-            "artifact": str(reconstructed_path),
-        }
+            recon_df.to_csv(reconstructed_path, index=False)
+            metrics = compute_translation_metrics(
+                predictions=recon_df["prediction"].fillna("").astype(str).tolist(),
+                references=recon_df["reference"].fillna("").astype(str).tolist(),
+            )
+            reconstructed_metrics = {
+                "num_rows": int(len(recon_df)),
+                "metrics": {
+                    "bleu": float(metrics["bleu"]),
+                    "chrfpp": float(metrics["chrfpp"]),
+                    "geom": float(metrics["geom"]),
+                    "bleu_01": float(metrics["bleu_01"]),
+                    "chrfpp_01": float(metrics["chrfpp_01"]),
+                    "geom_01": float(metrics["geom_01"]),
+                },
+                "artifact": str(reconstructed_path),
+            }
 
     trainable, total = _trainable_params(model)
     summary = {
@@ -438,7 +537,11 @@ def main() -> None:
         "init_adapter_dir": str(init_adapter_dir) if used_init_adapter else "",
         "train_rows": int(len(train_split)),
         "val_rows": int(len(val_split)),
+        "max_train_rows": int(args.max_train_rows),
+        "max_val_rows": int(args.max_val_rows),
         "eval_steps": int(eval_steps),
+        "skip_final_predict": bool(args.skip_final_predict),
+        "parent_sampling": parent_sampling_stats,
         "trainable_params": int(trainable),
         "total_params": int(total),
         "trainable_ratio_pct": 100.0 * float(trainable) / float(total),
@@ -469,7 +572,10 @@ def main() -> None:
     resolved_cfg_path.write_text(yaml.safe_dump(cfg, sort_keys=False, allow_unicode=True), encoding="utf-8")
 
     print(f"OK: best model saved at {best_dir}")
-    print(f"OK: val predictions saved at {val_pred_path}")
+    if not bool(args.skip_final_predict):
+        print(f"OK: val predictions saved at {val_pred_path}")
+    else:
+        print("INFO: skipped final predict (--skip-final-predict enabled)")
     print(f"OK: summary saved at {summary_path}")
     print(
         "INFO: eval geom/bleu/chrfpp="

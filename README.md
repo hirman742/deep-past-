@@ -72,6 +72,11 @@ conda run -n deeppast-cleaning python scripts/preprocess.py --config configs/mt5
 conda run -n deeppast-cleaning python scripts/build_long_chunks.py --config configs/mt5_small_lora_8gb_e2_chunks.yaml --input-train data/processed_e1_512_320/train_proc.csv --output-train data/processed_e2_chunks/train_proc_chunked.csv --report-json runs/E2_chunk_report.json
 ```
 
+Short aligned pair expansion (ByT5 chunk stage2):
+```bash
+conda run -n deeppast-cleaning python scripts/build_short_aligned_pairs.py --config configs/byt5_small_lora_chunked_stage1_r8_qv.yaml --input-train data/processed_byt5_chunks/train_proc.csv --input-folds data/processed_byt5_chunks/folds.csv --output-train data/processed_byt5_chunks_align/train_proc.csv --output-folds data/processed_byt5_chunks_align/folds.csv --mix-ratio 3.0 --report-json runs/E8_short_align_report.json
+```
+
 ### Day4: ORACC mix + dedupe
 ```bash
 conda run -n deeppast-cleaning python scripts/prepare_oracc_mix.py --config configs/mt5_small_lora_8gb_e3_oracc10.yaml --ratio 0.10 --oracc-csv data/external/oracc_parallel.csv --output-train data/interim/oracc_mix_train_r10.csv --audit-json runs/oracc_mix_audit_r10.json
@@ -132,3 +137,6 @@ conda run -n deeppast-cleaning python scripts/check_plan_acceptance.py --diagnos
 # stricter gate for baseline-quality runs
 conda run -n deeppast-cleaning python scripts/check_plan_acceptance.py --profile baseline --diagnose-summary runs/E0_MT5_CHAINFIX_fold0/diagnostics/val_diagnostic_summary.json --length-stats data/processed_e0/length_stats.json --oracc-audit runs/oracc_mix_audit_r10.json
 ```
+
+## Latest Execution Report
+- `docs/byt5_chunk_round2_execution_report_2026-03-01.md`
