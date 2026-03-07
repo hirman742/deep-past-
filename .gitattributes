@@ -1,4 +1,4 @@
 # Keep Kaggle CSVs byte-identical (avoid EOL normalization on Windows)
 data/raw/*.csv -text
 data/external/*.csv -text
-
+deep_past_rescue_20260306_191331.tgz filter=lfs diff=lfs merge=lfs -text
