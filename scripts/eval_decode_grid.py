@@ -208,6 +208,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/mt5_small_lora_8gb.yaml")
     ap.add_argument("--fold", type=int, default=0)
+    ap.add_argument("--checkpoint-dir", default="")
+    ap.add_argument("--tag", default="")
     ap.add_argument("--beams", default="4,5,8")
     ap.add_argument("--length-penalties", default="0.8,1.0,1.2,1.4")
     ap.add_argument("--no-repeat-ngram-sizes", default="0")
@@ -234,9 +236,10 @@ def main() -> None:
     folds_path = processed_dir / "folds.csv"
     run_root = _resolve_path(paths_cfg.get("run_dir"), REPO_ROOT / "runs" / "A1_MT5_FOLD0")
     run_dir = run_root.parent / f"{run_root.name}_fold{args.fold}"
-    checkpoint_dir = run_dir / "best_model"
+    checkpoint_dir = _resolve_path(args.checkpoint_dir, run_dir / "best_model")
     if not checkpoint_dir.exists():
         raise FileNotFoundError(f"Missing checkpoint: {checkpoint_dir}")
+    suffix = str(args.tag or "").strip().replace(" ", "_")
 
     train_df = pd.read_csv(train_path)
     folds_df = pd.read_csv(folds_path)
@@ -285,8 +288,14 @@ def main() -> None:
     sources = val_df["source"].fillna("").astype(str).tolist()
     references = val_df["target"].fillna("").astype(str).tolist()
     rows: list[dict[str, Any]] = []
-    csv_path = run_dir / "decode_grid_metrics.csv"
-    json_path = run_dir / "decode_grid_best.json"
+    if suffix:
+        diag_dir = run_dir / "diagnostics"
+        diag_dir.mkdir(parents=True, exist_ok=True)
+        csv_path = diag_dir / f"decode_grid_metrics_{suffix}.csv"
+        json_path = diag_dir / f"decode_grid_best_{suffix}.json"
+    else:
+        csv_path = run_dir / "decode_grid_metrics.csv"
+        json_path = run_dir / "decode_grid_best.json"
     if csv_path.exists():
         existing_df = pd.read_csv(csv_path)
         if not existing_df.empty:
@@ -386,6 +395,8 @@ def main() -> None:
                 "metric_level": "parent_reconstructed" if (do_aggregate and metric_predictions is not predictions) else "chunk_or_sample",
                 "aggregate_original_only": bool(args.aggregate_original_only),
                 "aggregate_filtered_rows": int(agg_filter_stats.get("filtered_rows", 0)),
+                "checkpoint_dir": str(checkpoint_dir),
+                "tag": suffix,
             }
         )
         current_row = rows[-1]
@@ -399,6 +410,8 @@ def main() -> None:
         best_payload["progress_pct"] = 100.0 * float(completed_runs) / float(max(1, total_runs))
         elapsed = time.time() - start_time
         best_payload["elapsed_seconds"] = float(elapsed)
+        best_payload["checkpoint_dir"] = str(checkpoint_dir)
+        best_payload["tag"] = suffix
         json_path.write_text(json.dumps(best_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
         pd.DataFrame([current_row]).to_csv(
@@ -431,6 +444,8 @@ def main() -> None:
     best["total_planned_runs"] = int(total_runs)
     best["progress_pct"] = 100.0 * float(len(result_df)) / float(max(1, total_runs))
     best["elapsed_seconds"] = float(time.time() - start_time)
+    best["checkpoint_dir"] = str(checkpoint_dir)
+    best["tag"] = suffix
     json_path.write_text(json.dumps(best, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"OK: wrote {csv_path}")
     print(f"OK: wrote {json_path}")

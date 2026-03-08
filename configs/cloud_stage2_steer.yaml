@@ -1,0 +1,168 @@
+﻿name: cloud_stage2_steer
+python_executable: python
+fold: 0
+generated_config_dir: runs/STEER/generated_configs
+summary_path: runs/STEER/cloud_stage2_steer_summary.json
+
+incumbent:
+  config: configs/cloud_stage2_gc_curriculum_cost14_from_s1win.yaml
+  fold: 0
+  checkpoint_dir: runs/CLOUD_STAGE2_GC_CURRICULUM_COST14_FROM_S1WIN_fold0/best_model
+
+stages:
+  - name: probe
+    train:
+      max_steps: 250
+      eval_steps: 100
+      max_val_rows: 900
+    decode:
+      beams: "4"
+      length_penalties: "0.8"
+      no_repeat_ngram_sizes: "0"
+      min_new_tokens_list: "0"
+      max_new_tokens_list: "384"
+      predict_batch_size: 16
+      max_val_samples: 32
+      aggregate_by_parent: auto
+      aggregate_original_only: true
+    diagnose:
+      predict_batch_size: 16
+      max_rows: 32
+      aggregate_by_parent: auto
+      aggregate_original_only: true
+    constraints:
+      max_geom_drop_abs: 1.20
+      max_bleu_drop_abs: 1.00
+      max_chrfpp_drop_abs: 2.00
+      max_exact_extra_id_0_ratio_pct: 1.0
+      max_pred_shorter_than_half_ref_ratio_pct: 60.0
+      max_empty_prediction_ratio_pct: 3.0
+      max_copy_source_ratio_pct: 12.0
+      min_gpu_peak_utilization_pct: 50.0
+      target_gpu_peak_utilization_pct: 70.0
+      max_gpu_peak_utilization_pct: 95.0
+
+  - name: warmup
+    train:
+      max_steps: 600
+      eval_steps: 200
+      max_val_rows: 900
+    decode:
+      beams: "4"
+      length_penalties: "0.8"
+      no_repeat_ngram_sizes: "0"
+      min_new_tokens_list: "0"
+      max_new_tokens_list: "384"
+      predict_batch_size: 16
+      max_val_samples: 64
+      aggregate_by_parent: auto
+      aggregate_original_only: true
+    diagnose:
+      predict_batch_size: 16
+      max_rows: 64
+      aggregate_by_parent: auto
+      aggregate_original_only: true
+    constraints:
+      max_geom_drop_abs: 0.60
+      max_bleu_drop_abs: 0.50
+      max_chrfpp_drop_abs: 1.20
+      max_exact_extra_id_0_ratio_pct: 0.5
+      max_pred_shorter_than_half_ref_ratio_pct: 45.0
+      max_empty_prediction_ratio_pct: 2.0
+      max_copy_source_ratio_pct: 10.0
+      min_gpu_peak_utilization_pct: 50.0
+      target_gpu_peak_utilization_pct: 70.0
+      max_gpu_peak_utilization_pct: 95.0
+
+  - name: promote
+    train:
+      max_steps: 3000
+      eval_steps: 300
+      max_val_rows: 900
+    decode:
+      beams: "4,6"
+      length_penalties: "0.8,1.0"
+      no_repeat_ngram_sizes: "0"
+      min_new_tokens_list: "0"
+      max_new_tokens_list: "384"
+      predict_batch_size: 16
+      max_val_samples: 0
+      aggregate_by_parent: auto
+      aggregate_original_only: true
+    diagnose:
+      predict_batch_size: 16
+      max_rows: 0
+      aggregate_by_parent: auto
+      aggregate_original_only: true
+    constraints:
+      min_geom_gain_abs: 0.30
+      max_bleu_drop_abs: 0.20
+      max_chrfpp_drop_abs: 0.60
+      max_exact_extra_id_0_ratio_pct: 0.5
+      max_pred_shorter_than_half_ref_ratio_pct: 45.0
+      max_empty_prediction_ratio_pct: 2.0
+      max_copy_source_ratio_pct: 10.0
+      min_gpu_peak_utilization_pct: 60.0
+      target_gpu_peak_utilization_pct: 80.0
+      max_gpu_peak_utilization_pct: 95.0
+
+candidates:
+  - name: continue_s4_bs32_len512
+    base_config: configs/cloud_stage2_gc_curriculum_cost14_from_s1win.yaml
+    init_adapter_dir: runs/CLOUD_STAGE2_GC_CURRICULUM_COST14_FROM_S1WIN_fold0/best_model
+    overrides:
+      name: steer_s4_continue_bs32_len512
+      paths.run_dir: runs/STEER_S4_CONTINUE_BS32_LEN512
+      training.per_device_train_batch_size: 32
+      training.per_device_eval_batch_size: 64
+      training.gradient_accumulation_steps: 1
+      training.learning_rate: 0.00006
+      training.eval_fraction_of_epoch: 0.5
+      training.predict_with_generate: false
+      training.metric_for_best_model: eval_loss
+      training.greater_is_better: false
+      training.save_total_limit: 3
+      model.max_source_length: 512
+      model.max_target_length: 512
+      generation.max_new_tokens: 512
+
+  - name: continue_s4_bs24_len640
+    base_config: configs/cloud_stage2_gc_curriculum_cost14_from_s1win.yaml
+    init_adapter_dir: runs/CLOUD_STAGE2_GC_CURRICULUM_COST14_FROM_S1WIN_fold0/best_model
+    overrides:
+      name: steer_s4_continue_bs24_len640
+      paths.run_dir: runs/STEER_S4_CONTINUE_BS24_LEN640
+      training.per_device_train_batch_size: 24
+      training.per_device_eval_batch_size: 48
+      training.gradient_accumulation_steps: 1
+      training.learning_rate: 0.00005
+      training.eval_fraction_of_epoch: 0.5
+      training.predict_with_generate: false
+      training.metric_for_best_model: eval_loss
+      training.greater_is_better: false
+      training.save_total_limit: 3
+      model.max_source_length: 640
+      model.max_target_length: 640
+      generation.max_new_tokens: 640
+
+  - name: cold_qkvo_r16_len640
+    base_config: configs/cloud_stage2_gc_curriculum_cost14_from_s1win.yaml
+    overrides:
+      name: steer_cold_qkvo_r16_len640
+      paths.run_dir: runs/STEER_COLD_QKVO_R16_LEN640
+      lora.target_modules: [q_proj, k_proj, v_proj, o_proj]
+      lora.r: 16
+      lora.alpha: 32
+      lora.dropout: 0.05
+      training.per_device_train_batch_size: 16
+      training.per_device_eval_batch_size: 32
+      training.gradient_accumulation_steps: 1
+      training.learning_rate: 0.00010
+      training.eval_fraction_of_epoch: 0.5
+      training.predict_with_generate: false
+      training.metric_for_best_model: eval_loss
+      training.greater_is_better: false
+      training.save_total_limit: 3
+      model.max_source_length: 640
+      model.max_target_length: 640
+      generation.max_new_tokens: 640

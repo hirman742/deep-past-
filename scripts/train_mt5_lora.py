@@ -268,6 +268,7 @@ def main() -> None:
     ap.add_argument("--config", default="configs/mt5_small_lora_8gb.yaml")
     ap.add_argument("--fold", type=int, default=0)
     ap.add_argument("--max-steps", type=int, default=-1)
+    ap.add_argument("--resume-from-checkpoint", default="")
     ap.add_argument("--init-adapter-dir", default="")
     ap.add_argument("--max-train-rows", type=int, default=-1)
     ap.add_argument("--max-val-rows", type=int, default=-1)
@@ -434,6 +435,9 @@ def main() -> None:
     if bad_words_ids:
         model.generation_config.bad_words_ids = bad_words_ids
 
+    predict_with_generate = bool(train_cfg.get("predict_with_generate", True))
+    val_references = val_split["target"].fillna("").astype(str).tolist()
+
     def compute_metrics(eval_pred):
         predictions, labels = eval_pred
         if isinstance(predictions, tuple):
@@ -442,9 +446,12 @@ def main() -> None:
         if predictions.ndim == 3:
             predictions = np.argmax(predictions, axis=-1)
         predictions = np.where(predictions < 0, tokenizer.pad_token_id, predictions).astype(np.int64)
-        labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
         pred_texts = [x.strip() for x in tokenizer.batch_decode(predictions, skip_special_tokens=True)]
-        ref_texts = [x.strip() for x in tokenizer.batch_decode(labels, skip_special_tokens=True)]
+        if len(pred_texts) == len(val_references):
+            ref_texts = val_references
+        else:
+            labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
+            ref_texts = [x.strip() for x in tokenizer.batch_decode(labels, skip_special_tokens=True)]
         return compute_translation_metrics(predictions=pred_texts, references=ref_texts)
 
     if torch.cuda.is_available():
@@ -452,6 +459,20 @@ def main() -> None:
 
     metric_for_best_model = str(train_cfg.get("metric_for_best_model", "geom"))
     greater_is_better = bool(train_cfg.get("greater_is_better", True))
+    if not predict_with_generate and metric_for_best_model in {
+        "geom",
+        "bleu",
+        "chrfpp",
+        "geom_01",
+        "bleu_01",
+        "chrfpp_01",
+    }:
+        print(
+            "WARN: predict_with_generate=False disables decode-based eval metrics during training; "
+            "auto-switched metric_for_best_model to eval_loss."
+        )
+        metric_for_best_model = "eval_loss"
+        greater_is_better = False
     callbacks = []
     early_stopping_patience = int(train_cfg.get("early_stopping_patience", 0))
     if early_stopping_patience > 0:
@@ -492,7 +513,7 @@ def main() -> None:
         seed=seed,
         do_train=True,
         do_eval=True,
-        predict_with_generate=True,
+        predict_with_generate=predict_with_generate,
     )
 
     trainer = Seq2SeqTrainer(
@@ -502,12 +523,22 @@ def main() -> None:
         eval_dataset=val_dataset,
         processing_class=tokenizer,
         data_collator=data_collator,
-        compute_metrics=compute_metrics,
+        compute_metrics=compute_metrics if predict_with_generate else None,
         callbacks=callbacks,
     )
     trainer._gen_kwargs = dict(trainer_generate_kwargs)
 
-    train_result = trainer.train()
+    resume_from_checkpoint = _resolve_path(
+        args.resume_from_checkpoint,
+        run_dir / "missing_resume_from_checkpoint",
+    )
+    used_resume_from_checkpoint = bool(args.resume_from_checkpoint)
+    if used_resume_from_checkpoint and not resume_from_checkpoint.exists():
+        raise FileNotFoundError(f"Missing resume checkpoint dir: {resume_from_checkpoint}")
+
+    train_result = trainer.train(
+        resume_from_checkpoint=str(resume_from_checkpoint) if used_resume_from_checkpoint else None
+    )
     eval_result = trainer.evaluate()
 
     best_dir = run_dir / "best_model"
@@ -586,12 +617,20 @@ def main() -> None:
             }
 
     trainable, total = _trainable_params(model)
+    gpu_total_memory_mb = (
+        float(torch.cuda.get_device_properties(0).total_memory / (1024**2))
+        if torch.cuda.is_available()
+        else 0.0
+    )
+    peak_gpu_memory_allocated_mb = float(torch.cuda.max_memory_allocated() / (1024**2)) if torch.cuda.is_available() else 0.0
+    peak_gpu_memory_reserved_mb = float(torch.cuda.max_memory_reserved() / (1024**2)) if torch.cuda.is_available() else 0.0
     summary = {
         "config_path": str(cfg_path),
         "run_dir": str(run_dir),
         "fold": int(args.fold),
         "resolved_lora_modules": resolved_modules,
         "init_adapter_dir": str(init_adapter_dir) if used_init_adapter else "",
+        "resume_from_checkpoint": str(resume_from_checkpoint) if used_resume_from_checkpoint else "",
         "train_rows": int(len(train_split)),
         "val_rows": int(len(val_split)),
         "max_train_rows": int(args.max_train_rows),
@@ -603,6 +642,9 @@ def main() -> None:
         "total_params": int(total),
         "trainable_ratio_pct": 100.0 * float(trainable) / float(total),
         "precision": {"fp16": bool(use_fp16), "bf16": bool(use_bf16)},
+        "predict_with_generate": bool(predict_with_generate),
+        "metric_for_best_model": str(metric_for_best_model),
+        "greater_is_better": bool(greater_is_better),
         "generation_settings": generation_settings,
         "trainer_generate_kwargs": trainer_generate_kwargs,
         "suppressed_bad_word_ids_count": int(len(bad_words_ids or [])),
@@ -620,7 +662,18 @@ def main() -> None:
         "train_metrics": train_result.metrics,
         "eval_metrics": eval_result,
         "reconstructed_eval": reconstructed_metrics,
-        "peak_gpu_memory_mb": float(torch.cuda.max_memory_allocated() / (1024**2)) if torch.cuda.is_available() else 0.0,
+        "trainer_state": {
+            "best_metric": float(trainer.state.best_metric) if trainer.state.best_metric is not None else None,
+            "best_model_checkpoint": str(trainer.state.best_model_checkpoint) if trainer.state.best_model_checkpoint else "",
+            "global_step": int(trainer.state.global_step),
+        },
+        "peak_gpu_memory_mb": peak_gpu_memory_allocated_mb,
+        "peak_gpu_memory_allocated_mb": peak_gpu_memory_allocated_mb,
+        "peak_gpu_memory_reserved_mb": peak_gpu_memory_reserved_mb,
+        "gpu_total_memory_mb": gpu_total_memory_mb,
+        "gpu_peak_allocated_utilization_pct": 100.0 * peak_gpu_memory_allocated_mb / gpu_total_memory_mb if gpu_total_memory_mb > 0 else 0.0,
+        "gpu_peak_reserved_utilization_pct": 100.0 * peak_gpu_memory_reserved_mb / gpu_total_memory_mb if gpu_total_memory_mb > 0 else 0.0,
+        "gpu_peak_utilization_pct": 100.0 * peak_gpu_memory_reserved_mb / gpu_total_memory_mb if gpu_total_memory_mb > 0 else 0.0,
     }
     summary_path = run_dir / "run_summary.json"
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -634,12 +687,15 @@ def main() -> None:
     else:
         print("INFO: skipped final predict (--skip-final-predict enabled)")
     print(f"OK: summary saved at {summary_path}")
-    print(
-        "INFO: eval geom/bleu/chrfpp="
-        f"{eval_result.get('eval_geom', 0.0):.4f}/"
-        f"{eval_result.get('eval_bleu', 0.0):.4f}/"
-        f"{eval_result.get('eval_chrfpp', 0.0):.4f}"
-    )
+    if "eval_geom" in eval_result:
+        print(
+            "INFO: eval geom/bleu/chrfpp="
+            f"{eval_result.get('eval_geom', 0.0):.4f}/"
+            f"{eval_result.get('eval_bleu', 0.0):.4f}/"
+            f"{eval_result.get('eval_chrfpp', 0.0):.4f}"
+        )
+    else:
+        print(f"INFO: eval_loss={eval_result.get('eval_loss', 0.0):.4f}")
     if reconstructed_metrics:
         print(
             "INFO: reconstructed geom/bleu/chrfpp="
