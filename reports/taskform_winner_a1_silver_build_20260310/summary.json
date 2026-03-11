@@ -1,0 +1,44 @@
+{
+  "status": "built",
+  "base_config_path": "/workspace/deep-past-/runs/STEER/generated_configs/continue_s4_bs24_len640_seg5.yaml",
+  "published_csv": "/workspace/deep-past-/deep-past-initiative-machine-translation/published_texts.csv",
+  "sentences_csv": "/workspace/deep-past-/deep-past-initiative-machine-translation/Sentences_Oare_FirstWord_LinNum.csv",
+  "output_csv": "/workspace/deep-past-/data/external/oracc_parallel.csv",
+  "counts": {
+    "published_rows": 7953,
+    "sentence_rows": 9782,
+    "parent_pairs_raw": 1417,
+    "sentence_pairs_raw": 7028,
+    "combined_rows_before_filter": 8445,
+    "blocked_by_train_oare_id_rows": 252,
+    "blocked_by_competition_source_overlap_rows": 40,
+    "rows_after_overlap_filter_before_dedupe": 8190,
+    "rows_final": 7483,
+    "unique_source_rows_final": 7483,
+    "row_origin_counts_final": {
+      "published_sentence_silver": 6321,
+      "published_agg_parent": 1162
+    },
+    "unique_oare_id_final": 1162
+  },
+  "sentence_alignment": {
+    "texts_considered": 1164,
+    "texts_with_any_anchor": 1158,
+    "total_sentence_rows": 7263,
+    "sentence_rows_with_anchor": 7052,
+    "anchor_recall_pct": 97.0949,
+    "kept_sentence_pairs": 7028
+  },
+  "sweep_capacity": {
+    "e10_target_rows": 406,
+    "e30_target_rows": 1219,
+    "e50_target_rows": 2032,
+    "supports_e10": true,
+    "supports_e30": true,
+    "supports_e50": true
+  },
+  "artifacts": {
+    "samples_csv": "/workspace/deep-past-/reports/taskform_winner_a1_silver_build_20260310/samples.csv",
+    "summary_json": "/workspace/deep-past-/reports/taskform_winner_a1_silver_build_20260310/summary.json"
+  }
+}

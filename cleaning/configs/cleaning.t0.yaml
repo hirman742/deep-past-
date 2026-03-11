@@ -1,8 +1,9 @@
 tier: t0
+known_visible_charset_train: artifacts/symbol_inventory_train.json
 rules:
   t0_unicode_nfc: true
   t0_remove_invisible: true
   t0_whitespace_normalize: true
+  t0_unknown_visible_char_alert: true
 logging:
   keep_examples_per_rule: 3
-

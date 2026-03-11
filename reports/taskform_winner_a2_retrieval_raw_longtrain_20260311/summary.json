@@ -1,0 +1,978 @@
+{
+  "line": "winner_candidate_longtrain",
+  "label": "winner_retrieval_raw_wlite_longtrain",
+  "status": "completed_review_pending",
+  "reason": "long-train candidate completed with anchor64/fullval/hard measurements",
+  "base_config_path": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_wlite_20260310/generated_configs/taskform_winner_a2_retrieval_top1_wlite.yaml",
+  "generated_config_path": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_raw_longtrain_20260311/generated_configs/winner_retrieval_raw_wlite_longtrain.yaml",
+  "processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_fold0",
+  "init_adapter_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_TOP1_WLITE_20260310_fold0/best_model",
+  "run_name": "TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311",
+  "fold": 0,
+  "max_steps": 1200,
+  "eval_steps": 100,
+  "report_dir": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_raw_longtrain_20260311",
+  "train": {
+    "reused_existing_run": false,
+    "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0",
+    "best_model_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/best_model",
+    "run_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/run_summary.json"
+  },
+  "run_summary": {
+    "config_path": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_raw_longtrain_20260311/generated_configs/winner_retrieval_raw_wlite_longtrain.yaml",
+    "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0",
+    "fold": 0,
+    "resolved_lora_modules": [
+      "q",
+      "v"
+    ],
+    "init_adapter_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_TOP1_WLITE_20260310_fold0/best_model",
+    "resume_from_checkpoint": "",
+    "train_rows": 4064,
+    "val_rows": 1225,
+    "max_train_rows": -1,
+    "max_val_rows": -1,
+    "eval_steps": 100,
+    "skip_final_predict": true,
+    "parent_sampling": {
+      "enabled": false,
+      "parent_column": "parent_oare_id",
+      "max_chunks_per_parent": 0,
+      "parent_inverse_sample": false,
+      "rows_before": 4064,
+      "rows_after_cap": 4064,
+      "rows_after_inverse": 4064,
+      "unique_parents_before": 1248,
+      "unique_parents_after": 1248,
+      "avg_chunks_per_parent_before": 3.2564102564102564,
+      "avg_chunks_per_parent_after": 3.2564102564102564,
+      "max_chunks_per_parent_before": 18,
+      "max_chunks_per_parent_after": 18
+    },
+    "trainable_params": 593920,
+    "total_params": 301362176,
+    "trainable_ratio_pct": 0.1970784814083636,
+    "precision": {
+      "fp16": false,
+      "bf16": true
+    },
+    "predict_with_generate": false,
+    "metric_for_best_model": "eval_loss",
+    "greater_is_better": false,
+    "generation_settings": {
+      "num_beams": 1,
+      "length_penalty": 1.0,
+      "max_new_tokens": 640,
+      "min_new_tokens": 0,
+      "no_repeat_ngram_size": 0,
+      "suppress_extra_ids": true,
+      "bad_tokens_regex": "<extra_id_\\d+>"
+    },
+    "trainer_generate_kwargs": {
+      "num_beams": 1,
+      "length_penalty": 1.0,
+      "max_new_tokens": 640,
+      "bad_words_ids": [
+        [
+          259
+        ],
+        [
+          260
+        ],
+        [
+          261
+        ],
+        [
+          262
+        ],
+        [
+          263
+        ],
+        [
+          264
+        ],
+        [
+          265
+        ],
+        [
+          266
+        ],
+        [
+          267
+        ],
+        [
+          268
+        ],
+        [
+          269
+        ],
+        [
+          270
+        ],
+        [
+          271
+        ],
+        [
+          272
+        ],
+        [
+          273
+        ],
+        [
+          274
+        ],
+        [
+          275
+        ],
+        [
+          276
+        ],
+        [
+          277
+        ],
+        [
+          278
+        ],
+        [
+          279
+        ],
+        [
+          280
+        ],
+        [
+          281
+        ],
+        [
+          282
+        ],
+        [
+          283
+        ],
+        [
+          284
+        ],
+        [
+          285
+        ],
+        [
+          286
+        ],
+        [
+          287
+        ],
+        [
+          288
+        ],
+        [
+          289
+        ],
+        [
+          290
+        ],
+        [
+          291
+        ],
+        [
+          292
+        ],
+        [
+          293
+        ],
+        [
+          294
+        ],
+        [
+          295
+        ],
+        [
+          296
+        ],
+        [
+          297
+        ],
+        [
+          298
+        ],
+        [
+          299
+        ],
+        [
+          300
+        ],
+        [
+          301
+        ],
+        [
+          302
+        ],
+        [
+          303
+        ],
+        [
+          304
+        ],
+        [
+          305
+        ],
+        [
+          306
+        ],
+        [
+          307
+        ],
+        [
+          308
+        ],
+        [
+          309
+        ],
+        [
+          310
+        ],
+        [
+          311
+        ],
+        [
+          312
+        ],
+        [
+          313
+        ],
+        [
+          314
+        ],
+        [
+          315
+        ],
+        [
+          316
+        ],
+        [
+          317
+        ],
+        [
+          318
+        ],
+        [
+          319
+        ],
+        [
+          320
+        ],
+        [
+          321
+        ],
+        [
+          322
+        ],
+        [
+          323
+        ],
+        [
+          324
+        ],
+        [
+          325
+        ],
+        [
+          326
+        ],
+        [
+          327
+        ],
+        [
+          328
+        ],
+        [
+          329
+        ],
+        [
+          330
+        ],
+        [
+          331
+        ],
+        [
+          332
+        ],
+        [
+          333
+        ],
+        [
+          334
+        ],
+        [
+          335
+        ],
+        [
+          336
+        ],
+        [
+          337
+        ],
+        [
+          338
+        ],
+        [
+          339
+        ],
+        [
+          340
+        ],
+        [
+          341
+        ],
+        [
+          342
+        ],
+        [
+          343
+        ],
+        [
+          344
+        ],
+        [
+          345
+        ],
+        [
+          346
+        ],
+        [
+          347
+        ],
+        [
+          348
+        ],
+        [
+          349
+        ],
+        [
+          350
+        ],
+        [
+          351
+        ],
+        [
+          352
+        ],
+        [
+          353
+        ],
+        [
+          354
+        ],
+        [
+          355
+        ],
+        [
+          356
+        ],
+        [
+          357
+        ],
+        [
+          358
+        ],
+        [
+          359
+        ],
+        [
+          360
+        ],
+        [
+          361
+        ],
+        [
+          362
+        ],
+        [
+          363
+        ],
+        [
+          364
+        ],
+        [
+          365
+        ],
+        [
+          366
+        ],
+        [
+          367
+        ],
+        [
+          368
+        ],
+        [
+          369
+        ],
+        [
+          370
+        ],
+        [
+          371
+        ],
+        [
+          372
+        ],
+        [
+          373
+        ],
+        [
+          374
+        ],
+        [
+          375
+        ],
+        [
+          376
+        ],
+        [
+          377
+        ],
+        [
+          378
+        ],
+        [
+          379
+        ],
+        [
+          380
+        ],
+        [
+          381
+        ],
+        [
+          382
+        ],
+        [
+          383
+        ]
+      ]
+    },
+    "suppressed_bad_word_ids_count": 125,
+    "early_stopping_patience": 0,
+    "lr_scheduler_type": "cosine",
+    "metrics_scale": {
+      "bleu": "0-100 (sacrebleu.score)",
+      "chrfpp": "0-100 (sacrebleu.score)",
+      "geom": "sqrt(bleu * chrfpp), same 0-100 scale family",
+      "bleu_01": "bleu/100",
+      "chrfpp_01": "chrfpp/100",
+      "geom_01": "sqrt(bleu_01 * chrfpp_01)"
+    },
+    "metric_signatures": {
+      "sacrebleu_version": "2.6.0",
+      "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+      "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+    },
+    "train_metrics": {
+      "train_runtime": 785.8839,
+      "train_samples_per_second": 36.647,
+      "train_steps_per_second": 1.527,
+      "total_flos": 3.301178720649216e+16,
+      "train_loss": 0.5648576410611471,
+      "epoch": 7.0588235294117645
+    },
+    "eval_metrics": {
+      "eval_loss": 0.876020073890686,
+      "eval_runtime": 7.5679,
+      "eval_samples_per_second": 161.868,
+      "eval_steps_per_second": 3.436,
+      "epoch": 7.0588235294117645
+    },
+    "reconstructed_eval": {},
+    "trainer_state": {
+      "best_metric": 0.876020073890686,
+      "best_model_checkpoint": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/checkpoint-800",
+      "global_step": 1200
+    },
+    "peak_gpu_memory_mb": 5248.35693359375,
+    "peak_gpu_memory_allocated_mb": 5248.35693359375,
+    "peak_gpu_memory_reserved_mb": 8440.0,
+    "gpu_total_memory_mb": 32109.125,
+    "gpu_peak_allocated_utilization_pct": 16.345375134307616,
+    "gpu_peak_reserved_utilization_pct": 26.285362805744473,
+    "gpu_peak_utilization_pct": 26.285362805744473
+  },
+  "incumbent_anchor64": {
+    "tag": "taskform_a2_a1_incumbent_anchor64_20260310",
+    "decode_best_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/decode_grid_best_taskform_a2_a1_incumbent_anchor64_20260310.json",
+    "diagnose_summary_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/val_diagnostic_summary_taskform_a2_a1_incumbent_anchor64_20260310.json",
+    "eval_geom": 16.50574718634351,
+    "eval_bleu": 9.860624386106183,
+    "eval_chrfpp": 27.629050606912852,
+    "output_health": {
+      "num_rows": 64,
+      "empty_prediction_ratio_pct": 1.5625,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 12.5,
+      "unique_prediction_ratio_pct": 100.0,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "top_repeated_predictions": [
+        {
+          "text": "To Šu-Tammuzi, Elaya, Ennam-Aššur and Lāmassī: Ennam-Aššur and Lāmassī: Ennam-Aššur and Ali-ahum from Ennam-Aššur and Ali-ahum.",
+          "count": 1
+        },
+        {
+          "text": "Seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal o",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver",
+          "count": 1
+        },
+        {
+          "text": "Seal of the City that you have not paid the silver to the City and send the silver to the City to the City and the City that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 1
+        },
+        {
+          "text": "If you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 1
+        },
+        {
+          "text": "If you have not paid the silver and send me the silver to the silver and send me the silver to you \"",
+          "count": 1
+        },
+        {
+          "text": "miss sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems si",
+          "count": 1
+        },
+        {
+          "text": "To Šalim-Aššur from Iddin-abum, Itūr-ilī, Inah-ilī, Ennam-Aššur and Ali-ahum: Itūr-ilī, Ennam-Aššur and Ali-ahum said: \"The silver has brought me the silver and the silver has brought me the silver and send me the silver to Itūr-ilī, Ennam-Aššur and Ali-ahum:",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver <gap>-Aššur son of <gap>-Aššur son of Aššur <gap>-Aššur son of Aššur's dagger <gap> son of Aššur's dagger <gap>",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "incumbent_fullval": {
+    "source_decode_best_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/decode_grid_best_continue_s4_bs24_len640_seg5_ckpt250_lp07_fullval_20260309.json",
+    "source_diagnose_summary_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/val_diagnostic_summary_continue_s4_bs24_len640_seg5_ckpt250_lp07_fullval_20260309.json",
+    "eval_geom": 14.332266680617607,
+    "eval_bleu": 7.736910990164166,
+    "eval_chrfpp": 26.549855422336073,
+    "elapsed_seconds": 2892.383260011673,
+    "output_health": {
+      "num_rows": 1225,
+      "empty_prediction_ratio_pct": 0.0816326530612245,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 8.73469387755102,
+      "unique_prediction_ratio_pct": 64.65306122448979,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "top_repeated_predictions": [
+        {
+          "text": "Seal of the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 6
+        },
+        {
+          "text": "If you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 6
+        },
+        {
+          "text": "miss sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems si",
+          "count": 4
+        },
+        {
+          "text": "Seal of Iddin-abum, seal of Iddin-abum, seal of Iddin-abum.",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver and the silver and the silver and the silver and the silver and the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver and the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap>",
+          "count": 4
+        },
+        {
+          "text": "If you have not paid the silver and they have not paid the silver and they have not paid the silver and they have not paid the silver and they have not paid the silver",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver and the silver and the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap>",
+          "count": 4
+        }
+      ]
+    },
+    "reconstructed_health": {
+      "empty_prediction_ratio_pct": 0.0,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 3.8338658146964857
+    },
+    "hard_subset": {
+      "tag": "hard_subset",
+      "subset_name": "hard_subset",
+      "rows": 110,
+      "eval_bleu": 7.1669103335710505,
+      "eval_chrfpp": 26.249940201431777,
+      "eval_geom": 13.716084269399321,
+      "eval_bleu_01": 0.0716691033357105,
+      "eval_chrfpp_01": 0.26249940201431776,
+      "eval_geom_01": 0.1371608426939932,
+      "metric_signatures": {
+        "sacrebleu_version": "2.6.0",
+        "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+        "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+      },
+      "health": {
+        "empty_prediction_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 1.8181818181818181,
+        "repeat_prediction_ratio_pct": 0.0,
+        "internal_repeat_trigram_ratio_pct": 99.0909090909091,
+        "pred_word_mean": 185.12727272727273,
+        "ref_word_mean": 194.04545454545453
+      },
+      "note": "hard subset = ids intersect routed_full"
+    },
+    "reconstructed_csv": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/val_predictions_reconstructed_continue_s4_bs24_len640_seg5_ckpt250_lp07_fullval_20260309.csv",
+    "official_like_note": "same as local until official bridge lands"
+  },
+  "frozen_candidate": {
+    "source": "/workspace/deep-past-/reports/taskform_winner_a2_freeze_20260310/summary.json",
+    "anchor64_reconstructed_geom": 23.5415,
+    "fullval_reconstructed_geom": 19.9035,
+    "hard_geom": 20.7888,
+    "status": ""
+  },
+  "anchor_eval": {
+    "label": "winner_retrieval_raw_wlite_longtrain",
+    "config_path": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_raw_longtrain_20260311/generated_configs/winner_retrieval_raw_wlite_longtrain.yaml",
+    "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0",
+    "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/best_model",
+    "decode_best_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/diagnostics/decode_grid_best_winner_retrieval_raw_wlite_longtrain_anchor64_20260311.json",
+    "diagnose_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/diagnostics/val_diagnostic_summary_winner_retrieval_raw_wlite_longtrain_anchor64_20260311.json",
+    "run_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/run_summary.json",
+    "anchor64": {
+      "eval_geom": 23.266620894858878,
+      "eval_bleu": 14.423954470965471,
+      "eval_chrfpp": 37.53032144927793,
+      "elapsed_seconds": 233.31245398521423
+    },
+    "output_health": {
+      "num_rows": 64,
+      "empty_prediction_ratio_pct": 0.0,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 10.9375,
+      "unique_prediction_ratio_pct": 95.3125,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "top_repeated_predictions": [
+        {
+          "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Le…",
+          "count": 3
+        },
+        {
+          "text": "To Ennam-Aššur, sealed by Ali-ahum and <gap>-Ištar.",
+          "count": 2
+        },
+        {
+          "text": "Sealed by Šu-Tammuzī, Elaya, Ennam-Aššur son of Elamma and Lamassī; to Ennam-Aššur.",
+          "count": 1
+        },
+        {
+          "text": "From Atata, Šu-Anum, Dannaya and Lamassī to Ali-ahum: In accordance with your instructions we got a tablet of the City for you; also, we hired an attorney for you. Following the verdict of the City they must release the…",
+          "count": 1
+        },
+        {
+          "text": "Have the eponym assist you there and since he gave 13 minas each to his investors he should also give 13 minas each to his investors he should also give 13 minas each to his investors he should also give 13 minas each to the eponym",
+          "count": 1
+        },
+        {
+          "text": "Urgent, take care there, clear yourself, set out and come Here interest on the silver due to the City Hall has increased for you, so if you are delayed, then have the silver of the City Hall procured, seal it and give i…",
+          "count": 1
+        },
+        {
+          "text": "Witnessed by Enna-Suen, by Šar-Adad, by Ilī-bāni \"",
+          "count": 1
+        },
+        {
+          "text": "My dear brothers and lords, the man has cheated me once or twice Seize him and have him pay the silver and as much interest as you can manage and then buy tin for me, seal it and give it to a reliable affiliated trader…",
+          "count": 1
+        },
+        {
+          "text": "Is cleared, stating that the wool and 7 donkeys belong to Ennam-Aššur Seal the wool and entrust it under your seals together with my other goods so they may conduct it here",
+          "count": 1
+        },
+        {
+          "text": "Seal of Mannum-balum-Aššur son of Ṣilli-Adad, seal of Šu-Illil son of Mannum-kī-Aššur, seal of Puzur-Aššur son of Ataya owes 22 shekels of good silver to Ali-ahum Reckoned from the week of Ilīd…",
+          "count": 1
+        }
+      ]
+    },
+    "reconstructed_health": {
+      "empty_prediction_ratio_pct": 0.0,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 0.0
+    },
+    "hard_subset": {
+      "tag": "hard_subset",
+      "subset_name": "hard_subset",
+      "rows": 9,
+      "eval_bleu": 14.385287308611968,
+      "eval_chrfpp": 38.23315470449514,
+      "eval_geom": 23.45197038926094,
+      "eval_bleu_01": 0.1438528730861197,
+      "eval_chrfpp_01": 0.3823315470449514,
+      "eval_geom_01": 0.2345197038926094,
+      "metric_signatures": {
+        "sacrebleu_version": "2.6.0",
+        "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+        "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+      },
+      "health": {
+        "empty_prediction_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 0.0,
+        "repeat_prediction_ratio_pct": 0.0,
+        "internal_repeat_trigram_ratio_pct": 66.66666666666667,
+        "pred_word_mean": 202.88888888888889,
+        "ref_word_mean": 220.66666666666666
+      },
+      "note": "hard subset = ids intersect routed_full"
+    },
+    "targeted_buckets": {
+      "rare_name": {
+        "tag": "targeted_rare_name",
+        "subset_name": "targeted_rare_name",
+        "rows": 60,
+        "eval_bleu": 7.566320593292023,
+        "eval_chrfpp": 23.76697115694373,
+        "eval_geom": 13.410015783173444,
+        "eval_bleu_01": 0.07566320593292022,
+        "eval_chrfpp_01": 0.23766971156943728,
+        "eval_geom_01": 0.13410015783173443,
+        "metric_signatures": {
+          "sacrebleu_version": "2.6.0",
+          "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+          "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+        },
+        "health": {
+          "empty_prediction_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 16.666666666666668,
+          "repeat_prediction_ratio_pct": 5.0,
+          "internal_repeat_trigram_ratio_pct": 13.333333333333334,
+          "pred_word_mean": 35.233333333333334,
+          "ref_word_mean": 36.483333333333334
+        },
+        "note": "audit-only bucket on anchor64 diagnostic rows"
+      },
+      "measure": {
+        "tag": "targeted_measure",
+        "subset_name": "targeted_measure",
+        "rows": 48,
+        "eval_bleu": 5.387138202732677,
+        "eval_chrfpp": 20.95478126111606,
+        "eval_geom": 10.624796593896052,
+        "eval_bleu_01": 0.05387138202732677,
+        "eval_chrfpp_01": 0.20954781261116062,
+        "eval_geom_01": 0.10624796593896052,
+        "metric_signatures": {
+          "sacrebleu_version": "2.6.0",
+          "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+          "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+        },
+        "health": {
+          "empty_prediction_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 16.666666666666668,
+          "repeat_prediction_ratio_pct": 4.166666666666667,
+          "internal_repeat_trigram_ratio_pct": 16.666666666666668,
+          "pred_word_mean": 35.9375,
+          "ref_word_mean": 35.104166666666664
+        },
+        "note": "audit-only bucket on anchor64 diagnostic rows"
+      },
+      "formula": {
+        "tag": "targeted_formula",
+        "subset_name": "targeted_formula",
+        "rows": 21,
+        "eval_bleu": 8.008639768886336,
+        "eval_chrfpp": 26.05804278367458,
+        "eval_geom": 14.446088665679643,
+        "eval_bleu_01": 0.08008639768886336,
+        "eval_chrfpp_01": 0.2605804278367458,
+        "eval_geom_01": 0.1444608866567964,
+        "metric_signatures": {
+          "sacrebleu_version": "2.6.0",
+          "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+          "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+        },
+        "health": {
+          "empty_prediction_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 19.047619047619047,
+          "repeat_prediction_ratio_pct": 0.0,
+          "internal_repeat_trigram_ratio_pct": 14.285714285714286,
+          "pred_word_mean": 37.57142857142857,
+          "ref_word_mean": 38.476190476190474
+        },
+        "note": "audit-only bucket on anchor64 diagnostic rows"
+      },
+      "marker_rich": {
+        "tag": "targeted_marker_rich",
+        "subset_name": "targeted_marker_rich",
+        "rows": 55,
+        "eval_bleu": 7.699270011559523,
+        "eval_chrfpp": 23.63623947813318,
+        "eval_geom": 13.490062631434672,
+        "eval_bleu_01": 0.07699270011559524,
+        "eval_chrfpp_01": 0.2363623947813318,
+        "eval_geom_01": 0.1349006263143467,
+        "metric_signatures": {
+          "sacrebleu_version": "2.6.0",
+          "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+          "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+        },
+        "health": {
+          "empty_prediction_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 18.181818181818183,
+          "repeat_prediction_ratio_pct": 9.090909090909092,
+          "internal_repeat_trigram_ratio_pct": 10.909090909090908,
+          "pred_word_mean": 34.236363636363635,
+          "ref_word_mean": 34.78181818181818
+        },
+        "note": "audit-only bucket on anchor64 diagnostic rows"
+      }
+    },
+    "train_runtime_seconds": 0.0,
+    "gpu_peak_utilization_pct": 26.285362805744473
+  },
+  "fullval_eval": {
+    "config_path": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_raw_longtrain_20260311/generated_configs/winner_retrieval_raw_wlite_longtrain.yaml",
+    "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0",
+    "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/best_model",
+    "decode_best_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/diagnostics/decode_grid_best_winner_retrieval_raw_wlite_longtrain_fullval_20260311.json",
+    "diagnose_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/diagnostics/val_diagnostic_summary_winner_retrieval_raw_wlite_longtrain_fullval_20260311.json",
+    "eval_geom": 20.089947929569952,
+    "eval_bleu": 12.349693179035272,
+    "eval_chrfpp": 32.68146033765357,
+    "elapsed_seconds": 4562.668830633163,
+    "output_health": {
+      "num_rows": 1225,
+      "empty_prediction_ratio_pct": 0.0,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 14.448979591836736,
+      "unique_prediction_ratio_pct": 61.38775510204082,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "top_repeated_predictions": [
+        {
+          "text": "To Ennam-Aššur, sealed by Ali-ahum and <gap>-Ištar.",
+          "count": 7
+        },
+        {
+          "text": "Investors of Šalim-Aššur may make demands Do this and dispatch the 2 tablets with verdicts of the City plus a copy of the testament, and hire an attorney and send Aluwa and the attorney as soon as possible",
+          "count": 6
+        },
+        {
+          "text": "Of copper and 3 shekels of silver for his small goods, 3 shekels of silver <gap> I gave to Aluwa. I paid 4.5 shekels of silver, the fees from the City when he returned. <gap> minas of sickles, 3 shekels for his expenses…",
+          "count": 6
+        },
+        {
+          "text": "I gave 4 shekels of silver to Amur-Ištar's wife.",
+          "count": 5
+        },
+        {
+          "text": "Son of Šukkutum. 0.5 mina of refined silver is owed Šuppun-uman. 10 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of",
+          "count": 5
+        },
+        {
+          "text": "I gave 4.5 shekels of silver for the payment of his fees to Aluwa.",
+          "count": 5
+        },
+        {
+          "text": "To Šalim-Aššur; sealed by Man-mahir.",
+          "count": 5
+        },
+        {
+          "text": "To Itūr-ilī; seal of Enna-Suen.",
+          "count": 5
+        },
+        {
+          "text": "To of Ennam-Aššur <gap> seal of <gap>",
+          "count": 5
+        },
+        {
+          "text": "Seal of Mannum-balum-Aššur son of Ṣilli-Adad, seal of Šu-Illil son of Mannum-kī-Aššur, seal of Puzur-Aššur son of Ataya owes 22 shekels of good silver to Ali-ahum Reckoned from the week of Ilīd…",
+          "count": 4
+        }
+      ]
+    },
+    "reconstructed_health": {
+      "empty_prediction_ratio_pct": 0.0,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 8.626198083067091
+    },
+    "hard_subset": {
+      "tag": "hard_subset",
+      "subset_name": "hard_subset",
+      "rows": 110,
+      "eval_bleu": 12.327025730438832,
+      "eval_chrfpp": 33.97843128965414,
+      "eval_geom": 20.465898387012345,
+      "eval_bleu_01": 0.12327025730438831,
+      "eval_chrfpp_01": 0.3397843128965414,
+      "eval_geom_01": 0.20465898387012343,
+      "metric_signatures": {
+        "sacrebleu_version": "2.6.0",
+        "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+        "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+      },
+      "health": {
+        "empty_prediction_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 15.454545454545455,
+        "repeat_prediction_ratio_pct": 0.0,
+        "internal_repeat_trigram_ratio_pct": 55.45454545454545,
+        "pred_word_mean": 150.62727272727273,
+        "ref_word_mean": 194.04545454545453
+      },
+      "note": "hard subset = ids intersect routed_full"
+    },
+    "reconstructed_csv": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/diagnostics/val_predictions_reconstructed_winner_retrieval_raw_wlite_longtrain_fullval_20260311.csv",
+    "official_like_note": "same as local until official bridge lands"
+  },
+  "comparisons": {
+    "anchor64_vs_incumbent": 6.7609,
+    "anchor64_vs_frozen": -0.2749,
+    "fullval_vs_incumbent": 5.7577,
+    "fullval_vs_frozen": 0.1864,
+    "hard_vs_incumbent": 6.7498,
+    "hard_vs_frozen": -0.3229
+  },
+  "health": {
+    "anchor64_vs_incumbent": {
+      "empty_prediction_ratio_pct": -1.5625,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": -1.5625,
+      "unique_prediction_ratio_pct": -4.6875,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "no_regression": false
+    },
+    "fullval_vs_incumbent": {
+      "empty_prediction_ratio_pct": -0.0816,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 5.7143,
+      "unique_prediction_ratio_pct": -3.2653,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "no_regression": false
+    }
+  },
+  "elapsed_minutes": 179.23
+}

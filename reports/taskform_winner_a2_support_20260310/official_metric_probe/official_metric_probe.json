@@ -1,0 +1,6 @@
+{
+  "status": "missing_bridge",
+  "reason": "repo scan for official metric bridge artifacts",
+  "candidates": [],
+  "recommendation": "no official metric bridge files found; keep official-like layer and add bridge later"
+}

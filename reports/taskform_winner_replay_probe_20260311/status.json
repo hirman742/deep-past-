@@ -1,0 +1,8 @@
+{
+  "stage": "completed",
+  "status": "review_to_candidate_pool",
+  "updated_at_utc": "2026-03-11T04:57:57Z",
+  "best_label": "replay25",
+  "summary_json": "/workspace/deep-past-/reports/taskform_winner_replay_probe_20260311/summary.json",
+  "gate_report_md": "/workspace/deep-past-/reports/taskform_winner_replay_probe_20260311/gate_report.md"
+}

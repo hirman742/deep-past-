@@ -1,0 +1,4 @@
+label,ratio_vs_train_visible_rows,base_train_visible_rows,target_external_rows,status,available_external_rows_post_filter
+E10,0.1,4064,406,ready,7481
+E30,0.3,4064,1219,ready,7481
+E50,0.5,4064,2032,ready,7481

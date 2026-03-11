@@ -1,0 +1,22 @@
+{
+  "status": "estimate_ready",
+  "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_TOP1_WLITE_20260310_fold0/best_model",
+  "checkpoint_size_bytes": 2429546,
+  "processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_fold0",
+  "processed_size_bytes": 23530905,
+  "rk_probe_datastore": {
+    "rows": 4064,
+    "total_target_tokens": 827132,
+    "target_token_len_mean": 203.5266,
+    "target_token_len_p95": 349.0,
+    "hidden_size": 1472,
+    "estimated_fp16_key_store_gib": 2.2678,
+    "estimated_value_store_gib": 0.0031
+  },
+  "rk_probe_artifacts": {
+    "anchor64_query_metrics_csv": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_probe_20260310/rk_anchor64_query_metrics.csv",
+    "anchor64_cache_preview_jsonl": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_probe_20260310/rk_anchor64_cache_preview.jsonl",
+    "anchor64_query_metrics_csv_bytes": 36352,
+    "anchor64_cache_preview_jsonl_bytes": 79705
+  }
+}

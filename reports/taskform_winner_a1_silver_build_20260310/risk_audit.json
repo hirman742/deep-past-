@@ -1,0 +1,172 @@
+{
+  "status": "completed",
+  "external_csv": "/workspace/deep-past-/data/external/oracc_parallel.csv",
+  "exact_overlap": {
+    "vs_raw_train_rows": 0,
+    "vs_raw_test_rows": 0,
+    "vs_processed_train_rows": 0,
+    "vs_fold0_val_rows": 0
+  },
+  "similarity": {
+    "rows": 7483,
+    "max_similarity_p95": 0.0,
+    "max_similarity_p99": 0.0,
+    "rows_ge_threshold": {
+      "0.85": 0,
+      "0.90": 0,
+      "0.92": 0,
+      "0.95": 0
+    }
+  },
+  "suitability": {
+    "external_total": {
+      "source_words": {
+        "rows": 7483,
+        "p50": 10.0,
+        "p95": 84.0
+      },
+      "target_words": {
+        "rows": 7483,
+        "p50": 12.0,
+        "p95": 90.89999999999964
+      },
+      "source_chars": {
+        "rows": 7483,
+        "p50": 76.0,
+        "p95": 663.8999999999996,
+        "p99": 1264.0,
+        "max": 4510,
+        "gt_640_ratio_pct": 5.372176934384605
+      },
+      "target_chars": {
+        "rows": 7483,
+        "p50": 68.0,
+        "p95": 512.0,
+        "p99": 1161.9000000000015,
+        "max": 2725,
+        "gt_640_ratio_pct": 3.6883602833088336
+      }
+    },
+    "winner_internal_train": {
+      "source_words": {
+        "rows": 4064,
+        "p50": 24.0,
+        "p95": 40.0
+      },
+      "target_words": {
+        "rows": 4064,
+        "p50": 36.0,
+        "p95": 63.0
+      }
+    },
+    "winner_internal_train_by_mode": {
+      "none": {
+        "source_words": {
+          "rows": 539,
+          "p50": 28.0,
+          "p95": 44.099999999999966
+        },
+        "target_words": {
+          "rows": 539,
+          "p50": 29.0,
+          "p95": 60.0
+        }
+      },
+      "ratio": {
+        "source_words": {
+          "rows": 2282,
+          "p50": 25.0,
+          "p95": 41.0
+        },
+        "target_words": {
+          "rows": 2282,
+          "p50": 40.0,
+          "p95": 66.0
+        }
+      },
+      "short_aligned_gale_church": {
+        "source_words": {
+          "rows": 1243,
+          "p50": 21.0,
+          "p95": 29.0
+        },
+        "target_words": {
+          "rows": 1243,
+          "p50": 32.0,
+          "p95": 43.0
+        }
+      }
+    },
+    "external_by_origin": {
+      "published_agg_parent": {
+        "source_words": {
+          "rows": 1162,
+          "p50": 54.5,
+          "p95": 178.95000000000005
+        },
+        "target_words": {
+          "rows": 1162,
+          "p50": 54.0,
+          "p95": 234.9000000000001
+        },
+        "source_chars": {
+          "rows": 1162,
+          "p50": 425.0,
+          "p95": 1345.6500000000003,
+          "p99": 2153.9900000000043,
+          "max": 4510,
+          "gt_640_ratio_pct": 30.292598967297764
+        },
+        "target_chars": {
+          "rows": 1162,
+          "p50": 318.0,
+          "p95": 1296.8000000000002,
+          "p99": 1806.8300000000097,
+          "max": 2725,
+          "gt_640_ratio_pct": 23.580034423407916
+        }
+      },
+      "published_sentence_silver": {
+        "source_words": {
+          "rows": 6321,
+          "p50": 8.0,
+          "p95": 32.0
+        },
+        "target_words": {
+          "rows": 6321,
+          "p50": 11.0,
+          "p95": 32.0
+        },
+        "source_chars": {
+          "rows": 6321,
+          "p50": 65.0,
+          "p95": 240.0,
+          "p99": 550.2000000000016,
+          "max": 1243,
+          "gt_640_ratio_pct": 0.7910140800506249
+        },
+        "target_chars": {
+          "rows": 6321,
+          "p50": 61.0,
+          "p95": 172.0,
+          "p99": 273.8000000000002,
+          "max": 1128,
+          "gt_640_ratio_pct": 0.031640563202025
+        }
+      }
+    }
+  },
+  "verdict": {
+    "fits_winner_paradigm": true,
+    "reason": [
+      "external set is bimodal in a useful way: sentence_silver rows resemble short supervision, aggregated parent rows can be chunked by the existing pipeline",
+      "exact overlap with train/test/fold0 val is zero under normalized source comparison",
+      "high-similarity near-duplicate counts vs competition sources are zero at 0.85/0.90/0.92/0.95 thresholds under the current audit"
+    ],
+    "caveats": [
+      "aggregated parent rows are longer than internal chunk rows and rely on A1_P1 chunking to stay within the winner recipe",
+      "sentence_silver rows are shorter than internal short_aligned rows, so mix ratio and row-origin balance still need A1_P2 gate validation",
+      "silver targets come from sentence aggregation/anchoring and are not gold-aligned in the same sense as competition train"
+    ]
+  }
+}

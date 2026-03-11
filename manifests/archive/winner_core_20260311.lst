@@ -1,0 +1,55 @@
+# Self-describing archive metadata
+README.md
+env.yml
+artifacts/
+manifests/archive/winner_core_20260311.lst
+docs/archive_manifest_2026-03-11.md
+
+# Code and configs needed to interpret the freeze bundle
+cleaning/
+configs/
+scripts/
+
+# Stable raw inputs and challenge metadata
+data/raw/
+deep-past-initiative-machine-translation/
+
+# Retrieval-augmented processed data used by the promoted W-lite line
+data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_fold0
+
+# Incumbent freeze assets
+runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/best_model
+runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/checkpoint-250
+runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics
+runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/resolved_config.yaml
+runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/run_summary.json
+
+# Raw W-lite retrieval winner assets
+runs/TASKFORM_WINNER_A2_RETRIEVAL_TOP1_WLITE_20260310_fold0/best_model
+runs/TASKFORM_WINNER_A2_RETRIEVAL_TOP1_WLITE_20260310_fold0/checkpoint-400
+runs/TASKFORM_WINNER_A2_RETRIEVAL_TOP1_WLITE_20260310_fold0/diagnostics
+runs/TASKFORM_WINNER_A2_RETRIEVAL_TOP1_WLITE_20260310_fold0/resolved_config.yaml
+runs/TASKFORM_WINNER_A2_RETRIEVAL_TOP1_WLITE_20260310_fold0/run_summary.json
+
+# Core A2 report chain
+reports/taskform_winner_a2_retrieval_20260310
+reports/taskform_winner_a2_retrieval_eval_20260310
+reports/taskform_winner_a2_retrieval_top1_build_20260310
+reports/taskform_winner_a2_retrieval_wlite_20260310
+reports/taskform_winner_a2_retrieval_wlite_eval_20260310
+reports/taskform_winner_a2_health_surgical_20260310
+reports/taskform_winner_a2_promote_compare_20260310
+reports/taskform_winner_a2_support_20260310
+reports/taskform_winner_a2_freeze_20260310
+reports/taskform_winner_bridge_20260311
+
+# Decision docs
+docs/next_step_displine_winner_2026-03-10.md
+docs/taskform_winner_stage_report_2026-03-10.md
+docs/taskform_winner_retrieval_gate_pwf_2026-03-11.md
+
+# Key operational logs
+logs/winner_retrieval_20260310.log
+logs/winner_wlite_20260310.log
+logs/winner_wlite_eval_20260310.log
+logs/winner_train_main_20260311.log

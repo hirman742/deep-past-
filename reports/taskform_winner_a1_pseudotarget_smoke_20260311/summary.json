@@ -1,0 +1,226 @@
+{
+  "line": "winner_competition_only_pseudotarget_smoke",
+  "status": "reject_stop",
+  "reason": "anchor64 smoke is not positive against incumbent anchor baseline",
+  "base_config_path": "/workspace/deep-past-/runs/STEER/generated_configs/continue_s4_bs24_len640_seg5.yaml",
+  "base_checkpoint_dir": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/checkpoint-250",
+  "base_processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14",
+  "report_dir": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311",
+  "incumbent_anchor64": {
+    "tag": "taskform_a2_a1_incumbent_anchor64_20260310",
+    "decode_best_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/decode_grid_best_taskform_a2_a1_incumbent_anchor64_20260310.json",
+    "diagnose_summary_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/val_diagnostic_summary_taskform_a2_a1_incumbent_anchor64_20260310.json",
+    "eval_geom": 16.50574718634351,
+    "eval_bleu": 9.860624386106183,
+    "eval_chrfpp": 27.629050606912852,
+    "output_health": {
+      "num_rows": 64,
+      "empty_prediction_ratio_pct": 1.5625,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 12.5,
+      "unique_prediction_ratio_pct": 100.0,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "top_repeated_predictions": [
+        {
+          "text": "To Šu-Tammuzi, Elaya, Ennam-Aššur and Lāmassī: Ennam-Aššur and Lāmassī: Ennam-Aššur and Ali-ahum from Ennam-Aššur and Ali-ahum.",
+          "count": 1
+        },
+        {
+          "text": "Seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal o",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver",
+          "count": 1
+        },
+        {
+          "text": "Seal of the City that you have not paid the silver to the City and send the silver to the City to the City and the City that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 1
+        },
+        {
+          "text": "If you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 1
+        },
+        {
+          "text": "If you have not paid the silver and send me the silver to the silver and send me the silver to you \"",
+          "count": 1
+        },
+        {
+          "text": "miss sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems si",
+          "count": 1
+        },
+        {
+          "text": "To Šalim-Aššur from Iddin-abum, Itūr-ilī, Inah-ilī, Ennam-Aššur and Ali-ahum: Itūr-ilī, Ennam-Aššur and Ali-ahum said: \"The silver has brought me the silver and the silver has brought me the silver and send me the silver to Itūr-ilī, Ennam-Aššur and Ali-ahum:",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver <gap>-Aššur son of <gap>-Aššur son of Aššur <gap>-Aššur son of Aššur's dagger <gap> son of Aššur's dagger <gap>",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "frozen_candidate": {
+    "source": "/workspace/deep-past-/reports/taskform_winner_a2_freeze_20260310/summary.json",
+    "anchor64_reconstructed_geom": 23.5415,
+    "fullval_reconstructed_geom": 19.9035,
+    "hard_geom": 20.7888,
+    "status": ""
+  },
+  "monolingual_inventory": {
+    "mono_corpus_csv": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311/a1_monolingual_corpus.csv",
+    "pseudo_pool_csv": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311/a1_pseudo_source_pool.csv",
+    "train_parallel_source_rows": 1559,
+    "test_source_only_rows": 4,
+    "published_source_only_rows": 6342,
+    "mono_total_rows": 7905,
+    "pseudo_pool_rows": 6346,
+    "top_genres": [
+      {
+        "genre_label": "unknown",
+        "rows": 2658
+      },
+      {
+        "genre_label": "letter",
+        "rows": 2110
+      },
+      {
+        "genre_label": "train_parallel",
+        "rows": 1559
+      },
+      {
+        "genre_label": "debt note",
+        "rows": 521
+      },
+      {
+        "genre_label": "note",
+        "rows": 208
+      },
+      {
+        "genre_label": "agreement (contract)",
+        "rows": 125
+      },
+      {
+        "genre_label": "legal writing(s)",
+        "rows": 91
+      },
+      {
+        "genre_label": "testimony",
+        "rows": 81
+      },
+      {
+        "genre_label": "memo",
+        "rows": 68
+      },
+      {
+        "genre_label": "list",
+        "rows": 68
+      }
+    ]
+  },
+  "tapt_smoke": {
+    "config_path": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311/generated_configs/taskform_winner_pseudotarget_tapt_smoke_20260311.yaml",
+    "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A1_PSEUDOTARGET_TAPT_SMOKE_20260311",
+    "summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A1_PSEUDOTARGET_TAPT_SMOKE_20260311/tapt_summary.json",
+    "best_model_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A1_PSEUDOTARGET_TAPT_SMOKE_20260311/best_model",
+    "train_rows": 5880,
+    "eval_rows": 120,
+    "eval_loss": 2.360450506210327
+  },
+  "pseudo_targets_csv": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311/a1_pseudo_targets.csv",
+  "synthetic_mix": {
+    "processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_winner_a1_pseudotarget_synthmix_20260311",
+    "base_rows": 5289,
+    "synthetic_rows": 512,
+    "mixed_rows": 5801
+  },
+  "probe": {
+    "config_path": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311/generated_configs/taskform_winner_a1_pseudotarget_probe_20260311.yaml",
+    "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A1_PSEUDOTARGET_PROBE_20260311_fold0",
+    "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A1_PSEUDOTARGET_PROBE_20260311_fold0/best_model",
+    "decode_best_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A1_PSEUDOTARGET_PROBE_20260311_fold0/diagnostics/decode_grid_best_taskform_winner_a1_pseudotarget_anchor64_20260311.json",
+    "diagnose_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A1_PSEUDOTARGET_PROBE_20260311_fold0/diagnostics/val_diagnostic_summary_taskform_winner_a1_pseudotarget_anchor64_20260311.json",
+    "run_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_A1_PSEUDOTARGET_PROBE_20260311_fold0/run_summary.json",
+    "eval_geom": 2.506589200416785,
+    "eval_bleu": 0.7729275151984825,
+    "eval_chrfpp": 8.128821003393352,
+    "output_health": {
+      "num_rows": 64,
+      "empty_prediction_ratio_pct": 1.5625,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 10.9375,
+      "unique_prediction_ratio_pct": 84.375,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "top_repeated_predictions": [
+        {
+          "text": "ḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫḫ",
+          "count": 7
+        },
+        {
+          "text": "<gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap",
+          "count": 3
+        },
+        {
+          "text": "ṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣ",
+          "count": 2
+        },
+        {
+          "text": "translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to English translate Akkadian to",
+          "count": 2
+        },
+        {
+          "text": "Akkadian to English: um-ma šu-ta-mu-zi e-lá-a en-um-a-šùr ù lá-ma-sí-ma a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šù",
+          "count": 1
+        },
+        {
+          "text": "a lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám tí-šu-nu lu ša a-wa-tám",
+          "count": 1
+        },
+        {
+          "text": "a ba-ba-a-tum ru-qá-tum i-ba-ší-ú ṭup-pí ku-un-kà-ma a-na DUMU um-me-a-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim",
+          "count": 1
+        },
+        {
+          "text": "á-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá tù-riqá-ma lá",
+          "count": 1
+        },
+        {
+          "text": "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -",
+          "count": 1
+        },
+        {
+          "text": "to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to E",
+          "count": 1
+        }
+      ]
+    },
+    "gpu_peak_utilization_pct": 24.16135600082531,
+    "label": "competition_only_pseudotarget_tapt_continue",
+    "hard_subset": {
+      "rows": 9,
+      "eval_geom": 2.748475706566576,
+      "eval_bleu": 0.8669500205568962,
+      "eval_chrfpp": 8.713441986810446,
+      "note": "hard subset = routed_full parent ids via pred_id_col=id hard_id_col=oare_id"
+    },
+    "delta_geom_vs_incumbent_anchor64": -13.9992,
+    "delta_geom_vs_frozen_anchor64": -21.0349
+  },
+  "fullval": null,
+  "comparisons": {
+    "probe_delta_geom_vs_incumbent_anchor64": -13.9992,
+    "probe_delta_geom_vs_frozen_anchor64": -21.0349
+  },
+  "official_metric_bridge": {
+    "status": "pending_parallel_tmux",
+    "note": "separate tmux session runs official metric probe/report glue",
+    "report_dir": "/workspace/deep-past-/reports/taskform_winner_bridge_20260311"
+  },
+  "elapsed_minutes": 0.05
+}

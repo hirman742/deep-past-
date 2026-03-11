@@ -1,0 +1,45 @@
+{
+  "config_path": "/workspace/deep-past-/runs/STEER/generated_configs/continue_s4_bs24_len640_seg5.yaml",
+  "input_train": "/workspace/deep-past-/reports/taskform_winner_a1_continue_build_20260310/_tmp_parent_chunk/parent_input.csv",
+  "input_test": "",
+  "input_folds": "/workspace/deep-past-/reports/taskform_winner_a1_continue_build_20260310/_tmp_parent_chunk/parent_folds.csv",
+  "output_train": "/workspace/deep-past-/reports/taskform_winner_a1_continue_build_20260310/_tmp_parent_chunk/parent_chunk_train.csv",
+  "output_test": "",
+  "output_folds": "/workspace/deep-past-/reports/taskform_winner_a1_continue_build_20260310/_tmp_parent_chunk/parent_chunk_folds.csv",
+  "output_map_train": "/workspace/deep-past-/reports/taskform_winner_a1_continue_build_20260310/_tmp_parent_chunk/parent_chunk_map.csv",
+  "output_map_test": "",
+  "rows_input": 1162,
+  "rows_output": 1886,
+  "rows_test_input": 0,
+  "rows_test_output": 0,
+  "chunked_parent_rows": 444,
+  "added_rows_from_chunking": 724,
+  "avg_chunk_total_on_chunked_rows": 3.05484147386461,
+  "delimiter_aligned_parent_rows": 0,
+  "delimiter_aligned_ratio_pct": 0.0,
+  "src_limit": 640,
+  "tgt_limit": 640,
+  "min_chunks": 2,
+  "max_chunks": 8,
+  "alignment_mode": "auto",
+  "source_delimiters": [
+    "\n",
+    ";",
+    "|"
+  ],
+  "target_delimiters": [
+    "\n",
+    ";",
+    ".",
+    "!",
+    "?"
+  ],
+  "before_truncation_ratio_pct": {
+    "source": 37.77969018932875,
+    "target": 24.95697074010327
+  },
+  "after_truncation_ratio_pct": {
+    "source": 0.5302226935312832,
+    "target": 0.0
+  }
+}

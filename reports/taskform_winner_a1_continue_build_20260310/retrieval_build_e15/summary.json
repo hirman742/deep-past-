@@ -1,0 +1,23 @@
+{
+  "status": "ready",
+  "base_config_path": "/workspace/deep-past-/runs/STEER/generated_configs/continue_s4_bs24_len640_seg5.yaml",
+  "base_processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_a1r_plain_e15_fold0",
+  "output_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_a1r_e15_fold0",
+  "fold": 0,
+  "top_k": 1,
+  "hint_format": "split_fields",
+  "rows": {
+    "total": 5899,
+    "train_visible": 4674,
+    "val_visible": 1225
+  },
+  "hints": {
+    "train_rows_with_hint": 4674,
+    "val_rows_with_hint": 1225
+  },
+  "artifacts": {
+    "train_proc_csv": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_a1r_e15_fold0/train_proc.csv",
+    "folds_csv": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_a1r_e15_fold0/folds.csv",
+    "retrieval_augmented_samples_csv": "/workspace/deep-past-/reports/taskform_winner_a1_continue_build_20260310/retrieval_build_e15/retrieval_augmented_samples.csv"
+  }
+}

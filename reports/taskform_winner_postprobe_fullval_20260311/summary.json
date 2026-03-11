@@ -1,0 +1,241 @@
+{
+  "status": "completed_review_pending",
+  "reason": "Post-probe fullval queue completed for top eligible winners only",
+  "top_k": 2,
+  "ranked_probe_candidates": [
+    {
+      "family": "replay_band",
+      "label": "replay15",
+      "anchor_delta_vs_control": 0.2817,
+      "hard_delta_vs_control": 0.9581,
+      "summary_path": "/workspace/deep-past-/reports/taskform_winner_replay_band_probe_20260311/summary.json",
+      "config_path": "/workspace/deep-past-/reports/taskform_winner_replay_band_probe_20260311/generated_configs/taskform_winner_replay15_20260311.yaml",
+      "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_REPLAY15_20260311_fold0/best_model",
+      "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_REPLAY15_20260311_fold0",
+      "anchor64_geom": 15.834360737164506
+    }
+  ],
+  "selected_candidates": [
+    {
+      "family": "replay_band",
+      "label": "replay15",
+      "anchor_delta_vs_control": 0.2817,
+      "hard_delta_vs_control": 0.9581,
+      "summary_path": "/workspace/deep-past-/reports/taskform_winner_replay_band_probe_20260311/summary.json",
+      "config_path": "/workspace/deep-past-/reports/taskform_winner_replay_band_probe_20260311/generated_configs/taskform_winner_replay15_20260311.yaml",
+      "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_REPLAY15_20260311_fold0/best_model",
+      "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_REPLAY15_20260311_fold0",
+      "anchor64_geom": 15.834360737164506,
+      "rank": 1,
+      "fullval_eval": {
+        "config_path": "/workspace/deep-past-/reports/taskform_winner_replay_band_probe_20260311/generated_configs/taskform_winner_replay15_20260311.yaml",
+        "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_REPLAY15_20260311_fold0",
+        "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_REPLAY15_20260311_fold0/best_model",
+        "decode_best_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_REPLAY15_20260311_fold0/diagnostics/decode_grid_best_winner_postprobe_replay_band_replay15_fullval_20260311_1.json",
+        "diagnose_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_REPLAY15_20260311_fold0/diagnostics/val_diagnostic_summary_winner_postprobe_replay_band_replay15_fullval_20260311_1.json",
+        "eval_geom": 14.043443423269682,
+        "eval_bleu": 7.444190741073845,
+        "eval_chrfpp": 26.492913742041917,
+        "elapsed_seconds": 4842.10246014595,
+        "output_health": {
+          "num_rows": 1225,
+          "empty_prediction_ratio_pct": 0.0816326530612245,
+          "copy_source_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 6.775510204081632,
+          "unique_prediction_ratio_pct": 64.89795918367346,
+          "has_bad_token_regex_ratio_pct": 0.0,
+          "exact_extra_id_0_ratio_pct": 0.0,
+          "top_repeated_predictions": [
+            {
+              "text": "Seal of the silver and the silver and the silver and the silver and the silver and the silver and the silver and the silver and the silver and the silver",
+              "count": 7
+            },
+            {
+              "text": "Seal of the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap>",
+              "count": 5
+            },
+            {
+              "text": "missississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississississi",
+              "count": 4
+            },
+            {
+              "text": "Seal of the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+              "count": 4
+            },
+            {
+              "text": "If you have not paid the silver and they have not paid the silver and they have not paid the silver and they have not paid the silver and they have not paid the silver",
+              "count": 4
+            },
+            {
+              "text": "If you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver \"",
+              "count": 4
+            },
+            {
+              "text": "Seal of the silver and the silver that you have not paid the silver and the silver that you have not paid the silver that you have not paid the silver and the silver that you have not paid the silver",
+              "count": 4
+            },
+            {
+              "text": "Seal of Šalim-Aššur son of Lā-qēp, son of Akuza, seal of Akuza, seal of Kanesh, seal of Akuza, seal of Awattum, seal of Aššur, son of Aššur, seal of Aššur, seal of Aššur, seal of Akuza, seal of Aššur.",
+              "count": 4
+            },
+            {
+              "text": "If you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+              "count": 3
+            },
+            {
+              "text": "Send me the silver to you and send me the silver to you \"",
+              "count": 3
+            }
+          ]
+        },
+        "reconstructed_health": {
+          "empty_prediction_ratio_pct": 0.0,
+          "copy_source_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 2.2364217252396164
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 110,
+          "eval_bleu": 7.139997100968762,
+          "eval_chrfpp": 26.33291166661756,
+          "eval_geom": 13.711925939112852,
+          "eval_bleu_01": 0.07139997100968762,
+          "eval_chrfpp_01": 0.2633291166661756,
+          "eval_geom_01": 0.1371192593911285,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.9090909090909091,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 99.0909090909091,
+            "pred_word_mean": 190.65454545454546,
+            "ref_word_mean": 194.04545454545453
+          },
+          "note": "hard subset = ids intersect routed_full"
+        },
+        "reconstructed_csv": "/workspace/deep-past-/runs/TASKFORM_WINNER_REPLAY15_20260311_fold0/diagnostics/val_predictions_reconstructed_winner_postprobe_replay_band_replay15_fullval_20260311_1.csv",
+        "official_like_note": "same as local until official bridge lands"
+      },
+      "fullval_geom": 14.0434,
+      "fullval_hard_geom": 13.7119,
+      "fullval_delta_vs_incumbent": -0.2888,
+      "fullval_delta_vs_frozen": -5.8601,
+      "hard_delta_vs_incumbent": -0.0042,
+      "hard_delta_vs_frozen": -7.0769,
+      "health_vs_incumbent": {
+        "empty_prediction_ratio_pct": 0.0,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": -1.9592,
+        "unique_prediction_ratio_pct": 0.2449,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "no_regression": true
+      }
+    }
+  ],
+  "best_label": "replay15",
+  "incumbent_fullval": {
+    "source_decode_best_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/decode_grid_best_continue_s4_bs24_len640_seg5_ckpt250_lp07_fullval_20260309.json",
+    "source_diagnose_summary_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/val_diagnostic_summary_continue_s4_bs24_len640_seg5_ckpt250_lp07_fullval_20260309.json",
+    "eval_geom": 14.332266680617607,
+    "eval_bleu": 7.736910990164166,
+    "eval_chrfpp": 26.549855422336073,
+    "elapsed_seconds": 2892.383260011673,
+    "output_health": {
+      "num_rows": 1225,
+      "empty_prediction_ratio_pct": 0.0816326530612245,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 8.73469387755102,
+      "unique_prediction_ratio_pct": 64.65306122448979,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "top_repeated_predictions": [
+        {
+          "text": "Seal of the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 6
+        },
+        {
+          "text": "If you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 6
+        },
+        {
+          "text": "miss sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems si",
+          "count": 4
+        },
+        {
+          "text": "Seal of Iddin-abum, seal of Iddin-abum, seal of Iddin-abum.",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver and the silver and the silver and the silver and the silver and the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver and the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap>",
+          "count": 4
+        },
+        {
+          "text": "If you have not paid the silver and they have not paid the silver and they have not paid the silver and they have not paid the silver and they have not paid the silver",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver and the silver and the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 4
+        },
+        {
+          "text": "Seal of the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap> the silver <gap>",
+          "count": 4
+        }
+      ]
+    },
+    "reconstructed_health": {
+      "empty_prediction_ratio_pct": 0.0,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 3.8338658146964857
+    },
+    "hard_subset": {
+      "tag": "hard_subset",
+      "subset_name": "hard_subset",
+      "rows": 110,
+      "eval_bleu": 7.1669103335710505,
+      "eval_chrfpp": 26.249940201431777,
+      "eval_geom": 13.716084269399321,
+      "eval_bleu_01": 0.0716691033357105,
+      "eval_chrfpp_01": 0.26249940201431776,
+      "eval_geom_01": 0.1371608426939932,
+      "metric_signatures": {
+        "sacrebleu_version": "2.6.0",
+        "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+        "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+      },
+      "health": {
+        "empty_prediction_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 1.8181818181818181,
+        "repeat_prediction_ratio_pct": 0.0,
+        "internal_repeat_trigram_ratio_pct": 99.0909090909091,
+        "pred_word_mean": 185.12727272727273,
+        "ref_word_mean": 194.04545454545453
+      },
+      "note": "hard subset = ids intersect routed_full"
+    },
+    "reconstructed_csv": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/val_predictions_reconstructed_continue_s4_bs24_len640_seg5_ckpt250_lp07_fullval_20260309.csv",
+    "official_like_note": "same as local until official bridge lands"
+  },
+  "frozen_candidate": {
+    "source": "/workspace/deep-past-/reports/taskform_winner_a2_freeze_20260310/summary.json",
+    "anchor64_reconstructed_geom": 23.5415,
+    "fullval_reconstructed_geom": 19.9035,
+    "hard_geom": 20.7888,
+    "status": ""
+  },
+  "elapsed_minutes": 162.32
+}

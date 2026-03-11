@@ -1,0 +1,97 @@
+{
+  "status": "ready_for_probe",
+  "base_config_path": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_20260310/generated_configs/taskform_winner_a2_retrieval_top1.yaml",
+  "base_processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_fold0",
+  "init_adapter_dir": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/checkpoint-250",
+  "fold": 0,
+  "thresholds": [
+    {
+      "label": "g35",
+      "threshold": 0.35
+    },
+    {
+      "label": "g50",
+      "threshold": 0.5
+    },
+    {
+      "label": "g65",
+      "threshold": 0.65
+    }
+  ],
+  "rows": {
+    "total": 5289,
+    "train_visible": 4064,
+    "val_visible": 1225
+  },
+  "score_quantiles": {
+    "all": {
+      "p05": 0.2727,
+      "p50": 0.6716,
+      "p95": 1.0,
+      "mean": 0.6853
+    },
+    "train_visible": {
+      "p05": 0.2851,
+      "p50": 1.0,
+      "p95": 1.0,
+      "mean": 0.7723
+    },
+    "val_visible": {
+      "p05": 0.2466,
+      "p50": 0.364,
+      "p95": 0.6673,
+      "mean": 0.3965
+    }
+  },
+  "artifacts": {
+    "score_gate_audit_json": "/workspace/deep-past-/reports/taskform_winner_a2g_build_20260311/score_gate_audit.json",
+    "score_gate_coverage_csv": "/workspace/deep-past-/reports/taskform_winner_a2g_build_20260311/score_gate_coverage.csv",
+    "score_gate_bucket_coverage_csv": "/workspace/deep-past-/reports/taskform_winner_a2g_build_20260311/score_gate_bucket_coverage.csv",
+    "score_gate_rowwise_csv": "/workspace/deep-past-/reports/taskform_winner_a2g_build_20260311/score_gate_rowwise.csv",
+    "processed_dir_manifest_csv": "/workspace/deep-past-/reports/taskform_winner_a2g_build_20260311/processed_dir_manifest.csv"
+  },
+  "candidates": {
+    "ctrl": {
+      "label": "ctrl",
+      "threshold": null,
+      "processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_fold0",
+      "config_path": "/workspace/deep-past-/reports/taskform_winner_a2g_build_20260311/generated_configs/taskform_winner_a2g_ctrl.yaml",
+      "run_dir": "runs/TASKFORM_WINNER_A2G_CTRL_20260311",
+      "train_visible_enabled_rows": 4064,
+      "val_visible_enabled_rows": 1225
+    },
+    "g35": {
+      "label": "g35",
+      "threshold": 0.35,
+      "processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_g35_fold0",
+      "config_path": "/workspace/deep-past-/reports/taskform_winner_a2g_build_20260311/generated_configs/taskform_winner_a2g_g35.yaml",
+      "run_dir": "runs/TASKFORM_WINNER_A2G_G35_20260311",
+      "train_visible_enabled_rows": 3454,
+      "train_visible_disabled_rows": 610,
+      "val_visible_enabled_rows": 680,
+      "val_visible_disabled_rows": 545
+    },
+    "g50": {
+      "label": "g50",
+      "threshold": 0.5,
+      "processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_g50_fold0",
+      "config_path": "/workspace/deep-past-/reports/taskform_winner_a2g_build_20260311/generated_configs/taskform_winner_a2g_g50.yaml",
+      "run_dir": "runs/TASKFORM_WINNER_A2G_G50_20260311",
+      "train_visible_enabled_rows": 2807,
+      "train_visible_disabled_rows": 1257,
+      "val_visible_enabled_rows": 222,
+      "val_visible_disabled_rows": 1003
+    },
+    "g65": {
+      "label": "g65",
+      "threshold": 0.65,
+      "processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_g65_fold0",
+      "config_path": "/workspace/deep-past-/reports/taskform_winner_a2g_build_20260311/generated_configs/taskform_winner_a2g_g65.yaml",
+      "run_dir": "runs/TASKFORM_WINNER_A2G_G65_20260311",
+      "train_visible_enabled_rows": 2599,
+      "train_visible_disabled_rows": 1465,
+      "val_visible_enabled_rows": 70,
+      "val_visible_disabled_rows": 1155
+    }
+  }
+}

@@ -1,0 +1,1075 @@
+{
+  "status": "ready_for_promote_compare",
+  "recommended_variant": "fallback_180",
+  "variants": [
+    {
+      "label": "raw",
+      "note": "baseline raw W-lite",
+      "anchor64_reconstructed_geom": 23.5415,
+      "anchor64_chunk_geom": 13.2305,
+      "fullval_reconstructed_geom": 19.9908,
+      "fullval_chunk_geom": 14.1391,
+      "hard_geom": 20.836,
+      "fullval_unique_prediction_ratio_pct": 63.102,
+      "fullval_short_ratio_pct": 8.8163,
+      "fullval_health_no_regression_vs_i0": false
+    },
+    {
+      "label": "fallback_80",
+      "note": "fallback to incumbent on repeat>=5 or repeat>=4 with len<=80",
+      "anchor64_reconstructed_geom": 23.5415,
+      "anchor64_chunk_geom": 13.2305,
+      "fullval_reconstructed_geom": 19.9906,
+      "fullval_chunk_geom": 14.1457,
+      "hard_geom": 20.8099,
+      "fullval_unique_prediction_ratio_pct": 64.3265,
+      "fullval_short_ratio_pct": 8.2449,
+      "fullval_health_no_regression_vs_i0": false
+    },
+    {
+      "label": "fallback_140",
+      "note": "fallback to incumbent on repeat>=5 or repeat>=4 with len<=140",
+      "anchor64_reconstructed_geom": 23.5415,
+      "anchor64_chunk_geom": 13.2305,
+      "fullval_reconstructed_geom": 19.9383,
+      "fullval_chunk_geom": 14.0848,
+      "hard_geom": 20.7888,
+      "fullval_unique_prediction_ratio_pct": 64.4898,
+      "fullval_short_ratio_pct": 8.2449,
+      "fullval_health_no_regression_vs_i0": false
+    },
+    {
+      "label": "fallback_180",
+      "note": "fallback to incumbent on repeat>=5 or repeat>=4 with len<=180",
+      "anchor64_reconstructed_geom": 23.5415,
+      "anchor64_chunk_geom": 13.2305,
+      "fullval_reconstructed_geom": 19.9035,
+      "fullval_chunk_geom": 14.0395,
+      "hard_geom": 20.7888,
+      "fullval_unique_prediction_ratio_pct": 64.6531,
+      "fullval_short_ratio_pct": 8.2449,
+      "fullval_health_no_regression_vs_i0": true
+    },
+    {
+      "label": "fallback_180_plus_trim",
+      "note": "same as fallback_180, then trim long internal repeats",
+      "anchor64_reconstructed_geom": 24.633,
+      "anchor64_chunk_geom": 13.9722,
+      "fullval_reconstructed_geom": 20.0299,
+      "fullval_chunk_geom": 14.7989,
+      "hard_geom": 20.3707,
+      "fullval_unique_prediction_ratio_pct": 64.6531,
+      "fullval_short_ratio_pct": 9.6327,
+      "fullval_health_no_regression_vs_i0": false
+    }
+  ],
+  "variant_payloads": {
+    "raw": {
+      "anchor64": {
+        "chunk": {
+          "metrics": {
+            "bleu": 7.37834622458187,
+            "chrfpp": 23.72436060116571,
+            "geom": 13.230515729639185
+          },
+          "output_health": {
+            "num_rows": 64,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 10.9375,
+            "unique_prediction_ratio_pct": 98.4375,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Let you have not refused to go!' Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as foll",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 14.317936727823273,
+            "chrfpp": 38.70682666697085,
+            "geom": 23.54149305274649
+          },
+          "output_health": {
+            "num_rows": 17,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "unique_prediction_ratio_pct": 100.0,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": []
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 9,
+          "eval_bleu": 15.448895486802762,
+          "eval_chrfpp": 39.555170991955116,
+          "eval_geom": 24.720107253354037,
+          "eval_bleu_01": 0.1544889548680276,
+          "eval_chrfpp_01": 0.39555170991955113,
+          "eval_geom_01": 0.24720107253354034,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 77.77777777777777,
+            "pred_word_mean": 234.44444444444446,
+            "ref_word_mean": 220.66666666666666
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval": {
+        "chunk": {
+          "metrics": {
+            "bleu": 8.15727009890162,
+            "chrfpp": 24.507600254000586,
+            "geom": 14.139134158349044
+          },
+          "output_health": {
+            "num_rows": 1225,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 8.8163,
+            "unique_prediction_ratio_pct": 63.102,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "To Ennam-Aššur, sealed by Ali-ahum and <gap>-Ištar.",
+                "count": 7
+              },
+              {
+                "text": "Investors of Šalim-Aššur may make demands Do this and dispatch the 2 tablets with verdicts of the City plus a copy of the testament, and hire an attorney and send Aluwa and the attorney as soon as possible",
+                "count": 6
+              },
+              {
+                "text": "It is important that you set out and leave the very day you hear my letter, before word <gap> It is important that you set out and leave the very day you hear my letter, before word <gap>",
+                "count": 6
+              },
+              {
+                "text": "To copper and 3 shekels of silver for his small goods, 3 shekels of silver <gap> I gave to Aluwa. I paid 4.5 shekels of silver, the fees from the City when he returned. <gap> minas of sickles, 3 shekels for his expenses…",
+                "count": 5
+              },
+              {
+                "text": "To Šalim-Aššur; sealed by Man-mahir.",
+                "count": 5
+              },
+              {
+                "text": "The 14 minas <gap> 8.6666 shekels of silver is the price of tin, textiles and donkeys.",
+                "count": 5
+              },
+              {
+                "text": "Seal of Mannum-balum-Aššur son of Ṣilli-Adad, seal of Šu-Illil son of Mannum-kī-Aššur, seal of Puzur-Aššur son of Ataya owes 22 shekels of good silver to Ali-ahum Reckoned from the week of Ilīd…",
+                "count": 4
+              },
+              {
+                "text": "Thus Kaniš, say to the datupayers, our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hana",
+                "count": 4
+              },
+              {
+                "text": "The silver to Zulu And you, until this very day you have kept silent Aššur and the god(s) of our father may witness <gap> give <gap>\"",
+                "count": 4
+              },
+              {
+                "text": "Send me 2 textiles, for I tore (mine), and 1 shekel of silver <gap> the container and the tabletbox <gap> they they entrusted to you <gap> as long as you do not see my eyes \"",
+                "count": 4
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 12.100084157199868,
+            "chrfpp": 33.027063972669204,
+            "geom": 19.990754201243163
+          },
+          "output_health": {
+            "num_rows": 313,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 4.1534,
+            "unique_prediction_ratio_pct": 97.4441,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "To Ennam-Aššur, sealed by Ali-ahum and <gap>-Ištar.",
+                "count": 4
+              },
+              {
+                "text": "Son of Šukkutum. 0.5 mina of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššu",
+                "count": 2
+              },
+              {
+                "text": "To Šalim-Aššur; sealed by Man-mahir.",
+                "count": 2
+              },
+              {
+                "text": "I gave 4.5 shekels of silver for the payment of his fees to Aluwa.",
+                "count": 2
+              },
+              {
+                "text": "Separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; se\nThe Kanesh colony gave us for these proceedings and we gave our testimony before Aššur's dagger Witnessed by Akuza, by Amurrum-bāni",
+                "count": 2
+              },
+              {
+                "text": "To Ennam-Aššur <gap> seal of <gap>",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 110,
+          "eval_bleu": 12.614662991173544,
+          "eval_chrfpp": 34.41552817789069,
+          "eval_geom": 20.83603344274836,
+          "eval_bleu_01": 0.12614662991173545,
+          "eval_chrfpp_01": 0.3441552817789069,
+          "eval_geom_01": 0.20836033442748358,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 5.454545454545454,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 78.18181818181819,
+            "pred_word_mean": 177.1727272727273,
+            "ref_word_mean": 194.04545454545453
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval_health_vs_i0": {
+        "empty_prediction_ratio_pct": -0.0816,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 0.0816,
+        "unique_prediction_ratio_pct": -1.5511,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "no_regression": false
+      },
+      "artifacts": {
+        "anchor64_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/raw_anchor64_chunk.csv",
+        "anchor64_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/raw_anchor64_reconstructed.csv",
+        "fullval_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/raw_fullval_chunk.csv",
+        "fullval_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/raw_fullval_reconstructed.csv"
+      }
+    },
+    "fallback_80": {
+      "anchor64": {
+        "chunk": {
+          "metrics": {
+            "bleu": 7.37834622458187,
+            "chrfpp": 23.72436060116571,
+            "geom": 13.230515729639185
+          },
+          "output_health": {
+            "num_rows": 64,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 10.9375,
+            "unique_prediction_ratio_pct": 98.4375,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Let you have not refused to go!' Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as foll",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 14.317936727823273,
+            "chrfpp": 38.70682666697085,
+            "geom": 23.54149305274649
+          },
+          "output_health": {
+            "num_rows": 17,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "unique_prediction_ratio_pct": 100.0,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": []
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 9,
+          "eval_bleu": 15.448895486802762,
+          "eval_chrfpp": 39.555170991955116,
+          "eval_geom": 24.720107253354037,
+          "eval_bleu_01": 0.1544889548680276,
+          "eval_chrfpp_01": 0.39555170991955113,
+          "eval_geom_01": 0.24720107253354034,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 77.77777777777777,
+            "pred_word_mean": 234.44444444444446,
+            "ref_word_mean": 220.66666666666666
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval": {
+        "chunk": {
+          "metrics": {
+            "bleu": 8.167985697555853,
+            "chrfpp": 24.49804444662019,
+            "geom": 14.145659286794706
+          },
+          "output_health": {
+            "num_rows": 1225,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 8.2449,
+            "unique_prediction_ratio_pct": 64.3265,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "Seal of Mannum-balum-Aššur son of Ṣilli-Adad, seal of Šu-Illil son of Mannum-kī-Aššur, seal of Puzur-Aššur son of Ataya owes 22 shekels of good silver to Ali-ahum Reckoned from the week of Ilīd…",
+                "count": 4
+              },
+              {
+                "text": "Thus Kaniš, say to the datupayers, our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hana",
+                "count": 4
+              },
+              {
+                "text": "The silver to Zulu And you, until this very day you have kept silent Aššur and the god(s) of our father may witness <gap> give <gap>\"",
+                "count": 4
+              },
+              {
+                "text": "Send me 2 textiles, for I tore (mine), and 1 shekel of silver <gap> the container and the tabletbox <gap> they they entrusted to you <gap> as long as you do not see my eyes \"",
+                "count": 4
+              },
+              {
+                "text": "Send me word with the first transport Do not focus on taking all of the silver Kura will not pay <gap>",
+                "count": 4
+              },
+              {
+                "text": "The Kanesh colony gave us for these proceedings and we gave our testimony before Aššur's dagger Witnessed by Akuza, by Amurrum-bāni, by Lā-qēp Itūr-ilī son of Amur-Ištar is our (absent) partner",
+                "count": 4
+              },
+              {
+                "text": "If he has not paid in time, he will add interest at the rate 1 5 shekel per mina per month, he will add interest at the rate 1 5 shekel per mina per month, he will add interest at the rate 1 5 shekel per mina per month",
+                "count": 4
+              },
+              {
+                "text": "In accordance with the tablet with a verdict of the City that Kakuwa brought Enna-Suen and Anuli must not raise claims to those goods against Šalim-Aššur.",
+                "count": 4
+              },
+              {
+                "text": "They will pay in 4 weeks 0 3333 mina of refined silver is owed by Ilī-bāni he will pay on his return from the City 10 5 minas of refined silver is owed by Pilah-Ištar Month Tēinātum",
+                "count": 3
+              },
+              {
+                "text": "I gave 4 shekels of silver to Amur-Ištar's wife. I gave 4 shekels of silver to Amur-Ištar's wife.",
+                "count": 3
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 12.086404305911815,
+            "chrfpp": 33.06389574257171,
+            "geom": 19.990588082226047
+          },
+          "output_health": {
+            "num_rows": 313,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 3.5144,
+            "unique_prediction_ratio_pct": 99.0415,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "Son of Šukkutum. 0.5 mina of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššu",
+                "count": 2
+              },
+              {
+                "text": "Separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; se\nThe Kanesh colony gave us for these proceedings and we gave our testimony before Aššur's dagger Witnessed by Akuza, by Amurrum-bāni",
+                "count": 2
+              },
+              {
+                "text": "To Ennam-Aššur <gap> seal of <gap>",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 110,
+          "eval_bleu": 12.588131934800716,
+          "eval_chrfpp": 34.401455136804316,
+          "eval_geom": 20.80985478111802,
+          "eval_bleu_01": 0.12588131934800717,
+          "eval_chrfpp_01": 0.34401455136804315,
+          "eval_geom_01": 0.2080985478111802,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 4.545454545454546,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 80.9090909090909,
+            "pred_word_mean": 177.8272727272727,
+            "ref_word_mean": 194.04545454545453
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval_health_vs_i0": {
+        "empty_prediction_ratio_pct": -0.0816,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": -0.4898,
+        "unique_prediction_ratio_pct": -0.3266,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "no_regression": false
+      },
+      "artifacts": {
+        "anchor64_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_80_anchor64_chunk.csv",
+        "anchor64_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_80_anchor64_reconstructed.csv",
+        "fullval_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_80_fullval_chunk.csv",
+        "fullval_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_80_fullval_reconstructed.csv"
+      }
+    },
+    "fallback_140": {
+      "anchor64": {
+        "chunk": {
+          "metrics": {
+            "bleu": 7.37834622458187,
+            "chrfpp": 23.72436060116571,
+            "geom": 13.230515729639185
+          },
+          "output_health": {
+            "num_rows": 64,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 10.9375,
+            "unique_prediction_ratio_pct": 98.4375,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Let you have not refused to go!' Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as foll",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 14.317936727823273,
+            "chrfpp": 38.70682666697085,
+            "geom": 23.54149305274649
+          },
+          "output_health": {
+            "num_rows": 17,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "unique_prediction_ratio_pct": 100.0,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": []
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 9,
+          "eval_bleu": 15.448895486802762,
+          "eval_chrfpp": 39.555170991955116,
+          "eval_geom": 24.720107253354037,
+          "eval_bleu_01": 0.1544889548680276,
+          "eval_chrfpp_01": 0.39555170991955113,
+          "eval_geom_01": 0.24720107253354034,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 77.77777777777777,
+            "pred_word_mean": 234.44444444444446,
+            "ref_word_mean": 220.66666666666666
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval": {
+        "chunk": {
+          "metrics": {
+            "bleu": 8.11282168300343,
+            "chrfpp": 24.452972374546135,
+            "geom": 14.084835976826346
+          },
+          "output_health": {
+            "num_rows": 1225,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 8.2449,
+            "unique_prediction_ratio_pct": 64.4898,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "Seal of Mannum-balum-Aššur son of Ṣilli-Adad, seal of Šu-Illil son of Mannum-kī-Aššur, seal of Puzur-Aššur son of Ataya owes 22 shekels of good silver to Ali-ahum Reckoned from the week of Ilīd…",
+                "count": 4
+              },
+              {
+                "text": "Thus Kaniš, say to the datupayers, our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hana",
+                "count": 4
+              },
+              {
+                "text": "Send me 2 textiles, for I tore (mine), and 1 shekel of silver <gap> the container and the tabletbox <gap> they they entrusted to you <gap> as long as you do not see my eyes \"",
+                "count": 4
+              },
+              {
+                "text": "The Kanesh colony gave us for these proceedings and we gave our testimony before Aššur's dagger Witnessed by Akuza, by Amurrum-bāni, by Lā-qēp Itūr-ilī son of Amur-Ištar is our (absent) partner",
+                "count": 4
+              },
+              {
+                "text": "If he has not paid in time, he will add interest at the rate 1 5 shekel per mina per month, he will add interest at the rate 1 5 shekel per mina per month, he will add interest at the rate 1 5 shekel per mina per month",
+                "count": 4
+              },
+              {
+                "text": "In accordance with the tablet with a verdict of the City that Kakuwa brought Enna-Suen and Anuli must not raise claims to those goods against Šalim-Aššur.",
+                "count": 4
+              },
+              {
+                "text": "They will pay in 4 weeks 0 3333 mina of refined silver is owed by Ilī-bāni he will pay on his return from the City 10 5 minas of refined silver is owed by Pilah-Ištar Month Tēinātum",
+                "count": 3
+              },
+              {
+                "text": "I gave 4 shekels of silver to Amur-Ištar's wife. I gave 4 shekels of silver to Amur-Ištar's wife.",
+                "count": 3
+              },
+              {
+                "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Let you have not refused to go!' Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as foll",
+                "count": 3
+              },
+              {
+                "text": "The silver that your father wrote in the tablet. So you cheat me. Come, move, and pay the silver that your father wrote in the tablet. So you cheat me. Come, move, and pay the silver that your father wrote in the tablet. So you cheat me. Come, move, and pay the silver that your father wrote for you in the tablet, in accordance with the verdict of the City, and then let us go to the",
+                "count": 3
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 12.03567887962416,
+            "chrfpp": 33.02980469733187,
+            "geom": 19.938307922032603
+          },
+          "output_health": {
+            "num_rows": 313,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 3.5144,
+            "unique_prediction_ratio_pct": 99.0415,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "Son of Šukkutum. 0.5 mina of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššu",
+                "count": 2
+              },
+              {
+                "text": "Separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; se\nThe Kanesh colony gave us for these proceedings and we gave our testimony before Aššur's dagger Witnessed by Akuza, by Amurrum-bāni",
+                "count": 2
+              },
+              {
+                "text": "To Ennam-Aššur <gap> seal of <gap>",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 110,
+          "eval_bleu": 12.57626290764448,
+          "eval_chrfpp": 34.364199191238825,
+          "eval_geom": 20.788775905273578,
+          "eval_bleu_01": 0.1257626290764448,
+          "eval_chrfpp_01": 0.34364199191238826,
+          "eval_geom_01": 0.2078877590527358,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 4.545454545454546,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 80.9090909090909,
+            "pred_word_mean": 178.51818181818183,
+            "ref_word_mean": 194.04545454545453
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval_health_vs_i0": {
+        "empty_prediction_ratio_pct": -0.0816,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": -0.4898,
+        "unique_prediction_ratio_pct": -0.1633,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "no_regression": false
+      },
+      "artifacts": {
+        "anchor64_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_140_anchor64_chunk.csv",
+        "anchor64_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_140_anchor64_reconstructed.csv",
+        "fullval_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_140_fullval_chunk.csv",
+        "fullval_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_140_fullval_reconstructed.csv"
+      }
+    },
+    "fallback_180": {
+      "anchor64": {
+        "chunk": {
+          "metrics": {
+            "bleu": 7.37834622458187,
+            "chrfpp": 23.72436060116571,
+            "geom": 13.230515729639185
+          },
+          "output_health": {
+            "num_rows": 64,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 10.9375,
+            "unique_prediction_ratio_pct": 98.4375,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Let you have not refused to go!' Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as foll",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 14.317936727823273,
+            "chrfpp": 38.70682666697085,
+            "geom": 23.54149305274649
+          },
+          "output_health": {
+            "num_rows": 17,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "unique_prediction_ratio_pct": 100.0,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": []
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 9,
+          "eval_bleu": 15.448895486802762,
+          "eval_chrfpp": 39.555170991955116,
+          "eval_geom": 24.720107253354037,
+          "eval_bleu_01": 0.1544889548680276,
+          "eval_chrfpp_01": 0.39555170991955113,
+          "eval_geom_01": 0.24720107253354034,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 77.77777777777777,
+            "pred_word_mean": 234.44444444444446,
+            "ref_word_mean": 220.66666666666666
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval": {
+        "chunk": {
+          "metrics": {
+            "bleu": 8.07841811190769,
+            "chrfpp": 24.399142832963452,
+            "geom": 14.039461434714461
+          },
+          "output_health": {
+            "num_rows": 1225,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 8.2449,
+            "unique_prediction_ratio_pct": 64.6531,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "Seal of Mannum-balum-Aššur son of Ṣilli-Adad, seal of Šu-Illil son of Mannum-kī-Aššur, seal of Puzur-Aššur son of Ataya owes 22 shekels of good silver to Ali-ahum Reckoned from the week of Ilīd…",
+                "count": 4
+              },
+              {
+                "text": "Thus Kaniš, say to the datupayers, our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hana",
+                "count": 4
+              },
+              {
+                "text": "The Kanesh colony gave us for these proceedings and we gave our testimony before Aššur's dagger Witnessed by Akuza, by Amurrum-bāni, by Lā-qēp Itūr-ilī son of Amur-Ištar is our (absent) partner",
+                "count": 4
+              },
+              {
+                "text": "If he has not paid in time, he will add interest at the rate 1 5 shekel per mina per month, he will add interest at the rate 1 5 shekel per mina per month, he will add interest at the rate 1 5 shekel per mina per month",
+                "count": 4
+              },
+              {
+                "text": "They will pay in 4 weeks 0 3333 mina of refined silver is owed by Ilī-bāni he will pay on his return from the City 10 5 minas of refined silver is owed by Pilah-Ištar Month Tēinātum",
+                "count": 3
+              },
+              {
+                "text": "I gave 4 shekels of silver to Amur-Ištar's wife. I gave 4 shekels of silver to Amur-Ištar's wife.",
+                "count": 3
+              },
+              {
+                "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Let you have not refused to go!' Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as foll",
+                "count": 3
+              },
+              {
+                "text": "The silver that your father wrote in the tablet. So you cheat me. Come, move, and pay the silver that your father wrote in the tablet. So you cheat me. Come, move, and pay the silver that your father wrote in the tablet. So you cheat me. Come, move, and pay the silver that your father wrote for you in the tablet, in accordance with the verdict of the City, and then let us go to the",
+                "count": 3
+              },
+              {
+                "text": "Son of Šukkutum. 0.5 mina of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššu",
+                "count": 3
+              },
+              {
+                "text": "The 12 shekels of silver, the interest on 2 minas of silver, is owed by the man from Tumliya.",
+                "count": 3
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 12.007105040612153,
+            "chrfpp": 32.99302303950635,
+            "geom": 19.903534692176905
+          },
+          "output_health": {
+            "num_rows": 313,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 3.5144,
+            "unique_prediction_ratio_pct": 99.0415,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "Son of Šukkutum. 0.5 mina of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššu",
+                "count": 2
+              },
+              {
+                "text": "Separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; se\nThe Kanesh colony gave us for these proceedings and we gave our testimony before Aššur's dagger Witnessed by Akuza, by Amurrum-bāni",
+                "count": 2
+              },
+              {
+                "text": "To Ennam-Aššur <gap> seal of <gap>",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 110,
+          "eval_bleu": 12.57626290764448,
+          "eval_chrfpp": 34.364199191238825,
+          "eval_geom": 20.788775905273578,
+          "eval_bleu_01": 0.1257626290764448,
+          "eval_chrfpp_01": 0.34364199191238826,
+          "eval_geom_01": 0.2078877590527358,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 4.545454545454546,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 80.9090909090909,
+            "pred_word_mean": 178.51818181818183,
+            "ref_word_mean": 194.04545454545453
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval_health_vs_i0": {
+        "empty_prediction_ratio_pct": -0.0816,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": -0.4898,
+        "unique_prediction_ratio_pct": 0.0,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "no_regression": true
+      },
+      "artifacts": {
+        "anchor64_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_anchor64_chunk.csv",
+        "anchor64_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_anchor64_reconstructed.csv",
+        "fullval_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_fullval_chunk.csv",
+        "fullval_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_fullval_reconstructed.csv"
+      }
+    },
+    "fallback_180_plus_trim": {
+      "anchor64": {
+        "chunk": {
+          "metrics": {
+            "bleu": 8.169686814036247,
+            "chrfpp": 23.89604757604194,
+            "geom": 13.972230487276278
+          },
+          "output_health": {
+            "num_rows": 64,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 12.5,
+            "unique_prediction_ratio_pct": 98.4375,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Let you have not refused to go!' Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as foll",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 15.649134584320048,
+            "chrfpp": 38.77441327579692,
+            "geom": 24.633026849759897
+          },
+          "output_health": {
+            "num_rows": 17,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "unique_prediction_ratio_pct": 100.0,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": []
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 9,
+          "eval_bleu": 15.706958756986225,
+          "eval_chrfpp": 39.41953730317297,
+          "eval_geom": 24.88294690426393,
+          "eval_bleu_01": 0.15706958756986225,
+          "eval_chrfpp_01": 0.39419537303172975,
+          "eval_geom_01": 0.2488294690426393,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 0.0,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 33.333333333333336,
+            "pred_word_mean": 212.77777777777777,
+            "ref_word_mean": 220.66666666666666
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval": {
+        "chunk": {
+          "metrics": {
+            "bleu": 8.89101491668722,
+            "chrfpp": 24.632328301837035,
+            "geom": 14.798864766068032
+          },
+          "output_health": {
+            "num_rows": 1225,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 9.6327,
+            "unique_prediction_ratio_pct": 64.6531,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "Seal of Mannum-balum-Aššur son of Ṣilli-Adad, seal of Šu-Illil son of Mannum-kī-Aššur, seal of Puzur-Aššur son of Ataya owes 22 shekels of good silver to Ali-ahum Reckoned from the week of Ilīd…",
+                "count": 4
+              },
+              {
+                "text": "Thus Kaniš, say to the datupayers, our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hanaknak and Tišmurna: As soon as you hear our letter, produce the dagger of Assur in the presence of our messenger Kuliya, the plenary of Kuburnat hana",
+                "count": 4
+              },
+              {
+                "text": "The Kanesh colony gave us for these proceedings and we gave our testimony before Aššur's dagger Witnessed by Akuza, by Amurrum-bāni, by Lā-qēp Itūr-ilī son of Amur-Ištar is our (absent) partner",
+                "count": 4
+              },
+              {
+                "text": "If he has not paid in time, he will add interest at the rate 1 5 shekel per mina per month, he will add interest at the rate 1 5 shekel per mina per month, he will add interest at the rate 1 5 shekel per mina per month",
+                "count": 4
+              },
+              {
+                "text": "They will pay in 4 weeks 0 3333 mina of refined silver is owed by Ilī-bāni he will pay on his return from the City 10 5 minas of refined silver is owed by Pilah-Ištar Month Tēinātum",
+                "count": 3
+              },
+              {
+                "text": "I gave 4 shekels of silver to Amur-Ištar's wife. I gave 4 shekels of silver to Amur-Ištar's wife.",
+                "count": 3
+              },
+              {
+                "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Let you have not refused to go!' Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as foll",
+                "count": 3
+              },
+              {
+                "text": "The silver that your father wrote in the tablet. So you cheat me. Come, move, and pay the silver that your father wrote in the tablet. So you cheat me. Come, move, and pay the silver that your father wrote in the tablet. So you cheat me. Come, move, and pay the silver that your father wrote for you in the tablet, in accordance with the verdict of the City, and then let us go to the",
+                "count": 3
+              },
+              {
+                "text": "Son of Šukkutum. 0.5 mina of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššu",
+                "count": 3
+              },
+              {
+                "text": "The 12 shekels of silver, the interest on 2 minas of silver, is owed by the man from Tumliya.",
+                "count": 3
+              }
+            ]
+          }
+        },
+        "reconstructed": {
+          "metrics": {
+            "bleu": 12.17853311382737,
+            "chrfpp": 32.94283544458485,
+            "geom": 20.02986301314222
+          },
+          "output_health": {
+            "num_rows": 313,
+            "empty_prediction_ratio_pct": 0.0,
+            "copy_source_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 4.4728,
+            "unique_prediction_ratio_pct": 99.0415,
+            "has_bad_token_regex_ratio_pct": 0.0,
+            "exact_extra_id_0_ratio_pct": 0.0,
+            "top_repeated_predictions": [
+              {
+                "text": "Son of Šukkutum. 0.5 mina of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššur-lamassī. 12 shekels of refined silver is owed by Šu-Ištar son of Aššu",
+                "count": 2
+              },
+              {
+                "text": "Separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the excise on it extra, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; separately 0.5 mina of silver, the transport fee for it paid; se\nThe Kanesh colony gave us for these proceedings and we gave our testimony before Aššur's dagger Witnessed by Akuza, by Amurrum-bāni",
+                "count": 2
+              },
+              {
+                "text": "To Ennam-Aššur <gap> seal of <gap>",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "hard_subset": {
+          "tag": "hard_subset",
+          "subset_name": "hard_subset",
+          "rows": 110,
+          "eval_bleu": 12.18986779944069,
+          "eval_chrfpp": 34.04181123979429,
+          "eval_geom": 20.3706941135202,
+          "eval_bleu_01": 0.12189867799440689,
+          "eval_chrfpp_01": 0.3404181123979429,
+          "eval_geom_01": 0.203706941135202,
+          "metric_signatures": {
+            "sacrebleu_version": "2.6.0",
+            "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+            "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+          },
+          "health": {
+            "empty_prediction_ratio_pct": 0.0,
+            "pred_shorter_than_half_ref_ratio_pct": 8.181818181818182,
+            "repeat_prediction_ratio_pct": 0.0,
+            "internal_repeat_trigram_ratio_pct": 67.27272727272727,
+            "pred_word_mean": 157.02727272727273,
+            "ref_word_mean": 194.04545454545453
+          },
+          "note": "hard subset = ids intersect routed_full"
+        }
+      },
+      "fullval_health_vs_i0": {
+        "empty_prediction_ratio_pct": -0.0816,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 0.898,
+        "unique_prediction_ratio_pct": 0.0,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "no_regression": false
+      },
+      "artifacts": {
+        "anchor64_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_plus_trim_anchor64_chunk.csv",
+        "anchor64_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_plus_trim_anchor64_reconstructed.csv",
+        "fullval_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_plus_trim_fullval_chunk.csv",
+        "fullval_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_plus_trim_fullval_reconstructed.csv"
+      }
+    }
+  },
+  "artifacts": {
+    "variant_ranking_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/variant_ranking.csv",
+    "recommended_fullval_chunk_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_fullval_chunk.csv",
+    "recommended_fullval_reconstructed_csv": "/workspace/deep-past-/reports/taskform_winner_a2_health_surgical_20260310/fallback_180_fullval_reconstructed.csv"
+  }
+}

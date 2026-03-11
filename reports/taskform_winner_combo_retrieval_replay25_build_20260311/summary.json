@@ -1,0 +1,23 @@
+{
+  "status": "ready",
+  "base_config_path": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_raw_longtrain_20260311/generated_configs/winner_retrieval_raw_wlite_longtrain.yaml",
+  "base_processed_dir": "/workspace/deep-past-/data/processed_taskform_replay25_fold0",
+  "output_dir": "/workspace/deep-past-/data/processed_taskform_replay25_retrieval_top1_fold0",
+  "fold": 0,
+  "top_k": 1,
+  "hint_format": "split_fields",
+  "rows": {
+    "total": 6305,
+    "train_visible": 5080,
+    "val_visible": 1225
+  },
+  "hints": {
+    "train_rows_with_hint": 5080,
+    "val_rows_with_hint": 1225
+  },
+  "artifacts": {
+    "train_proc_csv": "/workspace/deep-past-/data/processed_taskform_replay25_retrieval_top1_fold0/train_proc.csv",
+    "folds_csv": "/workspace/deep-past-/data/processed_taskform_replay25_retrieval_top1_fold0/folds.csv",
+    "retrieval_augmented_samples_csv": "/workspace/deep-past-/reports/taskform_winner_combo_retrieval_replay25_build_20260311/retrieval_augmented_samples.csv"
+  }
+}

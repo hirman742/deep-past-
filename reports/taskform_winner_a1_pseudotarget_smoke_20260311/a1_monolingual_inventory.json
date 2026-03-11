@@ -1,0 +1,51 @@
+{
+  "mono_corpus_csv": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311/a1_monolingual_corpus.csv",
+  "pseudo_pool_csv": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311/a1_pseudo_source_pool.csv",
+  "train_parallel_source_rows": 1559,
+  "test_source_only_rows": 4,
+  "published_source_only_rows": 6342,
+  "mono_total_rows": 7905,
+  "pseudo_pool_rows": 6346,
+  "top_genres": [
+    {
+      "genre_label": "unknown",
+      "rows": 2658
+    },
+    {
+      "genre_label": "letter",
+      "rows": 2110
+    },
+    {
+      "genre_label": "train_parallel",
+      "rows": 1559
+    },
+    {
+      "genre_label": "debt note",
+      "rows": 521
+    },
+    {
+      "genre_label": "note",
+      "rows": 208
+    },
+    {
+      "genre_label": "agreement (contract)",
+      "rows": 125
+    },
+    {
+      "genre_label": "legal writing(s)",
+      "rows": 91
+    },
+    {
+      "genre_label": "testimony",
+      "rows": 81
+    },
+    {
+      "genre_label": "memo",
+      "rows": 68
+    },
+    {
+      "genre_label": "list",
+      "rows": 68
+    }
+  ]
+}

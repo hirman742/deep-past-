@@ -1,0 +1,3 @@
+source_origin,license_note,raw_parent_rows,post_clean_rows,post_chunk_rows,post_shortalign_rows,status,path
+competition_internal,competition_train_visible_only,1561,1561,4064.0,1243.0,ready,/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14
+external_parallel,user_supplied_csv,7483,7481,,,ready,/workspace/deep-past-/data/external/oracc_parallel.csv

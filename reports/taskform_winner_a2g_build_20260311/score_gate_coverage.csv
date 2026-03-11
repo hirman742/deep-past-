@@ -1,0 +1,7 @@
+gate_label,threshold,split,total_rows,enabled_rows,disabled_rows,enabled_ratio_pct
+g35,0.35,train_visible,4064,3454,610,84.9902
+g35,0.35,val_visible,1225,680,545,55.5102
+g50,0.5,train_visible,4064,2807,1257,69.0699
+g50,0.5,val_visible,1225,222,1003,18.1224
+g65,0.65,train_visible,4064,2599,1465,63.9518
+g65,0.65,val_visible,1225,70,1155,5.7143

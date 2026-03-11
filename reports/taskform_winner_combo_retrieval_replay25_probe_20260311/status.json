@@ -1,0 +1,8 @@
+{
+  "stage": "completed",
+  "status": "reject_stop",
+  "updated_at_utc": "2026-03-11T08:52:58Z",
+  "best_label": "ctrl",
+  "summary_json": "/workspace/deep-past-/reports/taskform_winner_combo_retrieval_replay25_probe_20260311/summary.json",
+  "gate_report_md": "/workspace/deep-past-/reports/taskform_winner_combo_retrieval_replay25_probe_20260311/gate_report.md"
+}

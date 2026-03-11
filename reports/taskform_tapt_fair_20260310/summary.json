@@ -1,0 +1,304 @@
+{
+  "base_config_path": "/workspace/deep-past-/runs/STEER/generated_configs/continue_s4_bs24_len640_seg5.yaml",
+  "base_checkpoint_dir": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/checkpoint-250",
+  "base_processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14",
+  "manifest_path": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/manifest.json",
+  "fair_offline_manifest": {
+    "fold": 0,
+    "base_processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14",
+    "fair_offline_mono_fold0_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0.csv",
+    "trainfold_source_only_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0_trainfold_source_only.csv",
+    "trainfold_plus_published_nooverlap_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0.csv",
+    "published_nooverlap_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0_published_nooverlap.csv",
+    "submit_mono_all_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/submit_mono_all.csv",
+    "removed_rows_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_removed_rows.csv",
+    "fold0_val_rows": 313,
+    "fold0_val_parent_rows": 313,
+    "fold0_val_unique_sources": 312,
+    "fold0_val_parent_rows_from_processed": 313,
+    "fold0_val_chunk_rows_from_processed": 1225,
+    "inventory": {
+      "trainfold_source_only_rows": 1247,
+      "published_nooverlap_rows": 7610,
+      "fair_offline_mono_fold0_rows": 8857,
+      "submit_mono_all_rows": 9173
+    },
+    "removals": {
+      "val_overlap_rows": 69,
+      "test_rows": 4,
+      "published_duplicate_rows": 274
+    },
+    "checks": {
+      "fold0_val_row_count_matches_base": true,
+      "fold0_val_chunk_rows_unchanged": true,
+      "trainfold_exact_overlap_with_val_unique_sources": 0,
+      "fair_offline_exact_overlap_with_val_unique_sources": 0,
+      "fair_offline_exact_overlap_with_test_unique_sources": 0
+    }
+  },
+  "incumbent_anchor64": {
+    "label": "I0_incumbent",
+    "tag": "taskform_a2_a1_incumbent_anchor64_20260310",
+    "decode_best_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/decode_grid_best_taskform_a2_a1_incumbent_anchor64_20260310.json",
+    "diagnose_summary_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/val_diagnostic_summary_taskform_a2_a1_incumbent_anchor64_20260310.json",
+    "eval_geom": 16.50574718634351,
+    "eval_bleu": 9.860624386106183,
+    "eval_chrfpp": 27.629050606912852,
+    "output_health": {
+      "num_rows": 64,
+      "empty_prediction_ratio_pct": 1.5625,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 12.5,
+      "unique_prediction_ratio_pct": 100.0,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "top_repeated_predictions": [
+        {
+          "text": "To Šu-Tammuzi, Elaya, Ennam-Aššur and Lāmassī: Ennam-Aššur and Lāmassī: Ennam-Aššur and Ali-ahum from Ennam-Aššur and Ali-ahum.",
+          "count": 1
+        },
+        {
+          "text": "Seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal o",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver",
+          "count": 1
+        },
+        {
+          "text": "Seal of the City that you have not paid the silver to the City and send the silver to the City to the City and the City that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 1
+        },
+        {
+          "text": "If you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 1
+        },
+        {
+          "text": "If you have not paid the silver and send me the silver to the silver and send me the silver to you \"",
+          "count": 1
+        },
+        {
+          "text": "miss sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems si",
+          "count": 1
+        },
+        {
+          "text": "To Šalim-Aššur from Iddin-abum, Itūr-ilī, Inah-ilī, Ennam-Aššur and Ali-ahum: Itūr-ilī, Ennam-Aššur and Ali-ahum said: \"The silver has brought me the silver and the silver has brought me the silver and send me the silver to Itūr-ilī, Ennam-Aššur and Ali-ahum:",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver <gap>-Aššur son of <gap>-Aššur son of Aššur <gap>-Aššur son of Aššur's dagger <gap> son of Aššur's dagger <gap>",
+          "count": 1
+        }
+      ]
+    },
+    "reuse_source": "/workspace/deep-past-/reports/taskform_a2_a1_20260310/incumbent_anchor64_summary.json"
+  },
+  "tapt_smoke": {
+    "records": [
+      {
+        "label": "trainfold_source_only",
+        "corpus_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0_trainfold_source_only.csv",
+        "config_path": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/generated_configs/taskform_tapt_fair_smoke_trainfold_source_only.yaml",
+        "run_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_SOURCE_ONLY_20260310",
+        "summary_path": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_SOURCE_ONLY_20260310/tapt_summary.json",
+        "best_model_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_SOURCE_ONLY_20260310/best_model",
+        "raw_text_rows": 1247,
+        "train_rows": 1222,
+        "eval_rows": 25,
+        "train_loss": 16.61495132446289,
+        "eval_loss": 3.4459192752838135
+      },
+      {
+        "label": "trainfold_plus_published_nooverlap",
+        "corpus_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0.csv",
+        "config_path": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/generated_configs/taskform_tapt_fair_smoke_trainfold_plus_published_nooverlap.yaml",
+        "run_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_PLUS_PUBLISHED_NOOVERLAP_20260310",
+        "summary_path": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_PLUS_PUBLISHED_NOOVERLAP_20260310/tapt_summary.json",
+        "best_model_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_PLUS_PUBLISHED_NOOVERLAP_20260310/best_model",
+        "raw_text_rows": 8857,
+        "train_rows": 8680,
+        "eval_rows": 177,
+        "train_loss": 17.581136576334636,
+        "eval_loss": 2.796302556991577
+      }
+    ],
+    "selected": {
+      "label": "trainfold_plus_published_nooverlap",
+      "corpus_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0.csv",
+      "config_path": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/generated_configs/taskform_tapt_fair_smoke_trainfold_plus_published_nooverlap.yaml",
+      "run_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_PLUS_PUBLISHED_NOOVERLAP_20260310",
+      "summary_path": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_PLUS_PUBLISHED_NOOVERLAP_20260310/tapt_summary.json",
+      "best_model_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_PLUS_PUBLISHED_NOOVERLAP_20260310/best_model",
+      "raw_text_rows": 8857,
+      "train_rows": 8680,
+      "eval_rows": 177,
+      "train_loss": 17.581136576334636,
+      "eval_loss": 2.796302556991577,
+      "selection_reason": "lowest_eval_loss_as_smoke_health_tiebreaker_only"
+    }
+  },
+  "matched_supervised": {
+    "c0": {
+      "config_path": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/generated_configs/taskform_tapt_fair_c0.yaml",
+      "run_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_C0_20260310_fold0",
+      "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_C0_20260310_fold0/best_model",
+      "decode_best_path": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_C0_20260310_fold0/diagnostics/decode_grid_best_taskform_tapt_fair_c0_anchor64_20260310.json",
+      "diagnose_summary_path": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_C0_20260310_fold0/diagnostics/val_diagnostic_summary_taskform_tapt_fair_c0_anchor64_20260310.json",
+      "run_summary_path": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_C0_20260310_fold0/run_summary.json",
+      "used_init_adapter": false,
+      "init_adapter_dir": "",
+      "eval_geom": 3.0869006341998144,
+      "eval_bleu": 1.144498306153044,
+      "eval_chrfpp": 8.325879972205911,
+      "output_health": {
+        "num_rows": 64,
+        "empty_prediction_ratio_pct": 1.5625,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 6.25,
+        "unique_prediction_ratio_pct": 98.4375,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "top_repeated_predictions": [
+          {
+            "text": "<gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap>",
+            "count": 2
+          },
+          {
+            "text": "Akkadian to English: um-ma šu-ta-mu-zi e-lá-a en-um-a-šùr ù lá-a en-um-a-šùr ù lá-a en-um-a-šùr ù lá-a en-um-a-šùr ù lá-a en-um-a-šùr ù lá-a en-um-a-šùr.",
+            "count": 1
+          },
+          {
+            "text": "a-am-ší ša ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú",
+            "count": 1
+          },
+          {
+            "text": "a-ni ra-bi-ṣú-um i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-n",
+            "count": 1
+          },
+          {
+            "text": "a-šar ta-ma-ḫa-ra-ni KÙ.BABBAR šar ta-ma-ḫa-ra-ni KÙ.BABBAR šar ta-ma-ḫa-ra-ni KÙ.BABBAR šar ta-ma-ḫa-ra-ni KÙ.BABBAR šar ta-ma-ḫa-ra-ni KÙ.BABBAR šar ta-ma-ḫa-ra-n",
+            "count": 1
+          },
+          {
+            "text": "a-bi-lá-nim-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-ku-nu-tí-ma-li-ba-",
+            "count": 1
+          },
+          {
+            "text": "-ú ba-ba-a-tum ru-qá-tum i-ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú ba-ší-ú",
+            "count": 1
+          },
+          {
+            "text": "á-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma lá tù-ri-qá-ma",
+            "count": 1
+          },
+          {
+            "text": "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -",
+            "count": 1
+          },
+          {
+            "text": "an to English: a-na šùr ù a-la-ḫu-um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am um-ma ta-áš-pu-ra-am",
+            "count": 1
+          }
+        ]
+      },
+      "gpu_peak_utilization_pct": 20.243466615798468,
+      "label": "C0_no_tapt"
+    },
+    "t0": {
+      "config_path": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/generated_configs/taskform_tapt_fair_t0.yaml",
+      "run_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_T0_20260310_fold0",
+      "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_T0_20260310_fold0/best_model",
+      "decode_best_path": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_T0_20260310_fold0/diagnostics/decode_grid_best_taskform_tapt_fair_t0_anchor64_20260310.json",
+      "diagnose_summary_path": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_T0_20260310_fold0/diagnostics/val_diagnostic_summary_taskform_tapt_fair_t0_anchor64_20260310.json",
+      "run_summary_path": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_T0_20260310_fold0/run_summary.json",
+      "used_init_adapter": true,
+      "init_adapter_dir": "/workspace/deep-past-/runs/TASKFORM_TAPT_FAIR_TRAINFOLD_PLUS_PUBLISHED_NOOVERLAP_20260310/best_model",
+      "eval_geom": 2.5434301778144666,
+      "eval_bleu": 0.767910850109511,
+      "eval_chrfpp": 8.424203237257014,
+      "output_health": {
+        "num_rows": 64,
+        "empty_prediction_ratio_pct": 1.5625,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 4.6875,
+        "unique_prediction_ratio_pct": 87.5,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "top_repeated_predictions": [
+          {
+            "text": "<gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap> <gap",
+            "count": 6
+          },
+          {
+            "text": "ṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣṣ",
+            "count": 3
+          },
+          {
+            "text": "to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to English: akkadian to E",
+            "count": 2
+          },
+          {
+            "text": "to English: um-ma šu-ta-mu-zi e-lá-a en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr ù a-na en-um-a-šùr",
+            "count": 1
+          },
+          {
+            "text": "e ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-ṣú-um e-ra-bi-",
+            "count": 1
+          },
+          {
+            "text": "a i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na ša-ḫa-tí-ku-nu li-zi-iz-ma i-na KÙ.BABBAR pá-ni-ma i-na KÙ.BABBAR pá-ni-ma i-na KÙ.BABBAR pá-ni-ma i-na KÙ.BABBAR pá-ni-ma i-na KÙ.BABBAR pá-ni-ma i-na KÙ.BABBAR pá-ni-ma i-na KÙ.BABBAR pá-ni-ma i-na KÙ.BABBAR pá",
+            "count": 1
+          },
+          {
+            "text": "u ba-ba-a-tum ru-qá-tum i-ba-ší-ú ṭup-pí ku-un-kà-ma a-na DUMU um-me-a-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim ke-nim",
+            "count": 1
+          },
+          {
+            "text": "á-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùriqá-ma lá tùri",
+            "count": 1
+          },
+          {
+            "text": "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -",
+            "count": 1
+          },
+          {
+            "text": "<gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> ku-ta-nu <gap> k",
+            "count": 1
+          }
+        ]
+      },
+      "gpu_peak_utilization_pct": 20.243466615798468,
+      "label": "T0_tapt_then_supervised",
+      "tapt_init_label": "trainfold_plus_published_nooverlap"
+    }
+  },
+  "comparison": {
+    "delta_geom_t0_vs_c0": -0.5435,
+    "delta_geom_t0_vs_i0": -13.9623,
+    "health_t0_vs_c0": {
+      "empty_prediction_ratio_pct": 0.0,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": -1.5625,
+      "unique_prediction_ratio_pct": -10.9375,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "no_regression": false
+    },
+    "health_t0_vs_i0": {
+      "empty_prediction_ratio_pct": 0.0,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": -7.8125,
+      "unique_prediction_ratio_pct": -12.5,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "no_regression": false
+    },
+    "status": "review_stop"
+  },
+  "fullval_compare": null,
+  "elapsed_minutes": 37.05
+}

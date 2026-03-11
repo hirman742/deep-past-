@@ -15,6 +15,12 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 from generation_utils import build_bad_words_ids, build_generate_kwargs, resolve_generation_settings
 from metrics_utils import build_metric_signatures, compute_translation_metrics
+from retrieval_logits_hook import (
+    build_batch_logits_processor,
+    build_query_neighbors_for_frame,
+    load_train_visible_frame,
+    task_prefix_from_config,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -176,9 +182,13 @@ def _generate_texts(
     bad_words_ids: list[list[int]] | None,
     batch_size: int,
     device: torch.device,
+    query_neighbors=None,
+    rk_bias_strength: float = 0.0,
+    rk_max_bias_steps: int = 0,
 ) -> list[str]:
     out: list[str] = []
     with torch.no_grad():
+        batch_start_idx = 0
         for batch_sources in _chunk(sources, max(1, batch_size)):
             tokenized = tokenizer(
                 batch_sources,
@@ -188,6 +198,15 @@ def _generate_texts(
                 padding=True,
             )
             tokenized = {k: v.to(device) for k, v in tokenized.items()}
+            batch_processor = build_batch_logits_processor(
+                query_neighbors=query_neighbors,
+                batch_start_idx=batch_start_idx,
+                batch_size=len(batch_sources),
+                num_beams=num_beams,
+                bias_strength=rk_bias_strength,
+                max_bias_steps=rk_max_bias_steps,
+                eos_token_id=tokenizer.eos_token_id,
+            )
             generated = model.generate(
                 **tokenized,
                 **build_generate_kwargs(
@@ -198,9 +217,11 @@ def _generate_texts(
                     no_repeat_ngram_size=no_repeat_ngram_size,
                     bad_words_ids=bad_words_ids,
                 ),
+                logits_processor=batch_processor,
             )
             decoded = tokenizer.batch_decode(generated, skip_special_tokens=True)
             out.extend([x.strip() for x in decoded])
+            batch_start_idx += len(batch_sources)
     return out
 
 
@@ -220,6 +241,12 @@ def main() -> None:
     ap.add_argument("--aggregate-by-parent", default="auto", choices=["auto", "on", "off"])
     ap.add_argument("--aggregate-original-only", dest="aggregate_original_only", action="store_true")
     ap.add_argument("--no-aggregate-original-only", dest="aggregate_original_only", action="store_false")
+    ap.add_argument("--rk-enabled", action="store_true")
+    ap.add_argument("--rk-k", type=int, default=8)
+    ap.add_argument("--rk-raw-pool-k", type=int, default=48)
+    ap.add_argument("--rk-bias-strength", type=float, default=1.5)
+    ap.add_argument("--rk-max-bias-steps", type=int, default=192)
+    ap.add_argument("--rk-report-dir", default="")
     ap.set_defaults(aggregate_original_only=True)
     args = ap.parse_args()
 
@@ -296,6 +323,43 @@ def main() -> None:
     else:
         csv_path = run_dir / "decode_grid_metrics.csv"
         json_path = run_dir / "decode_grid_best.json"
+
+    rk_hook_payload: dict[str, Any] | None = None
+    rk_query_neighbors = None
+    if args.rk_enabled:
+        rk_report_dir = _resolve_path(
+            args.rk_report_dir,
+            json_path.parent / (f"rk_hook_{suffix}" if suffix else "rk_hook"),
+        )
+        rk_report_dir.mkdir(parents=True, exist_ok=True)
+        rk_train_visible = load_train_visible_frame(
+            processed_dir=processed_dir,
+            fold=int(args.fold),
+            task_prefix=task_prefix_from_config(cfg),
+        )
+        rk_query_neighbors, rk_meta, rk_query_df = build_query_neighbors_for_frame(
+            train_visible=rk_train_visible,
+            query_df=val_df,
+            tokenizer=tokenizer,
+            task_prefix=task_prefix_from_config(cfg),
+            raw_pool_k=int(args.rk_raw_pool_k),
+            final_k=int(args.rk_k),
+        )
+        rk_query_csv = rk_report_dir / "query_neighbors.csv"
+        rk_query_df.to_csv(rk_query_csv, index=False)
+        rk_hook_payload = {
+            "enabled": True,
+            "rk_k": int(args.rk_k),
+            "rk_raw_pool_k": int(args.rk_raw_pool_k),
+            "rk_bias_strength": float(args.rk_bias_strength),
+            "rk_max_bias_steps": int(args.rk_max_bias_steps),
+            "query_neighbors_csv": str(rk_query_csv),
+            "metadata": rk_meta,
+        }
+        (rk_report_dir / "hook_metadata.json").write_text(
+            json.dumps(rk_hook_payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
     if csv_path.exists():
         existing_df = pd.read_csv(csv_path)
         if not existing_df.empty:
@@ -361,6 +425,9 @@ def main() -> None:
             bad_words_ids=bad_words_ids,
             batch_size=args.predict_batch_size,
             device=device,
+            query_neighbors=rk_query_neighbors,
+            rk_bias_strength=float(args.rk_bias_strength),
+            rk_max_bias_steps=int(args.rk_max_bias_steps),
         )
         metric_predictions = predictions
         metric_references = references
@@ -395,6 +462,9 @@ def main() -> None:
                 "metric_level": "parent_reconstructed" if (do_aggregate and metric_predictions is not predictions) else "chunk_or_sample",
                 "aggregate_original_only": bool(args.aggregate_original_only),
                 "aggregate_filtered_rows": int(agg_filter_stats.get("filtered_rows", 0)),
+                "rk_enabled": bool(args.rk_enabled),
+                "rk_bias_strength": float(args.rk_bias_strength) if args.rk_enabled else 0.0,
+                "rk_k": int(args.rk_k) if args.rk_enabled else 0,
                 "checkpoint_dir": str(checkpoint_dir),
                 "tag": suffix,
             }
@@ -412,6 +482,8 @@ def main() -> None:
         best_payload["elapsed_seconds"] = float(elapsed)
         best_payload["checkpoint_dir"] = str(checkpoint_dir)
         best_payload["tag"] = suffix
+        if rk_hook_payload is not None:
+            best_payload["rk_hook"] = rk_hook_payload
         json_path.write_text(json.dumps(best_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
         pd.DataFrame([current_row]).to_csv(
@@ -446,6 +518,8 @@ def main() -> None:
     best["elapsed_seconds"] = float(time.time() - start_time)
     best["checkpoint_dir"] = str(checkpoint_dir)
     best["tag"] = suffix
+    if rk_hook_payload is not None:
+        best["rk_hook"] = rk_hook_payload
     json_path.write_text(json.dumps(best, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"OK: wrote {csv_path}")
     print(f"OK: wrote {json_path}")

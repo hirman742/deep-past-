@@ -1,0 +1,304 @@
+{
+  "line": "winner_retrieval_replay25_combo_probe",
+  "status": "reject_stop",
+  "reason": "combo arm fails the matched probe gate; retrieval control remains best",
+  "base_config_path": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_raw_longtrain_20260311/generated_configs/winner_retrieval_raw_wlite_longtrain.yaml",
+  "base_checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_A2_RETRIEVAL_RAW_LONGTRAIN_20260311_fold0/best_model",
+  "control_processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_fold0",
+  "combo_base_processed_dir": "/workspace/deep-past-/data/processed_taskform_replay25_fold0",
+  "combo_processed_dir": "/workspace/deep-past-/data/processed_taskform_replay25_retrieval_top1_fold0",
+  "combo_build": {
+    "status": "ready",
+    "base_config_path": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_raw_longtrain_20260311/generated_configs/winner_retrieval_raw_wlite_longtrain.yaml",
+    "base_processed_dir": "/workspace/deep-past-/data/processed_taskform_replay25_fold0",
+    "output_dir": "/workspace/deep-past-/data/processed_taskform_replay25_retrieval_top1_fold0",
+    "fold": 0,
+    "top_k": 1,
+    "hint_format": "split_fields",
+    "rows": {
+      "total": 6305,
+      "train_visible": 5080,
+      "val_visible": 1225
+    },
+    "hints": {
+      "train_rows_with_hint": 5080,
+      "val_rows_with_hint": 1225
+    },
+    "artifacts": {
+      "train_proc_csv": "/workspace/deep-past-/data/processed_taskform_replay25_retrieval_top1_fold0/train_proc.csv",
+      "folds_csv": "/workspace/deep-past-/data/processed_taskform_replay25_retrieval_top1_fold0/folds.csv",
+      "retrieval_augmented_samples_csv": "/workspace/deep-past-/reports/taskform_winner_combo_retrieval_replay25_build_20260311/retrieval_augmented_samples.csv"
+    },
+    "reused_existing_build": true
+  },
+  "fold": 0,
+  "probe_max_steps": 180,
+  "probe_eval_steps": 45,
+  "anchor_gate": 0.25,
+  "hard_floor": 0.0,
+  "report_dir": "/workspace/deep-past-/reports/taskform_winner_combo_retrieval_replay25_probe_20260311",
+  "incumbent_anchor64": {
+    "tag": "taskform_a2_a1_incumbent_anchor64_20260310",
+    "decode_best_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/decode_grid_best_taskform_a2_a1_incumbent_anchor64_20260310.json",
+    "diagnose_summary_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/val_diagnostic_summary_taskform_a2_a1_incumbent_anchor64_20260310.json",
+    "eval_geom": 16.50574718634351,
+    "eval_bleu": 9.860624386106183,
+    "eval_chrfpp": 27.629050606912852,
+    "output_health": {
+      "num_rows": 64,
+      "empty_prediction_ratio_pct": 1.5625,
+      "copy_source_ratio_pct": 0.0,
+      "pred_shorter_than_half_ref_ratio_pct": 12.5,
+      "unique_prediction_ratio_pct": 100.0,
+      "has_bad_token_regex_ratio_pct": 0.0,
+      "exact_extra_id_0_ratio_pct": 0.0,
+      "top_repeated_predictions": [
+        {
+          "text": "To Šu-Tammuzi, Elaya, Ennam-Aššur and Lāmassī: Ennam-Aššur and Lāmassī: Ennam-Aššur and Ali-ahum from Ennam-Aššur and Ali-ahum.",
+          "count": 1
+        },
+        {
+          "text": "Seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal o",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver",
+          "count": 1
+        },
+        {
+          "text": "Seal of the City that you have not paid the silver to the City and send the silver to the City to the City and the City that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 1
+        },
+        {
+          "text": "If you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+          "count": 1
+        },
+        {
+          "text": "If you have not paid the silver and send me the silver to the silver and send me the silver to you \"",
+          "count": 1
+        },
+        {
+          "text": "miss sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems si",
+          "count": 1
+        },
+        {
+          "text": "To Šalim-Aššur from Iddin-abum, Itūr-ilī, Inah-ilī, Ennam-Aššur and Ali-ahum: Itūr-ilī, Ennam-Aššur and Ali-ahum said: \"The silver has brought me the silver and the silver has brought me the silver and send me the silver to Itūr-ilī, Ennam-Aššur and Ali-ahum:",
+          "count": 1
+        },
+        {
+          "text": "Seal of the silver <gap>-Aššur son of <gap>-Aššur son of Aššur <gap>-Aššur son of Aššur's dagger <gap> son of Aššur's dagger <gap>",
+          "count": 1
+        }
+      ]
+    }
+  },
+  "frozen_candidate": {
+    "source": "/workspace/deep-past-/reports/taskform_winner_a2_freeze_20260310/summary.json",
+    "anchor64_reconstructed_geom": 23.5415,
+    "fullval_reconstructed_geom": 19.9035,
+    "hard_geom": 20.7888,
+    "status": ""
+  },
+  "candidates": {
+    "ctrl": {
+      "config_path": "/workspace/deep-past-/reports/taskform_winner_combo_retrieval_replay25_probe_20260311/generated_configs/taskform_winner_retrieval_ctrl_combo_20260311.yaml",
+      "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_CTRL_COMBO_20260311_fold0",
+      "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_CTRL_COMBO_20260311_fold0/best_model",
+      "decode_best_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_CTRL_COMBO_20260311_fold0/diagnostics/decode_grid_best_taskform_winner_retrieval_ctrl_combo_anchor64_20260311.json",
+      "diagnose_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_CTRL_COMBO_20260311_fold0/diagnostics/val_diagnostic_summary_taskform_winner_retrieval_ctrl_combo_anchor64_20260311.json",
+      "run_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_CTRL_COMBO_20260311_fold0/run_summary.json",
+      "eval_geom": 23.02759313376593,
+      "eval_bleu": 14.322985733508133,
+      "eval_chrfpp": 37.022311925768044,
+      "output_health": {
+        "num_rows": 64,
+        "empty_prediction_ratio_pct": 0.0,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 10.9375,
+        "unique_prediction_ratio_pct": 95.3125,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "top_repeated_predictions": [
+          {
+            "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Le…",
+            "count": 3
+          },
+          {
+            "text": "To Ennam-Aššur, sealed by Ali-ahum and <gap>-Ištar.",
+            "count": 2
+          },
+          {
+            "text": "Sealed by Šu-Tammuzī, Elaya, Ennam-Aššur son of Elamma and Lamassī; to Ennam-Aššur.",
+            "count": 1
+          },
+          {
+            "text": "From Atata, Šu-Anum, Dannaya and Lamassī to Ali-ahum: In accordance with your instructions we got a tablet of the City for you; also, we hired an attorney for you. Following the verdict of the City they must release the",
+            "count": 1
+          },
+          {
+            "text": "Have the eponym assist you there and since he gave 13 minas each to his investors he should also give 13 minas each to his investors he should also give 13 minas each to his investors he should also give 13 minas each to the eponym",
+            "count": 1
+          },
+          {
+            "text": "Urgent, take care there, clear yourself, set out and come Here interest on the silver due to the City Hall has increased for you, so if you are delayed, then have the silver of the City Hall procured, seal it and give i…",
+            "count": 1
+          },
+          {
+            "text": "Witnessed by Enna-Suen, by Šar-Adad, by Ilī-bāni \"",
+            "count": 1
+          },
+          {
+            "text": "My dear brothers and lords, the man has cheated me once or twice Seize him and have him pay the silver and as much interest as you can manage and then buy tin for me, seal it and give it to a reliable affiliated trader…",
+            "count": 1
+          },
+          {
+            "text": "Is cleared, stating that the wool and 7 donkeys belong to Ennam-Aššur Seal the wool and entrust it under your seals together with my other goods so they may conduct it here",
+            "count": 1
+          },
+          {
+            "text": "Seal of Mannum-balum-Aššur son of Ṣilli-Adad, seal of Šu-Illil son of Mannum-kī-Aššur, seal of Puzur-Aššur son of Ataya owes 22 shekels of good silver to Ali-ahum Reckoned from the week of Ilīd…",
+            "count": 1
+          }
+        ]
+      },
+      "gpu_peak_utilization_pct": 26.285362805744473,
+      "label": "ctrl",
+      "processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14_retrieval_top1_fold0",
+      "reconstructed_health": {
+        "empty_prediction_ratio_pct": 0.0,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 0.0
+      },
+      "hard_subset": {
+        "rows": 9,
+        "eval_geom": 23.204451075024014,
+        "eval_bleu": 14.279179256646511,
+        "eval_chrfpp": 37.70850831237748,
+        "note": "hard subset = routed_full parent ids via pred_id_col=id hard_id_col=oare_id"
+      },
+      "train_runtime_seconds": 0.0,
+      "best_eval_loss": 0.0,
+      "delta_geom_vs_incumbent_anchor64": 6.5218,
+      "delta_geom_vs_frozen_anchor64": -0.5139
+    },
+    "combo": {
+      "config_path": "/workspace/deep-past-/reports/taskform_winner_combo_retrieval_replay25_probe_20260311/generated_configs/taskform_winner_retrieval_replay25_combo_20260311.yaml",
+      "run_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_REPLAY25_COMBO_20260311_fold0",
+      "checkpoint_dir": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_REPLAY25_COMBO_20260311_fold0/best_model",
+      "decode_best_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_REPLAY25_COMBO_20260311_fold0/diagnostics/decode_grid_best_taskform_winner_retrieval_replay25_combo_anchor64_20260311.json",
+      "diagnose_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_REPLAY25_COMBO_20260311_fold0/diagnostics/val_diagnostic_summary_taskform_winner_retrieval_replay25_combo_anchor64_20260311.json",
+      "run_summary_path": "/workspace/deep-past-/runs/TASKFORM_WINNER_RETRIEVAL_REPLAY25_COMBO_20260311_fold0/run_summary.json",
+      "eval_geom": 22.875744875372398,
+      "eval_bleu": 14.092339992143348,
+      "eval_chrfpp": 37.1336274809487,
+      "output_health": {
+        "num_rows": 64,
+        "empty_prediction_ratio_pct": 0.0,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 10.9375,
+        "unique_prediction_ratio_pct": 95.3125,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "top_repeated_predictions": [
+          {
+            "text": "I have not refused to go!\" Ali-ahum answered the attorney Ababa; Ali-ahum said: \"I submit to the tablet of the City and the attorney of my lord. Yesterday you questioned me and I answered you as follows: 'Come along! Le…",
+            "count": 3
+          },
+          {
+            "text": "To Ennam-Aššur, sealed by Ali-ahum and <gap>-Ištar.",
+            "count": 2
+          },
+          {
+            "text": "Sealed by Šu-Tammuzī, Elaya, Ennam-Aššur son of Elamma and Lamassī; to Ennam-Aššur.",
+            "count": 1
+          },
+          {
+            "text": "From Atata, Šu-Anum, Dannaya and Lamassī to Ali-ahum: In accordance with your instructions we got a tablet of the City for you; also, we hired an attorney for you. Following the verdict of the City they must release the",
+            "count": 1
+          },
+          {
+            "text": "Have the eponym assist you there and since he gave 13 minas each to his investors he should also give 13 minas each to his investors he should also give 13 minas each to his investors he should also give 13 minas each to the eponym",
+            "count": 1
+          },
+          {
+            "text": "Urgent, take care there, clear yourself, set out and come Here interest on the silver due to the City Hall has increased for you, so if you are delayed, then have the silver of the City Hall procured, seal it and give i…",
+            "count": 1
+          },
+          {
+            "text": "Witnessed by Enna-Suen, by Šar-Adad, by Ilī-bāni \"",
+            "count": 1
+          },
+          {
+            "text": "My dear brothers and lords, the man has cheated me once or twice Seize him and have him pay the silver and as much interest as you can manage and then buy tin for me, seal it and give it to a reliable affiliated trader…",
+            "count": 1
+          },
+          {
+            "text": "Is cleared, stating that the wool and 7 donkeys belong to Ennam-Aššur Seal the wool and entrust it under your seals together with my other goods so they may conduct it here",
+            "count": 1
+          },
+          {
+            "text": "Seal of Mannum-balum-Aššur son of Ṣilli-Adad, seal of Šu-Illil son of Mannum-kī-Aššur, seal of Puzur-Aššur son of Ataya owes 22 shekels of good silver to Ali-ahum Reckoned from the week of Ilīd…",
+            "count": 1
+          }
+        ]
+      },
+      "gpu_peak_utilization_pct": 25.73100325841953,
+      "label": "combo",
+      "processed_dir": "/workspace/deep-past-/data/processed_taskform_replay25_retrieval_top1_fold0",
+      "reconstructed_health": {
+        "empty_prediction_ratio_pct": 0.0,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 0.0
+      },
+      "hard_subset": {
+        "rows": 9,
+        "eval_geom": 23.058149135925284,
+        "eval_bleu": 14.069664130790084,
+        "eval_chrfpp": 37.78897894307555,
+        "note": "hard subset = routed_full parent ids via pred_id_col=id hard_id_col=oare_id"
+      },
+      "train_runtime_seconds": 0.0,
+      "best_eval_loss": 0.0,
+      "delta_geom_vs_incumbent_anchor64": 6.37,
+      "delta_geom_vs_frozen_anchor64": -0.6658
+    }
+  },
+  "comparisons": {
+    "combo": {
+      "delta_geom_vs_control_anchor64": -0.1518,
+      "delta_geom_vs_control_hard_subset": -0.1463,
+      "train_runtime_ratio_vs_control": 0.0,
+      "health_delta_vs_control": {
+        "empty_prediction_ratio_pct": 0.0,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 0.0,
+        "unique_prediction_ratio_pct": 0.0,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "repeat_prediction_ratio_pct": 0.0,
+        "internal_repeat_trigram_ratio_pct": 0.0,
+        "no_regression": true
+      },
+      "reconstructed_health_delta_vs_control": {
+        "empty_prediction_ratio_pct": 0.0,
+        "copy_source_ratio_pct": 0.0,
+        "pred_shorter_than_half_ref_ratio_pct": 0.0,
+        "unique_prediction_ratio_pct": 0.0,
+        "has_bad_token_regex_ratio_pct": 0.0,
+        "exact_extra_id_0_ratio_pct": 0.0,
+        "repeat_prediction_ratio_pct": 0.0,
+        "internal_repeat_trigram_ratio_pct": 0.0,
+        "no_regression": true
+      },
+      "status": "control_only"
+    }
+  },
+  "best_label": "ctrl",
+  "best_status": "control_only",
+  "eligible_for_postprobe_fullval": false,
+  "elapsed_minutes": 31.2
+}

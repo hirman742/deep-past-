@@ -1,0 +1,45 @@
+# Self-describing archive metadata
+README.md
+manifests/archive/research_tail_20260311.lst
+docs/archive_manifest_2026-03-11.md
+
+# Research docs covering non-promoted axes
+docs/next_step_displine_winner_2026-03-10.md
+docs/taskform_winner_a1_continue_redesign_2026-03-10.md
+docs/taskform_winner_pseudotarget_smoke_2026-03-11.md
+docs/taskform_winner_replay_probe_2026-03-11.md
+
+# A1 external and continue-on-wlite evidence
+data/external/oracc_parallel.csv
+reports/taskform_winner_a1_20260310
+reports/taskform_winner_a1_silver_build_20260310
+reports/taskform_winner_a1_continue_build_20260310
+reports/taskform_winner_a1_continue_probe_20260310
+reports/taskform_winner_a1_continue_overnight_20260310
+reports/taskform_winner_a1_pseudotarget_smoke_20260311
+reports/taskform_tapt_fair_20260310
+
+# Orthogonal retrieval and replay probes
+reports/taskform_winner_a2g_build_20260311
+reports/taskform_winner_a2g_probe_20260311
+reports/taskform_winner_a2_retrieval_raw_longtrain_20260311
+reports/taskform_winner_replay_probe_20260311
+reports/taskform_winner_replay_band_probe_20260311
+reports/taskform_winner_combo_retrieval_replay25_build_20260311
+reports/taskform_winner_combo_retrieval_replay25_probe_20260311
+reports/taskform_winner_postprobe_fullval_20260311
+reports/taskform_winner_replay25_candidate_longtrain_20260311
+reports/taskform_winner_a3_revisit_20260311
+
+# Research logs kept outside the main winner archive
+logs/taskform_a2_a1_20260310.log
+logs/taskform_tapt_fair_20260310.log
+logs/winner_a1r_overnight_20260310.log
+logs/winner_pseudotarget_smoke_20260311.log
+logs/winner_retrieval_raw_longtrain_20260311.log
+logs/winner_replay_probe_20260311.log
+logs/winner_replay_band_probe_20260311.log
+logs/winner_combo_probe_20260311.log
+logs/winner_postprobe_decode_20260311.log
+logs/winner_replay25_candidate_longtrain_20260311.log
+logs/winner_a3_revisit_20260311.log

@@ -1,0 +1,157 @@
+{
+  "status": "completed_revisit_audit",
+  "rows": 17,
+  "merge_mode": "id_reference",
+  "baseline_label": "retrieval_raw_longtrain",
+  "candidates": {
+    "retrieval_raw_longtrain": {
+      "rows": 17,
+      "unique_prediction_ratio_pct": 100.0,
+      "sentence_geom_mean": 17.9762
+    },
+    "replay15": {
+      "rows": 17,
+      "unique_prediction_ratio_pct": 100.0,
+      "sentence_geom_mean": 17.436
+    }
+  },
+  "pool": {
+    "candidate_count": 2,
+    "mean_unique_candidates_per_row": 2.0,
+    "unique_candidate_ratio_pct": 100.0,
+    "rows_all_same_ratio_pct": 0.0,
+    "rows_all_unique_ratio_pct": 100.0
+  },
+  "pairwise": {
+    "retrieval_raw_longtrain__vs__replay15": {
+      "rows": 17,
+      "exact_overlap_rows": 0,
+      "exact_overlap_ratio_pct": 0.0,
+      "bottom25_overlap_rows": 4,
+      "bottom25_union_rows": 6,
+      "bottom25_overlap_ratio_pct": 23.5294,
+      "bottom25_jaccard": 0.6667
+    }
+  },
+  "oracle_pairwise": {
+    "replay15": {
+      "rows": 17,
+      "baseline_label": "retrieval_raw_longtrain",
+      "probe_label": "replay15",
+      "baseline": {
+        "tag": "retrieval_raw_longtrain_baseline",
+        "subset_name": "diversity_probe",
+        "rows": 17,
+        "eval_bleu": 14.423954470965471,
+        "eval_chrfpp": 37.53032144927793,
+        "eval_geom": 23.266620894858878,
+        "eval_bleu_01": 0.14423954470965472,
+        "eval_chrfpp_01": 0.37530321449277926,
+        "eval_geom_01": 0.23266620894858878,
+        "metric_signatures": {
+          "sacrebleu_version": "2.6.0",
+          "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+          "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+        },
+        "health": {
+          "empty_prediction_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 5.882352941176471,
+          "repeat_prediction_ratio_pct": 0.0,
+          "internal_repeat_trigram_ratio_pct": 52.94117647058823,
+          "pred_word_mean": 129.23529411764707,
+          "ref_word_mean": 132.1764705882353
+        }
+      },
+      "probe": {
+        "tag": "replay15_probe",
+        "subset_name": "diversity_probe",
+        "rows": 17,
+        "eval_bleu": 8.914361531377867,
+        "eval_chrfpp": 28.12618481672716,
+        "eval_geom": 15.834360737164506,
+        "eval_bleu_01": 0.08914361531377868,
+        "eval_chrfpp_01": 0.2812618481672716,
+        "eval_geom_01": 0.15834360737164505,
+        "metric_signatures": {
+          "sacrebleu_version": "2.6.0",
+          "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+          "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+        },
+        "health": {
+          "empty_prediction_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 0.0,
+          "repeat_prediction_ratio_pct": 0.0,
+          "internal_repeat_trigram_ratio_pct": 76.47058823529412,
+          "pred_word_mean": 145.58823529411765,
+          "ref_word_mean": 132.1764705882353
+        }
+      },
+      "oracle_upper_bound": {
+        "tag": "retrieval_raw_longtrain_vs_replay15_oracle",
+        "subset_name": "diversity_probe",
+        "rows": 17,
+        "eval_bleu": 16.592178029960007,
+        "eval_chrfpp": 38.93529410342967,
+        "eval_geom": 25.41694968742231,
+        "eval_bleu_01": 0.16592178029960006,
+        "eval_chrfpp_01": 0.3893529410342967,
+        "eval_geom_01": 0.25416949687422313,
+        "metric_signatures": {
+          "sacrebleu_version": "2.6.0",
+          "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+          "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+        },
+        "health": {
+          "empty_prediction_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 5.882352941176471,
+          "repeat_prediction_ratio_pct": 0.0,
+          "internal_repeat_trigram_ratio_pct": 70.58823529411765,
+          "pred_word_mean": 136.52941176470588,
+          "ref_word_mean": 132.1764705882353
+        },
+        "note": "oracle per-row upper bound, not deployable"
+      },
+      "heuristic_selector": {
+        "tag": "retrieval_raw_longtrain_vs_replay15_heuristic",
+        "subset_name": "diversity_probe",
+        "rows": 17,
+        "eval_bleu": 14.423954470965471,
+        "eval_chrfpp": 37.53032144927793,
+        "eval_geom": 23.266620894858878,
+        "eval_bleu_01": 0.14423954470965472,
+        "eval_chrfpp_01": 0.37530321449277926,
+        "eval_geom_01": 0.23266620894858878,
+        "metric_signatures": {
+          "sacrebleu_version": "2.6.0",
+          "bleu": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+          "chrfpp": "nrefs:1|case:mixed|eff:yes|nc:6|nw:2|space:no|version:2.6.0"
+        },
+        "health": {
+          "empty_prediction_ratio_pct": 0.0,
+          "pred_shorter_than_half_ref_ratio_pct": 5.882352941176471,
+          "repeat_prediction_ratio_pct": 0.0,
+          "internal_repeat_trigram_ratio_pct": 52.94117647058823,
+          "pred_word_mean": 129.23529411764707,
+          "ref_word_mean": 132.1764705882353
+        },
+        "note": "selector prefers lower repeat/formula pressure"
+      },
+      "disagreement_ratio_pct": 100.0,
+      "baseline_oracle_wins": 7,
+      "probe_oracle_wins": 10,
+      "heuristic_choice_counts": {
+        "baseline": 17
+      },
+      "oracle_delta_geom_vs_best_single": 2.1503,
+      "heuristic_delta_geom_vs_best_single": 0.0,
+      "merge_mode": "id_reference"
+    }
+  },
+  "best_oracle_label": "replay15",
+  "best_oracle_delta_geom_vs_best_single": 2.1503,
+  "artifacts": {
+    "rowwise_csv": "/workspace/deep-past-/reports/taskform_winner_a3_revisit_20260311/rowwise.csv",
+    "summary_json": "/workspace/deep-past-/reports/taskform_winner_a3_revisit_20260311/summary.json",
+    "gate_report_md": "/workspace/deep-past-/reports/taskform_winner_a3_revisit_20260311/gate_report.md"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "ready_for_mix_build",
+  "fold": 0,
+  "internal": {
+    "train_visible_rows": 4064,
+    "train_visible_unique_source_norm_rows": 2811,
+    "train_visible_duplicate_source_norm_rows": 1253,
+    "val_visible_rows": 1225,
+    "val_visible_unique_source_norm_rows": 814,
+    "val_visible_duplicate_source_norm_rows": 411
+  },
+  "external": {
+    "path": "/workspace/deep-past-/data/external/oracc_parallel.csv",
+    "rows_raw": 7483,
+    "rows_post_clean": 7481,
+    "unique_source_norm_rows": 7481,
+    "duplicate_source_norm_rows": 0,
+    "rows_after_overlap_filter": 7481,
+    "duplicate_rows_after_overlap_filter": 0
+  }
+}

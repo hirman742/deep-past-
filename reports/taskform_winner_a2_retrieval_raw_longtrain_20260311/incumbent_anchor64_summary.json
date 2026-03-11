@@ -1,0 +1,59 @@
+{
+  "tag": "taskform_a2_a1_incumbent_anchor64_20260310",
+  "decode_best_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/decode_grid_best_taskform_a2_a1_incumbent_anchor64_20260310.json",
+  "diagnose_summary_path": "/workspace/deep-past-/runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/diagnostics/val_diagnostic_summary_taskform_a2_a1_incumbent_anchor64_20260310.json",
+  "eval_geom": 16.50574718634351,
+  "eval_bleu": 9.860624386106183,
+  "eval_chrfpp": 27.629050606912852,
+  "output_health": {
+    "num_rows": 64,
+    "empty_prediction_ratio_pct": 1.5625,
+    "copy_source_ratio_pct": 0.0,
+    "pred_shorter_than_half_ref_ratio_pct": 12.5,
+    "unique_prediction_ratio_pct": 100.0,
+    "has_bad_token_regex_ratio_pct": 0.0,
+    "exact_extra_id_0_ratio_pct": 0.0,
+    "top_repeated_predictions": [
+      {
+        "text": "To Šu-Tammuzi, Elaya, Ennam-Aššur and Lāmassī: Ennam-Aššur and Lāmassī: Ennam-Aššur and Ali-ahum from Ennam-Aššur and Ali-ahum.",
+        "count": 1
+      },
+      {
+        "text": "Seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal of Abiya son of Bebe, seal o",
+        "count": 1
+      },
+      {
+        "text": "Seal of the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver to the silver and send me the silver",
+        "count": 1
+      },
+      {
+        "text": "Seal of the City that you have not paid the silver to the City and send the silver to the City to the City and the City that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+        "count": 1
+      },
+      {
+        "text": "If you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver that you have not paid the silver",
+        "count": 1
+      },
+      {
+        "text": "Seal of the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver and the silver will pay the silver",
+        "count": 1
+      },
+      {
+        "text": "If you have not paid the silver and send me the silver to the silver and send me the silver to you \"",
+        "count": 1
+      },
+      {
+        "text": "miss sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems sistems si",
+        "count": 1
+      },
+      {
+        "text": "To Šalim-Aššur from Iddin-abum, Itūr-ilī, Inah-ilī, Ennam-Aššur and Ali-ahum: Itūr-ilī, Ennam-Aššur and Ali-ahum said: \"The silver has brought me the silver and the silver has brought me the silver and send me the silver to Itūr-ilī, Ennam-Aššur and Ali-ahum:",
+        "count": 1
+      },
+      {
+        "text": "Seal of the silver <gap>-Aššur son of <gap>-Aššur son of Aššur <gap>-Aššur son of Aššur's dagger <gap> son of Aššur's dagger <gap>",
+        "count": 1
+      }
+    ]
+  }
+}

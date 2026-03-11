@@ -1,0 +1,9 @@
+{
+  "stage": "completed",
+  "status": "completed_review_pending",
+  "updated_at_utc": "2026-03-11T11:23:46Z",
+  "summary_json": "/workspace/deep-past-/reports/taskform_winner_replay25_candidate_longtrain_20260311/summary.json",
+  "gate_report_md": "/workspace/deep-past-/reports/taskform_winner_replay25_candidate_longtrain_20260311/gate_report.md",
+  "anchor64_geom": 15.663590760143705,
+  "fullval_geom": 14.32705682752709
+}

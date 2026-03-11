@@ -1,0 +1,38 @@
+{
+  "status": "ready_internal_only",
+  "fold": 0,
+  "rows": {
+    "train_visible": 4064,
+    "val_visible": 1225
+  },
+  "scores": {
+    "top1_score_mean": 0.38642946694618036,
+    "top1_score_p50": 0.3481277216286735,
+    "top1_score_p95": 0.6670252962425902,
+    "top3_score_mean": 0.3566610145235058,
+    "top1_target_chrfpp_mean": 28.51243002154846
+  },
+  "targeted_slices": {
+    "gap_rows": {
+      "rows": 357,
+      "top1_score_mean": 0.3542608894546058,
+      "top1_target_chrfpp_mean": 25.128420708662393
+    },
+    "bracket_rows": {
+      "rows": 213,
+      "top1_score_mean": 0.4001373714872442,
+      "top1_target_chrfpp_mean": 30.38719568696212
+    },
+    "short_aligned_val_rows": {
+      "rows": 405,
+      "top1_score_mean": 0.3786141760177406,
+      "top1_target_chrfpp_mean": 29.208551684885688
+    }
+  },
+  "artifacts": {
+    "datastore_manifest_json": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_20260310/datastore_manifest.json",
+    "retrieval_overlap_audit_json": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_20260310/retrieval_overlap_audit.json",
+    "retrieval_bucket_audit_csv": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_20260310/retrieval_bucket_audit.csv",
+    "retrieval_bucket_summary_csv": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_20260310/retrieval_bucket_summary.csv"
+  }
+}

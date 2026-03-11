@@ -1,0 +1,33 @@
+{
+  "fold": 0,
+  "base_processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14",
+  "fair_offline_mono_fold0_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0.csv",
+  "trainfold_source_only_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0_trainfold_source_only.csv",
+  "trainfold_plus_published_nooverlap_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0.csv",
+  "published_nooverlap_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_mono_fold0_published_nooverlap.csv",
+  "submit_mono_all_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/submit_mono_all.csv",
+  "removed_rows_csv": "/workspace/deep-past-/reports/taskform_tapt_fair_20260310/fair_offline_removed_rows.csv",
+  "fold0_val_rows": 313,
+  "fold0_val_parent_rows": 313,
+  "fold0_val_unique_sources": 312,
+  "fold0_val_parent_rows_from_processed": 313,
+  "fold0_val_chunk_rows_from_processed": 1225,
+  "inventory": {
+    "trainfold_source_only_rows": 1247,
+    "published_nooverlap_rows": 7610,
+    "fair_offline_mono_fold0_rows": 8857,
+    "submit_mono_all_rows": 9173
+  },
+  "removals": {
+    "val_overlap_rows": 69,
+    "test_rows": 4,
+    "published_duplicate_rows": 274
+  },
+  "checks": {
+    "fold0_val_row_count_matches_base": true,
+    "fold0_val_chunk_rows_unchanged": true,
+    "trainfold_exact_overlap_with_val_unique_sources": 0,
+    "fair_offline_exact_overlap_with_val_unique_sources": 0,
+    "fair_offline_exact_overlap_with_test_unique_sources": 0
+  }
+}

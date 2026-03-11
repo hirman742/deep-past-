@@ -1,0 +1,16 @@
+{
+  "status": "partial_ready",
+  "anchor64": {
+    "incumbent_elapsed_seconds": 0.0,
+    "retrieval_smoke_elapsed_seconds": 258.64999890327454,
+    "retrieval_wlite_elapsed_seconds": 255.5355155467987
+  },
+  "fullval": {
+    "incumbent_elapsed_seconds": 2892.383260011673,
+    "retrieval_wlite_elapsed_seconds": 4970.811193704605
+  },
+  "ratios": {
+    "anchor64_wlite_vs_incumbent": null,
+    "fullval_wlite_vs_incumbent": 1.7186
+  }
+}

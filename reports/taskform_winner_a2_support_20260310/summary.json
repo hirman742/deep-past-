@@ -1,0 +1,8 @@
+{
+  "status": "ready_partial_bundle",
+  "cache_hit_stats_json": "/workspace/deep-past-/reports/taskform_winner_a2_support_20260310/retrieval_cache_hit_stats.json",
+  "neighbor_quality_audit_json": "/workspace/deep-past-/reports/taskform_winner_a2_support_20260310/nearest_neighbor_quality_audit.json",
+  "latency_report_json": "/workspace/deep-past-/reports/taskform_winner_a2_support_20260310/latency_report.json",
+  "memory_usage_report_json": "/workspace/deep-past-/reports/taskform_winner_a2_support_20260310/memory_usage_report.json",
+  "official_like_template_json": "/workspace/deep-past-/reports/taskform_winner_a2_support_20260310/official_like_template.json"
+}

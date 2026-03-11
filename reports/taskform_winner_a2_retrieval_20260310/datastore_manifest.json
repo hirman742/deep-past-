@@ -1,0 +1,16 @@
+{
+  "status": "ready_internal_only",
+  "base_config_path": "/workspace/deep-past-/runs/STEER/generated_configs/continue_s4_bs24_len640_seg5.yaml",
+  "base_processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14",
+  "fold": 0,
+  "datastore_rows": 4064,
+  "datastore_unique_oare_id": 4064,
+  "datastore_unique_parent_oare_id": 1248,
+  "datastore_short_aligned_rows": 1243,
+  "val_rows": 1225,
+  "val_short_aligned_rows": 405,
+  "artifacts": {
+    "retrieval_bucket_audit_csv": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_20260310/retrieval_bucket_audit.csv",
+    "retrieval_bucket_summary_csv": "/workspace/deep-past-/reports/taskform_winner_a2_retrieval_20260310/retrieval_bucket_summary.csv"
+  }
+}

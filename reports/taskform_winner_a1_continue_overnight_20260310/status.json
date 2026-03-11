@@ -1,0 +1,22 @@
+{
+  "status": "stopped_after_probe",
+  "started_at_utc": "2026-03-10T19:18:07.901836+00:00",
+  "stages": [
+    {
+      "stage": "build",
+      "status": "completed",
+      "timestamp_utc": "2026-03-10T19:22:11.893704+00:00",
+      "summary_json": "/workspace/deep-past-/reports/taskform_winner_a1_continue_build_20260310/summary.json"
+    },
+    {
+      "stage": "probe",
+      "status": "completed",
+      "timestamp_utc": "2026-03-10T20:22:33.558199+00:00",
+      "summary_json": "/workspace/deep-past-/reports/taskform_winner_a1_continue_probe_20260310/summary.json",
+      "probe_status": "reject_stop",
+      "best_ratio_label": "internal_only_matched",
+      "best_ratio_status": "control_only"
+    }
+  ],
+  "finished_at_utc": "2026-03-10T20:22:33.558640+00:00"
+}

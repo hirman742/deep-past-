@@ -1,0 +1,11 @@
+{
+  "status": "ready_internal_only",
+  "train_val_exact_id_overlap": 0,
+  "train_val_exact_source_overlap_rows": 4,
+  "val_has_gap_rows": 357,
+  "val_has_bracket_rows": 213,
+  "checks": {
+    "datastore_from_train_visible_only": true,
+    "fold0_val_not_in_exact_ids": true
+  }
+}

@@ -16,6 +16,12 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 from generation_utils import build_bad_words_ids, build_generate_kwargs, resolve_generation_settings
 from metrics_utils import build_metric_signatures, compute_translation_metrics
+from retrieval_logits_hook import (
+    build_batch_logits_processor,
+    build_query_neighbors_for_frame,
+    load_train_visible_frame,
+    task_prefix_from_config,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -152,6 +158,12 @@ def main() -> None:
     ap.add_argument("--aggregate-by-parent", default="auto", choices=["auto", "on", "off"])
     ap.add_argument("--aggregate-original-only", dest="aggregate_original_only", action="store_true")
     ap.add_argument("--no-aggregate-original-only", dest="aggregate_original_only", action="store_false")
+    ap.add_argument("--rk-enabled", action="store_true")
+    ap.add_argument("--rk-k", type=int, default=8)
+    ap.add_argument("--rk-raw-pool-k", type=int, default=48)
+    ap.add_argument("--rk-bias-strength", type=float, default=1.5)
+    ap.add_argument("--rk-max-bias-steps", type=int, default=192)
+    ap.add_argument("--rk-report-dir", default="")
     ap.set_defaults(aggregate_original_only=True)
     args = ap.parse_args()
 
@@ -233,6 +245,43 @@ def main() -> None:
         bad_words_ids=bad_words_ids,
     )
 
+    rk_hook_payload: dict[str, Any] | None = None
+    rk_query_neighbors = None
+    if args.rk_enabled:
+        rk_report_dir = _resolve_path(
+            args.rk_report_dir,
+            diag_dir / (f"rk_hook_{suffix.lstrip('_')}" if suffix else "rk_hook"),
+        )
+        rk_report_dir.mkdir(parents=True, exist_ok=True)
+        rk_train_visible = load_train_visible_frame(
+            processed_dir=processed_dir,
+            fold=int(args.fold),
+            task_prefix=task_prefix_from_config(cfg),
+        )
+        rk_query_neighbors, rk_meta, rk_query_df = build_query_neighbors_for_frame(
+            train_visible=rk_train_visible,
+            query_df=val_df,
+            tokenizer=tokenizer,
+            task_prefix=task_prefix_from_config(cfg),
+            raw_pool_k=int(args.rk_raw_pool_k),
+            final_k=int(args.rk_k),
+        )
+        rk_query_csv = rk_report_dir / "query_neighbors.csv"
+        rk_query_df.to_csv(rk_query_csv, index=False)
+        rk_hook_payload = {
+            "enabled": True,
+            "rk_k": int(args.rk_k),
+            "rk_raw_pool_k": int(args.rk_raw_pool_k),
+            "rk_bias_strength": float(args.rk_bias_strength),
+            "rk_max_bias_steps": int(args.rk_max_bias_steps),
+            "query_neighbors_csv": str(rk_query_csv),
+            "metadata": rk_meta,
+        }
+        (rk_report_dir / "hook_metadata.json").write_text(
+            json.dumps(rk_hook_payload, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
     sources = val_df["source"].fillna("").astype(str).tolist()
     references = val_df["target"].fillna("").astype(str).tolist()
     if args.shuffle_source:
@@ -242,6 +291,7 @@ def main() -> None:
     predictions: list[str] = []
 
     with torch.no_grad():
+        batch_start_idx = 0
         for batch_sources in _chunk(sources, max(1, args.predict_batch_size)):
             tokenized = tokenizer(
                 batch_sources,
@@ -251,12 +301,23 @@ def main() -> None:
                 padding=True,
             )
             tokenized = {k: v.to(device) for k, v in tokenized.items()}
+            batch_processor = build_batch_logits_processor(
+                query_neighbors=rk_query_neighbors,
+                batch_start_idx=batch_start_idx,
+                batch_size=len(batch_sources),
+                num_beams=int(generation_settings["num_beams"]),
+                bias_strength=float(args.rk_bias_strength),
+                max_bias_steps=int(args.rk_max_bias_steps),
+                eos_token_id=tokenizer.eos_token_id,
+            )
             generated = model.generate(
                 **tokenized,
                 **generate_kwargs,
+                logits_processor=batch_processor,
             )
             decoded = tokenizer.batch_decode(generated, skip_special_tokens=True)
             predictions.extend([x.strip() for x in decoded])
+            batch_start_idx += len(batch_sources)
 
     if len(predictions) != len(references):
         raise RuntimeError("Prediction/reference length mismatch")
@@ -390,6 +451,9 @@ def main() -> None:
             "suppress_extra_ids": bool(generation_settings["suppress_extra_ids"]),
             "bad_tokens_regex": str(generation_settings["bad_tokens_regex"]),
             "suppressed_bad_word_ids_count": int(len(bad_words_ids or [])),
+            "rk_enabled": bool(args.rk_enabled),
+            "rk_bias_strength": float(args.rk_bias_strength) if args.rk_enabled else 0.0,
+            "rk_k": int(args.rk_k) if args.rk_enabled else 0,
         },
         "diagnostic_mode": {
             "shuffle_source": bool(args.shuffle_source),
@@ -444,6 +508,8 @@ def main() -> None:
     }
     if reconstructed_summary is not None:
         summary["reconstructed"] = reconstructed_summary
+    if rk_hook_payload is not None:
+        summary["rk_hook"] = rk_hook_payload
     summary_out.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(f"OK: wrote {predictions_out}")

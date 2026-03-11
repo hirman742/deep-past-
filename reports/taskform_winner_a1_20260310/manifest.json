@@ -1,0 +1,26 @@
+{
+  "status": "ready_for_mix_build",
+  "base_config_path": "/workspace/deep-past-/runs/STEER/generated_configs/continue_s4_bs24_len640_seg5.yaml",
+  "base_processed_dir": "/workspace/deep-past-/data/processed_byt5_chunks_align_gc_cost14",
+  "fold": 0,
+  "internal": {
+    "train_visible_rows": 4064,
+    "val_visible_rows": 1225,
+    "val_parent_rows": 313,
+    "raw_train_rows": 1561,
+    "raw_test_rows": 4
+  },
+  "paths": {
+    "source_registry_csv": "/workspace/deep-past-/reports/taskform_winner_a1_20260310/source_registry.csv",
+    "mix_plan_csv": "/workspace/deep-past-/reports/taskform_winner_a1_20260310/mix_plan.csv",
+    "overlap_audit_json": "/workspace/deep-past-/reports/taskform_winner_a1_20260310/overlap_audit.json",
+    "dedup_manifest_json": "/workspace/deep-past-/reports/taskform_winner_a1_20260310/dedup_manifest.json",
+    "manifest_json": "/workspace/deep-past-/reports/taskform_winner_a1_20260310/manifest.json"
+  },
+  "external": {
+    "path": "/workspace/deep-past-/data/external/oracc_parallel.csv",
+    "rows_raw": 7483,
+    "rows_post_clean": 7481,
+    "rows_after_overlap_filter": 7481
+  }
+}

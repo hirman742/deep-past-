@@ -1,0 +1,7 @@
+{
+  "stage": "completed",
+  "status": "reject_stop",
+  "updated_at_utc": "2026-03-11T03:49:03Z",
+  "summary_json": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311/summary.json",
+  "gate_report_md": "/workspace/deep-past-/reports/taskform_winner_a1_pseudotarget_smoke_20260311/gate_report.md"
+}

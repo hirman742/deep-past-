@@ -1,0 +1,13 @@
+{
+  "status": "ready",
+  "external_csv": "/workspace/deep-past-/data/external/oracc_parallel.csv",
+  "checks": {
+    "external_rows_raw": 7483,
+    "external_rows_post_clean": 7481,
+    "external_rows_unique_source_norm": 7481,
+    "fold0_val_exact_overlap_rows": 0,
+    "test_exact_overlap_rows": 0,
+    "train_exact_overlap_rows": 0,
+    "external_rows_after_overlap_filter": 7481
+  }
+}

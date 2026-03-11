@@ -1,0 +1,6 @@
+label,note,anchor64_reconstructed_geom,anchor64_chunk_geom,fullval_reconstructed_geom,fullval_chunk_geom,hard_geom,fullval_unique_prediction_ratio_pct,fullval_short_ratio_pct,fullval_health_no_regression_vs_i0
+fallback_180,fallback to incumbent on repeat>=5 or repeat>=4 with len<=180,23.5415,13.2305,19.9035,14.0395,20.7888,64.6531,8.2449,True
+fallback_180_plus_trim,"same as fallback_180, then trim long internal repeats",24.633,13.9722,20.0299,14.7989,20.3707,64.6531,9.6327,False
+raw,baseline raw W-lite,23.5415,13.2305,19.9908,14.1391,20.836,63.102,8.8163,False
+fallback_80,fallback to incumbent on repeat>=5 or repeat>=4 with len<=80,23.5415,13.2305,19.9906,14.1457,20.8099,64.3265,8.2449,False
+fallback_140,fallback to incumbent on repeat>=5 or repeat>=4 with len<=140,23.5415,13.2305,19.9383,14.0848,20.7888,64.4898,8.2449,False
