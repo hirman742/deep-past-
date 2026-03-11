@@ -4,13 +4,14 @@
 
 As of 2026-03-11, the local workspace contains a winner freeze chain that is not yet represented on `origin/main` (`https://github.com/hirman742/deep-past-.git`).
 
-The remote baseline checked for this manifest is `origin/main` at commit `7a01b52`.
+The remote baseline checked for this manifest is `origin/main` at commit `836c14d`.
 
-This manifest splits the workspace into three layers:
+This manifest splits the workspace into four layers:
 
 1. `repo_sync_20260311.lst`
 2. `winner_core_20260311.lst`
 3. `research_tail_20260311.lst`
+4. `legacy_taskform_history_20260311.lst`
 
 The goal is to keep Git history readable while preserving the non-regenerable winner assets outside normal source control history.
 
@@ -57,6 +58,21 @@ Recommended output name:
 release/deep_past_research_tail_20260311.tgz
 ```
 
+### `legacy_taskform_history_20260311.lst`
+
+Build this archive as the legacy evidence bundle for pre-freeze taskform lines. It contains:
+
+- archived taskform and phase12 report directories
+- DAN1-era summary artifacts and compact data sidecars
+- the `taskform_tapt_fair_smokecheck` boundary package
+- the older docs that explain why these lines were superseded
+
+Recommended output name:
+
+```text
+release/deep_past_legacy_taskform_history_20260311.tgz
+```
+
 ## Explicit Exclusions
 
 Do not add these to the new archives:
@@ -96,6 +112,10 @@ scripts/build_archive_from_manifest.sh --check-only \
 scripts/build_archive_from_manifest.sh --check-only \
   manifests/archive/research_tail_20260311.lst \
   release/deep_past_research_tail_20260311.tgz
+
+scripts/build_archive_from_manifest.sh --check-only \
+  manifests/archive/legacy_taskform_history_20260311.lst \
+  release/deep_past_legacy_taskform_history_20260311.tgz
 ```
 
 ### 3. Build the archives
@@ -109,9 +129,14 @@ scripts/build_archive_from_manifest.sh \
   manifests/archive/research_tail_20260311.lst \
   release/deep_past_research_tail_20260311.tgz
 
+scripts/build_archive_from_manifest.sh \
+  manifests/archive/legacy_taskform_history_20260311.lst \
+  release/deep_past_legacy_taskform_history_20260311.tgz
+
 sha256sum \
   release/deep_past_winner_core_20260311.tgz \
   release/deep_past_research_tail_20260311.tgz \
+  release/deep_past_legacy_taskform_history_20260311.tgz \
   > release/SHA256SUMS_20260311.txt
 ```
 
@@ -120,7 +145,7 @@ sha256sum \
 Preferred publication path:
 
 - push the `repo_sync` layer through normal Git history
-- upload the two `.tgz` files and `SHA256SUMS_20260311.txt` as GitHub Release assets
+- upload the three `.tgz` files and `SHA256SUMS_20260311.txt` as GitHub Release assets
 
 Fallback path:
 
@@ -136,3 +161,9 @@ When restoring from scratch, read assets in this order:
 4. `reports/taskform_winner_a2_support_20260310/summary.json`
 5. `runs/STEER_S4_CONTINUE_BS24_LEN640_SEG5_fold0/run_summary.json`
 6. `runs/TASKFORM_WINNER_A2_RETRIEVAL_TOP1_WLITE_20260310_fold0/run_summary.json`
+
+If you need the earlier taskform history after that, unpack `deep_past_legacy_taskform_history_20260311.tgz` and start from:
+
+1. `docs/taskform_experiment_report_2026-03-10.md`
+2. `docs/next-step_taskform_discipline_2026-03-10.md`
+3. `reports/taskform_phase12/phase12_l2_l3_summary.json`

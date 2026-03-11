@@ -1,7 +1,8 @@
 # Archive planning assets
+manifests/archive/legacy_taskform_history_20260311.lst
 manifests/archive/repo_sync_20260311.lst
-manifests/archive/winner_core_20260311.lst
 manifests/archive/research_tail_20260311.lst
+manifests/archive/winner_core_20260311.lst
 docs/archive_manifest_2026-03-11.md
 scripts/build_archive_from_manifest.sh
 
@@ -12,9 +13,25 @@ configs/
 scripts/
 
 # Core winner docs
+docs/architecture_upgrade_probe_round_2026-03-09.md
+docs/cloud_stage2_machine_experiment_inventory_2026-03-09.md
+docs/cloud_stage2_tier1_cleaning_gate_report_2026-03-09.md
+docs/next-step_discipline.md
+docs/next-step_taskform_discipline_2026-03-09.md
+docs/next-step_taskform_discipline_2026-03-10.md
 docs/next_step_displine_winner_2026-03-10.md
+docs/semantic_cleaning_spec.md
+docs/taskform_experiment_report_2026-03-10.md
+docs/taskform_p1_wlite_gate_2026-03-09.md
+docs/taskform_parentpack_bucket_audit_2026-03-09.md
+docs/taskform_proxy_mix_candidate_audit_2026-03-09.md
+docs/taskform_replay_coverage_audit_2026-03-09.md
+docs/taskform_upgrade_probe_round_v2_2026-03-09.md
 docs/taskform_winner_stage_report_2026-03-10.md
 docs/taskform_winner_retrieval_gate_pwf_2026-03-11.md
+docs/taskform_winner_hook_report_2026-03-10.md
+docs/winner_bucket_baseline_compare_2026-03-09.md
+docs/winner_error_bucket_report_2026-03-09.md
 
 # Research docs
 docs/taskform_winner_a1_continue_redesign_2026-03-10.md

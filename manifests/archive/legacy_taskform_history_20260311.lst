@@ -1,0 +1,54 @@
+# Self-describing archive metadata
+README.md
+manifests/archive/legacy_taskform_history_20260311.lst
+docs/archive_manifest_2026-03-11.md
+
+# Historical docs for the superseded taskform / phase12 lines
+docs/architecture_upgrade_probe_round_2026-03-09.md
+docs/cloud_stage2_machine_experiment_inventory_2026-03-09.md
+docs/cloud_stage2_tier1_cleaning_gate_report_2026-03-09.md
+docs/next-step_discipline.md
+docs/next-step_taskform_discipline_2026-03-09.md
+docs/next-step_taskform_discipline_2026-03-10.md
+docs/semantic_cleaning_spec.md
+docs/taskform_experiment_report_2026-03-10.md
+docs/taskform_p1_wlite_gate_2026-03-09.md
+docs/taskform_parentpack_bucket_audit_2026-03-09.md
+docs/taskform_proxy_mix_candidate_audit_2026-03-09.md
+docs/taskform_replay_coverage_audit_2026-03-09.md
+docs/taskform_upgrade_probe_round_v2_2026-03-09.md
+docs/taskform_winner_hook_report_2026-03-10.md
+docs/winner_bucket_baseline_compare_2026-03-09.md
+docs/winner_error_bucket_report_2026-03-09.md
+
+# Legacy report trees kept out of normal Git history
+reports/taskform_a2_a1_20260310
+reports/taskform_dan1_a1_a3
+reports/taskform_dan1_b1_b2_b4
+reports/taskform_dan1_p
+reports/taskform_dan1_p_v2
+reports/taskform_dan1_w
+reports/taskform_l2_term_phase12
+reports/taskform_l2_term_phase12_tight
+reports/taskform_l3_rowgate_phase12
+reports/taskform_l3_rowgate_phase12_v2
+reports/taskform_l3_source_policy_phase12
+reports/taskform_l3_source_policy_phase12_tight
+reports/taskform_phase12
+reports/taskform_tapt_fair_smokecheck
+reports/taskform_winner_a1_mix_build_20260310
+reports/taskform_winner_a1_smoke_20260310
+reports/taskform_winner_a2_health_review_20260310
+reports/taskform_winner_a2_retrieval_probe_20260310
+reports/taskform_winner_a2_retrieval_probe_smoke_20260310
+reports/taskform_winner_a2_rk_anchor64_probe_20260310
+reports/taskform_winner_a3_diversity_20260310
+reports/taskform_winner_a3_mbr_probe_20260310
+reports/taskform_winner_rk_truehook_smoke8_20260310
+reports/taskform_winner_rk_truehook_smoke8_a05s32_20260310
+
+# Small data sidecars referenced by the archived report trees
+data/processed_taskform_proxymix_audit.json
+data/taskform_dan1_edit_v1_fold0
+data/taskform_dan1_fold0
+data/taskform_dan1_v2_fold0
