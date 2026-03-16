@@ -64,3 +64,17 @@ reports/taskform_winner_a3_diversity_20260310/
 reports/taskform_winner_a3_mbr_probe_20260310/
 reports/taskform_winner_rk_truehook_smoke8_20260310/
 reports/taskform_winner_rk_truehook_smoke8_a05s32_20260310/
+
+# Current public-model working set is tracked via raw docs plus release tgz archives
+configs/public_model_*.yaml
+scripts/export_public_model_stepup_kaggle_bundle.py
+scripts/public_model_*.py
+scripts/public_model_*.sh
+scripts/run_public_*.sh
+scripts/watch_stop_old_m100.sh
+exports/public_model_r16_stepup_kaggle_20260316/
+reports/_tmp_h6_transplant_smoke_20260315a/
+reports/public_model_*.json
+reports/public_model_*/
+reports/taskform_winner_phase4_public_model_audit_20260313/
+release/core_assets_20260316/*.zip

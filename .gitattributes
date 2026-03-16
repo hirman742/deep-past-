@@ -2,3 +2,4 @@
 data/raw/*.csv -text
 data/external/*.csv -text
 deep_past_rescue_20260306_191331.tgz filter=lfs diff=lfs merge=lfs -text
+release/core_assets_20260316/*.tgz filter=lfs diff=lfs merge=lfs -text
